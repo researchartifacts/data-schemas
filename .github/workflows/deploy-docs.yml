@@ -43,7 +43,7 @@ jobs:
           "
 
       - name: Generate documentation
-        run: ./generate_docs.sh
+        run: bash generate_docs.sh
 
       - uses: actions/upload-pages-artifact@v3
         with:
