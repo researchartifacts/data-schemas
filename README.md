@@ -52,7 +52,3 @@ All schemas use [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-1
 - `additionalProperties: false` enforces strict field sets
 - Badge values use `enum` constraints
 - Nullable fields use `type: ["number", "null"]`
-
-## License
-
-MIT
