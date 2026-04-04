@@ -2,7 +2,7 @@
 
 [JSON Schema](https://json-schema.org/) definitions for all data structures produced by the [artifact_analysis](https://github.com/researchartifacts/artifact_analysis) pipeline and consumed by the [researchartifacts.github.io](https://github.com/researchartifacts/researchartifacts.github.io) website.
 
-**Live documentation:** [researchartifacts.github.io/data-schemas](https://researchartifacts.github.io/data-schemas/)
+**Browse the documentation:** [researchartifacts.github.io/data-schemas](https://researchartifacts.github.io/data-schemas/)
 
 ## Schemas
 
@@ -18,37 +18,3 @@
 | [Artifacts by Conference](https://researchartifacts.github.io/data-schemas/artifacts_by_conference.html) | Badge breakdown by conference and year | `generate_statistics.py` |
 | [Artifacts by Year](https://researchartifacts.github.io/data-schemas/artifacts_by_year.html) | Year-over-year artifact counts | `generate_statistics.py` |
 | [Repo Stats Summary](https://researchartifacts.github.io/data-schemas/repo_stats_summary.html) | Aggregated repository metrics for the site | `generate_repo_stats.py` |
-
-## Usage
-
-### Generate documentation locally
-
-```bash
-pip install -r requirements.txt
-./generate_docs.sh
-# Open docs/index.html
-```
-
-### Validate data against schemas
-
-```python
-import json, jsonschema
-
-schema = json.load(open("schemas/artifacts.schema.json"))
-data = json.load(open("path/to/artifacts.json"))
-jsonschema.validate(data, schema)
-```
-
-### CI/CD
-
-On push to `main`, GitHub Actions validates all schemas and deploys HTML+Markdown docs to GitHub Pages.
-
-## Schema Format
-
-All schemas use [JSON Schema Draft 2020-12](https://json-schema.org/draft/2020-12/json-schema-core). Key conventions:
-
-- Each `.schema.json` file is self-contained with `$defs` for nested types
-- `$id` URIs match the GitHub Pages deployment path
-- `additionalProperties: false` enforces strict field sets
-- Badge values use `enum` constraints
-- Nullable fields use `type: ["number", "null"]`
