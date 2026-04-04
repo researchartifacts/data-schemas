@@ -37,3 +37,17 @@ still produces conforming output.
 | `summary.schema.json` | `generate_statistics.py` |
 | `artifacts_by_conference.schema.json` | `generate_statistics.py` |
 | `artifacts_by_year.schema.json` | `generate_statistics.py` |
+
+## Adding New Schemas
+
+1. Create `schemas/<name>.schema.json` following the Draft 2020-12 format.
+2. Use `$defs` for nested types, `$id` matching the GitHub Pages path.
+3. Add the schema to the mapping table above.
+4. Add it to the README.md table.
+5. `generate_docs.sh` picks up new files automatically (glob-based).
+6. Test locally: `bash generate_docs.sh`
+
+## Conference Enum Sync
+
+When adding a new conference to `artifacts.schema.json`'s conference enum, also
+check `artifacts_by_conference.schema.json` for consistency.
