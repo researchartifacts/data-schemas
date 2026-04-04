@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://researchartifacts.github.io/data-schemas/schemas/artifacts_by_year.schema.json",
+  "title": "Artifacts by Year",
+  "description": "Artifact counts grouped by year with systems/security breakdown. Written as artifacts_by_year.yml in _data/.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["year", "count", "systems", "security"],
+    "properties": {
+      "year": {
+        "type": "integer",
+        "description": "Publication year."
+      },
+      "count": {
+        "type": "integer",
+        "description": "Total artifacts for this year.",
+        "minimum": 0
+      },
+      "systems": {
+        "type": "integer",
+        "description": "Artifacts from systems conferences.",
+        "minimum": 0
+      },
+      "security": {
+        "type": "integer",
+        "description": "Artifacts from security conferences.",
+        "minimum": 0
+      }
+    },
+    "additionalProperties": false
+  }
+}

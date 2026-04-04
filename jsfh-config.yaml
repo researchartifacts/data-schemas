@@ -1,0 +1,8 @@
+# json-schema-for-humans HTML config
+template_name: js
+show_breadcrumbs: true
+collapse_long_descriptions: false
+copy_css: true
+copy_js: true
+with_footer: true
+footer_show_time: true

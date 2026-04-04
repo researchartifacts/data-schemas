@@ -1,0 +1,5 @@
+# json-schema-for-humans Markdown config
+template_name: md
+show_breadcrumbs: true
+collapse_long_descriptions: false
+show_toc: true

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://researchartifacts.github.io/data-schemas/schemas/summary.schema.json",
+  "title": "Summary Statistics",
+  "description": "High-level summary statistics for the Jekyll site. Written as summary.yml in _data/.",
+  "type": "object",
+  "required": [
+    "total_artifacts",
+    "total_conferences",
+    "systems_artifacts",
+    "security_artifacts",
+    "conferences_list",
+    "systems_conferences",
+    "security_conferences",
+    "year_range",
+    "last_updated"
+  ],
+  "properties": {
+    "total_artifacts": {
+      "type": "integer",
+      "description": "Total number of artifacts across all conferences.",
+      "minimum": 0
+    },
+    "total_conferences": {
+      "type": "integer",
+      "description": "Total number of tracked conferences.",
+      "minimum": 0
+    },
+    "systems_artifacts": {
+      "type": "integer",
+      "description": "Artifacts from systems conferences.",
+      "minimum": 0
+    },
+    "security_artifacts": {
+      "type": "integer",
+      "description": "Artifacts from security conferences.",
+      "minimum": 0
+    },
+    "conferences_list": {
+      "type": "array",
+      "description": "List of all tracked conference abbreviations.",
+      "items": { "type": "string" }
+    },
+    "systems_conferences": {
+      "type": "array",
+      "description": "List of systems conference abbreviations.",
+      "items": { "type": "string" }
+    },
+    "security_conferences": {
+      "type": "array",
+      "description": "List of security conference abbreviations.",
+      "items": { "type": "string" }
+    },
+    "year_range": {
+      "type": "string",
+      "description": "Range of years covered in 'YYYY-YYYY' format.",
+      "pattern": "^[0-9]{4}-[0-9]{4}$"
+    },
+    "last_updated": {
+      "type": "string",
+      "description": "ISO 8601 UTC timestamp of last data update.",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

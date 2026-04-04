@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://researchartifacts.github.io/data-schemas/schemas/artifacts_by_conference.schema.json",
+  "title": "Artifacts by Conference",
+  "description": "Artifact counts and badge breakdowns grouped by conference and year. Written as artifacts_by_conference.yml in _data/.",
+  "type": "array",
+  "items": {
+    "$ref": "#/$defs/ConferenceEntry"
+  },
+  "$defs": {
+    "ConferenceEntry": {
+      "type": "object",
+      "title": "Conference Entry",
+      "required": ["name", "category", "venue_type", "total_artifacts", "years"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Conference abbreviation."
+        },
+        "category": {
+          "type": "string",
+          "description": "Research domain.",
+          "enum": ["systems", "security"]
+        },
+        "venue_type": {
+          "type": "string",
+          "description": "Whether this is a full conference or a workshop.",
+          "enum": ["conference", "workshop"]
+        },
+        "total_artifacts": {
+          "type": "integer",
+          "description": "Total artifacts across all years.",
+          "minimum": 0
+        },
+        "years": {
+          "type": "array",
+          "description": "Per-year breakdown of artifact counts and badges.",
+          "items": {
+            "$ref": "#/$defs/YearBreakdown"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "YearBreakdown": {
+      "type": "object",
+      "title": "Year Breakdown",
+      "required": ["year", "total", "available", "functional", "reproducible", "reusable"],
+      "properties": {
+        "year": {
+          "type": "integer",
+          "description": "Publication year."
+        },
+        "total": {
+          "type": "integer",
+          "description": "Total artifacts for this conference-year.",
+          "minimum": 0
+        },
+        "available": {
+          "type": "integer",
+          "description": "Count of 'available' badges.",
+          "minimum": 0
+        },
+        "functional": {
+          "type": "integer",
+          "description": "Count of 'functional' badges.",
+          "minimum": 0
+        },
+        "reproducible": {
+          "type": "integer",
+          "description": "Count of 'reproduced' badges.",
+          "minimum": 0
+        },
+        "reusable": {
+          "type": "integer",
+          "description": "Count of 'reusable' badges.",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
