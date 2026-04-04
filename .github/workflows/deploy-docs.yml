@@ -3,10 +3,6 @@ name: Generate & Deploy Schema Docs
 on:
   push:
     branches: [main]
-    paths:
-      - 'schemas/**'
-      - 'generate_docs.sh'
-      - 'jsfh-config*.yaml'
   workflow_dispatch:
 
 permissions:
