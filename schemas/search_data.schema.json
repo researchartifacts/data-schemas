@@ -75,8 +75,6 @@
             "type": "string"
           }
         },
-        "artifact_urls": {
-          "type": "array",
         "paper_url": {
           "type": "string",
           "description": "Paper DOI or direct link.",
