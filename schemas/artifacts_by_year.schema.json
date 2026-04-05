@@ -1,33 +1,49 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://researchartifacts.github.io/data-schemas/schemas/artifacts_by_year.schema.json",
-  "title": "Artifacts by Year",
-  "description": "Artifact counts grouped by year with systems/security breakdown. Written as artifacts_by_year.yml in _data/.",
+  "title": "YearCount Collection",
+  "description": "Artifact count for a single year with systems/security breakdown.",
   "type": "array",
   "items": {
-    "type": "object",
-    "required": ["year", "count", "systems", "security"],
-    "properties": {
-      "year": {
-        "type": "integer",
-        "description": "Publication year."
+    "$ref": "#/$defs/YearCount"
+  },
+  "$defs": {
+    "YearCount": {
+      "additionalProperties": false,
+      "description": "Artifact count for a single year with systems/security breakdown.",
+      "properties": {
+        "year": {
+          "description": "Publication year.",
+          "title": "Year",
+          "type": "integer"
+        },
+        "count": {
+          "description": "Total artifacts for this year.",
+          "minimum": 0,
+          "title": "Count",
+          "type": "integer"
+        },
+        "systems": {
+          "description": "Artifacts from systems conferences.",
+          "minimum": 0,
+          "title": "Systems",
+          "type": "integer"
+        },
+        "security": {
+          "description": "Artifacts from security conferences.",
+          "minimum": 0,
+          "title": "Security",
+          "type": "integer"
+        }
       },
-      "count": {
-        "type": "integer",
-        "description": "Total artifacts for this year.",
-        "minimum": 0
-      },
-      "systems": {
-        "type": "integer",
-        "description": "Artifacts from systems conferences.",
-        "minimum": 0
-      },
-      "security": {
-        "type": "integer",
-        "description": "Artifacts from security conferences.",
-        "minimum": 0
-      }
-    },
-    "additionalProperties": false
+      "required": [
+        "year",
+        "count",
+        "systems",
+        "security"
+      ],
+      "title": "YearCount",
+      "type": "object"
+    }
   }
 }

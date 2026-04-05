@@ -1,99 +1,372 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://researchartifacts.github.io/data-schemas/schemas/repo_stats_summary.schema.json",
-  "title": "Repository Statistics Summary",
-  "description": "Aggregated repository metrics for the Jekyll site. Written as repo_stats.yml in _data/.",
-  "type": "object",
-  "required": ["overall", "by_conference", "by_year"],
-  "properties": {
-    "overall": {
-      "type": "object",
-      "description": "Global repository metrics.",
-      "required": [
-        "github_repos", "total_stars", "total_forks",
-        "max_stars", "max_forks",
-        "zenodo_repos", "total_views", "total_downloads",
-        "avg_stars", "avg_forks", "last_updated"
-      ],
-      "properties": {
-        "github_repos": { "type": "integer", "minimum": 0 },
-        "total_stars": { "type": "integer", "minimum": 0 },
-        "total_forks": { "type": "integer", "minimum": 0 },
-        "max_stars": { "type": "integer", "minimum": 0 },
-        "max_forks": { "type": "integer", "minimum": 0 },
-        "zenodo_repos": { "type": "integer", "minimum": 0 },
-        "total_views": { "type": "integer", "minimum": 0 },
-        "total_downloads": { "type": "integer", "minimum": 0 },
-        "avg_stars": { "type": "number", "minimum": 0 },
-        "avg_forks": { "type": "number", "minimum": 0 },
-        "last_updated": { "type": "string", "format": "date-time" }
-      },
-      "additionalProperties": false
-    },
-    "by_conference": {
-      "type": "array",
+  "$defs": {
+    "ConferenceRepoStats": {
+      "additionalProperties": false,
       "description": "Repository metrics grouped by conference.",
-      "items": {
-        "type": "object",
-        "required": ["name", "github_repos", "total_stars", "total_forks", "avg_stars", "avg_forks", "max_stars", "max_forks"],
-        "properties": {
-          "name": { "type": "string" },
-          "github_repos": { "type": "integer", "minimum": 0 },
-          "total_stars": { "type": "integer", "minimum": 0 },
-          "total_forks": { "type": "integer", "minimum": 0 },
-          "avg_stars": { "type": "number", "minimum": 0 },
-          "avg_forks": { "type": "number", "minimum": 0 },
-          "max_stars": { "type": "integer", "minimum": 0 },
-          "max_forks": { "type": "integer", "minimum": 0 },
-          "years": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "year": { "type": "integer" },
-                "github_repos": { "type": "integer", "minimum": 0 },
-                "total_stars": { "type": "integer", "minimum": 0 },
-                "total_forks": { "type": "integer", "minimum": 0 },
-                "avg_stars": { "type": "number", "minimum": 0 },
-                "avg_forks": { "type": "number", "minimum": 0 }
-              }
-            }
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "github_repos": {
+          "minimum": 0,
+          "title": "Github Repos",
+          "type": "integer"
+        },
+        "total_stars": {
+          "minimum": 0,
+          "title": "Total Stars",
+          "type": "integer"
+        },
+        "total_forks": {
+          "minimum": 0,
+          "title": "Total Forks",
+          "type": "integer"
+        },
+        "avg_stars": {
+          "minimum": 0,
+          "title": "Avg Stars",
+          "type": "number"
+        },
+        "avg_forks": {
+          "minimum": 0,
+          "title": "Avg Forks",
+          "type": "number"
+        },
+        "max_stars": {
+          "minimum": 0,
+          "title": "Max Stars",
+          "type": "integer"
+        },
+        "max_forks": {
+          "minimum": 0,
+          "title": "Max Forks",
+          "type": "integer"
+        },
+        "years": {
+          "items": {
+            "$ref": "#/$defs/ConferenceYearStats"
           },
-          "top_repos": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "name": { "type": "string" },
-                "url": { "type": "string", "format": "uri" },
-                "stars": { "type": "integer", "minimum": 0 },
-                "forks": { "type": "integer", "minimum": 0 },
-                "language": { "type": "string" },
-                "description": { "type": "string" }
-              }
-            }
-          }
+          "title": "Years",
+          "type": "array"
         },
-        "additionalProperties": false
-      }
+        "top_repos": {
+          "items": {
+            "$ref": "#/$defs/TopRepo"
+          },
+          "title": "Top Repos",
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "github_repos",
+        "total_stars",
+        "total_forks",
+        "avg_stars",
+        "avg_forks",
+        "max_stars",
+        "max_forks"
+      ],
+      "title": "ConferenceRepoStats",
+      "type": "object"
     },
-    "by_year": {
-      "type": "array",
-      "description": "Repository metrics grouped by year.",
-      "items": {
-        "type": "object",
-        "required": ["year", "github_repos", "total_stars"],
-        "properties": {
-          "year": { "type": "integer" },
-          "github_repos": { "type": "integer", "minimum": 0 },
-          "total_stars": { "type": "integer", "minimum": 0 },
-          "total_forks": { "type": "integer", "minimum": 0 },
-          "avg_stars": { "type": "number", "minimum": 0 },
-          "avg_forks": { "type": "number", "minimum": 0 }
+    "ConferenceYearStats": {
+      "description": "Repository metrics for a single conference-year.",
+      "properties": {
+        "year": {
+          "title": "Year",
+          "type": "integer"
         },
-        "additionalProperties": false
-      }
+        "github_repos": {
+          "minimum": 0,
+          "title": "Github Repos",
+          "type": "integer"
+        },
+        "total_stars": {
+          "minimum": 0,
+          "title": "Total Stars",
+          "type": "integer"
+        },
+        "total_forks": {
+          "minimum": 0,
+          "title": "Total Forks",
+          "type": "integer"
+        },
+        "avg_stars": {
+          "minimum": 0,
+          "title": "Avg Stars",
+          "type": "number"
+        },
+        "avg_forks": {
+          "minimum": 0,
+          "title": "Avg Forks",
+          "type": "number"
+        }
+      },
+      "required": [
+        "year",
+        "github_repos",
+        "total_stars",
+        "total_forks",
+        "avg_stars",
+        "avg_forks"
+      ],
+      "title": "ConferenceYearStats",
+      "type": "object"
+    },
+    "OverallStats": {
+      "additionalProperties": false,
+      "description": "Global repository metrics.",
+      "properties": {
+        "github_repos": {
+          "minimum": 0,
+          "title": "Github Repos",
+          "type": "integer"
+        },
+        "total_stars": {
+          "minimum": 0,
+          "title": "Total Stars",
+          "type": "integer"
+        },
+        "total_forks": {
+          "minimum": 0,
+          "title": "Total Forks",
+          "type": "integer"
+        },
+        "max_stars": {
+          "minimum": 0,
+          "title": "Max Stars",
+          "type": "integer"
+        },
+        "max_forks": {
+          "minimum": 0,
+          "title": "Max Forks",
+          "type": "integer"
+        },
+        "zenodo_repos": {
+          "minimum": 0,
+          "title": "Zenodo Repos",
+          "type": "integer"
+        },
+        "total_views": {
+          "minimum": 0,
+          "title": "Total Views",
+          "type": "integer"
+        },
+        "total_downloads": {
+          "minimum": 0,
+          "title": "Total Downloads",
+          "type": "integer"
+        },
+        "avg_stars": {
+          "minimum": 0,
+          "title": "Avg Stars",
+          "type": "number"
+        },
+        "avg_forks": {
+          "minimum": 0,
+          "title": "Avg Forks",
+          "type": "number"
+        },
+        "last_updated": {
+          "description": "ISO 8601 timestamp.",
+          "title": "Last Updated",
+          "type": "string"
+        }
+      },
+      "required": [
+        "github_repos",
+        "total_stars",
+        "total_forks",
+        "max_stars",
+        "max_forks",
+        "zenodo_repos",
+        "total_views",
+        "total_downloads",
+        "avg_stars",
+        "avg_forks",
+        "last_updated"
+      ],
+      "title": "OverallStats",
+      "type": "object"
+    },
+    "TopRepo": {
+      "description": "A top repository within a conference.",
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Name"
+        },
+        "url": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Url"
+        },
+        "stars": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Stars"
+        },
+        "forks": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Forks"
+        },
+        "language": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Language"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Description"
+        }
+      },
+      "title": "TopRepo",
+      "type": "object"
+    },
+    "YearRepoStats": {
+      "additionalProperties": false,
+      "description": "Repository metrics grouped by year.",
+      "properties": {
+        "year": {
+          "title": "Year",
+          "type": "integer"
+        },
+        "github_repos": {
+          "minimum": 0,
+          "title": "Github Repos",
+          "type": "integer"
+        },
+        "total_stars": {
+          "minimum": 0,
+          "title": "Total Stars",
+          "type": "integer"
+        },
+        "total_forks": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Total Forks"
+        },
+        "avg_stars": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Avg Stars"
+        },
+        "avg_forks": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Avg Forks"
+        }
+      },
+      "required": [
+        "year",
+        "github_repos",
+        "total_stars"
+      ],
+      "title": "YearRepoStats",
+      "type": "object"
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "description": "Aggregated repository metrics for the Jekyll site.\n\nWritten as ``repo_stats.yml`` in ``_data/``.",
+  "properties": {
+    "overall": {
+      "$ref": "#/$defs/OverallStats"
+    },
+    "by_conference": {
+      "items": {
+        "$ref": "#/$defs/ConferenceRepoStats"
+      },
+      "title": "By Conference",
+      "type": "array"
+    },
+    "by_year": {
+      "items": {
+        "$ref": "#/$defs/YearRepoStats"
+      },
+      "title": "By Year",
+      "type": "array"
+    }
+  },
+  "required": [
+    "overall",
+    "by_conference",
+    "by_year"
+  ],
+  "title": "RepoStatsSummary",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://researchartifacts.github.io/data-schemas/schemas/repo_stats_summary.schema.json"
 }

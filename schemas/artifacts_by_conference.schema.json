@@ -1,83 +1,115 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://researchartifacts.github.io/data-schemas/schemas/artifacts_by_conference.schema.json",
-  "title": "Artifacts by Conference",
-  "description": "Artifact counts and badge breakdowns grouped by conference and year. Written as artifacts_by_conference.yml in _data/.",
+  "title": "ConferenceEntry Collection",
+  "description": "Artifact counts and badge breakdowns for a single conference.",
   "type": "array",
   "items": {
     "$ref": "#/$defs/ConferenceEntry"
   },
   "$defs": {
+    "YearBreakdown": {
+      "additionalProperties": false,
+      "description": "Per-year breakdown of artifact counts and badges.",
+      "properties": {
+        "year": {
+          "description": "Publication year.",
+          "title": "Year",
+          "type": "integer"
+        },
+        "total": {
+          "description": "Total artifacts for this conference-year.",
+          "minimum": 0,
+          "title": "Total",
+          "type": "integer"
+        },
+        "available": {
+          "description": "Count of 'available' badges.",
+          "minimum": 0,
+          "title": "Available",
+          "type": "integer"
+        },
+        "functional": {
+          "description": "Count of 'functional' badges.",
+          "minimum": 0,
+          "title": "Functional",
+          "type": "integer"
+        },
+        "reproducible": {
+          "description": "Count of 'reproduced' badges.",
+          "minimum": 0,
+          "title": "Reproducible",
+          "type": "integer"
+        },
+        "reusable": {
+          "description": "Count of 'reusable' badges.",
+          "minimum": 0,
+          "title": "Reusable",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "year",
+        "total",
+        "available",
+        "functional",
+        "reproducible",
+        "reusable"
+      ],
+      "title": "YearBreakdown",
+      "type": "object"
+    },
     "ConferenceEntry": {
-      "type": "object",
-      "title": "Conference Entry",
-      "required": ["name", "category", "venue_type", "total_artifacts", "years"],
+      "additionalProperties": false,
+      "description": "Artifact counts and badge breakdowns for a single conference.",
       "properties": {
         "name": {
-          "type": "string",
-          "description": "Conference abbreviation."
+          "description": "Conference abbreviation.",
+          "title": "Name",
+          "type": "string"
         },
         "category": {
-          "type": "string",
           "description": "Research domain.",
-          "enum": ["systems", "security"]
+          "enum": [
+            "systems",
+            "security"
+          ],
+          "title": "Category",
+          "type": "string"
         },
         "venue_type": {
-          "type": "string",
           "description": "Whether this is a full conference or a workshop.",
-          "enum": ["conference", "workshop"]
+          "enum": [
+            "conference",
+            "workshop"
+          ],
+          "title": "Venue Type",
+          "type": "string"
         },
         "total_artifacts": {
-          "type": "integer",
           "description": "Total artifacts across all years.",
-          "minimum": 0
+          "minimum": 0,
+          "title": "Total Artifacts",
+          "type": "integer"
         },
         "years": {
-          "type": "array",
           "description": "Per-year breakdown of artifact counts and badges.",
           "items": {
             "$ref": "#/$defs/YearBreakdown"
-          }
+          },
+          "title": "Years",
+          "type": "array"
         }
       },
-      "additionalProperties": false
-    },
-    "YearBreakdown": {
-      "type": "object",
-      "title": "Year Breakdown",
-      "required": ["year", "total", "available", "functional", "reproducible", "reusable"],
-      "properties": {
-        "year": {
-          "type": "integer",
-          "description": "Publication year."
-        },
-        "total": {
-          "type": "integer",
-          "description": "Total artifacts for this conference-year.",
-          "minimum": 0
-        },
-        "available": {
-          "type": "integer",
-          "description": "Count of 'available' badges.",
-          "minimum": 0
-        },
-        "functional": {
-          "type": "integer",
-          "description": "Count of 'functional' badges.",
-          "minimum": 0
-        },
-        "reproducible": {
-          "type": "integer",
-          "description": "Count of 'reproduced' badges.",
-          "minimum": 0
-        },
-        "reusable": {
-          "type": "integer",
-          "description": "Count of 'reusable' badges.",
-          "minimum": 0
-        }
-      },
-      "additionalProperties": false
+      "required": [
+        "name",
+        "category",
+        "venue_type",
+        "total_artifacts",
+        "years"
+      ],
+      "title": "ConferenceEntry",
+      "type": "object"
     }
   }
 }
