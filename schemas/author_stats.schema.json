@@ -154,16 +154,32 @@
         },
         "papers": {
           "type": "array",
-          "description": "List of papers that have associated artifacts.",
+          "description": "DEPRECATED in YAML output (use paper_ids). Retained in JSON for backward compatibility.",
           "items": {
             "$ref": "#/$defs/ArtifactPaper"
           }
         },
         "papers_without_artifacts": {
           "type": "array",
-          "description": "List of published papers without artifact evaluations.",
+          "description": "DEPRECATED in YAML output (use papers_without_artifact_ids). Retained in JSON for backward compatibility.",
           "items": {
             "$ref": "#/$defs/PlainPaper"
+          }
+        },
+        "paper_ids": {
+          "type": "array",
+          "description": "List of paper index IDs for artifact papers. References papers.json.",
+          "items": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "papers_without_artifact_ids": {
+          "type": "array",
+          "description": "List of paper index IDs for non-artifact papers. References papers.json.",
+          "items": {
+            "type": "integer",
+            "minimum": 1
           }
         }
       },
