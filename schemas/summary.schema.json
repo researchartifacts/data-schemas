@@ -76,5 +76,5 @@
   "title": "Summary",
   "type": "object",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://researchartifacts.github.io/data-schemas/schemas/summary.schema.json"
+  "$id": "https://reprodb.github.io/data-schemas/schemas/summary.schema.json"
 }

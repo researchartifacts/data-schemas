@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://researchartifacts.github.io/data-schemas/schemas/search_data.schema.json",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/search_data.schema.json",
   "title": "SearchEntry Collection",
   "description": "A single searchable artifact entry with enriched author and affiliation data.",
   "type": "array",
