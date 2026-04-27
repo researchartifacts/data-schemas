@@ -155,25 +155,25 @@
           "title": "Total Papers By Conf Year",
           "type": "object"
         },
-        "artifact_rate": {
+        "artifact_pct": {
           "description": "Percentage of papers with artifacts.",
           "maximum": 100,
           "minimum": 0,
-          "title": "Artifact Rate",
+          "title": "Artifact Pct",
           "type": "number"
         },
-        "repro_rate": {
+        "repro_pct": {
           "description": "Percentage of artifacts with a reproducibility badge.",
           "maximum": 100,
           "minimum": 0,
-          "title": "Repro Rate",
+          "title": "Repro Pct",
           "type": "number"
         },
-        "functional_rate": {
+        "functional_pct": {
           "description": "Percentage of artifacts with a functional badge.",
           "maximum": 100,
           "minimum": 0,
-          "title": "Functional Rate",
+          "title": "Functional Pct",
           "type": "number"
         },
         "category": {
@@ -280,9 +280,9 @@
         "total_papers",
         "total_papers_by_conf",
         "total_papers_by_conf_year",
-        "artifact_rate",
-        "repro_rate",
-        "functional_rate",
+        "artifact_pct",
+        "repro_pct",
+        "functional_pct",
         "category",
         "conferences",
         "years",

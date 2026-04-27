@@ -53,10 +53,10 @@
           "title": "Display Affiliation",
           "type": "string"
         },
-        "artifacts": {
+        "artifact_count": {
           "description": "Total number of artifacts authored.",
           "minimum": 0,
-          "title": "Artifacts",
+          "title": "Artifact Count",
           "type": "integer"
         },
         "artifact_score": {
@@ -83,18 +83,18 @@
           "title": "Total Papers",
           "type": "integer"
         },
-        "artifact_rate": {
+        "artifact_pct": {
           "description": "Percentage of papers with artifacts.",
           "maximum": 100,
           "minimum": 0,
-          "title": "Artifact Rate",
+          "title": "Artifact Pct",
           "type": "number"
         },
-        "repro_rate": {
+        "repro_pct": {
           "description": "Percentage of artifacts with a reproducibility badge.",
           "maximum": 100,
           "minimum": 0,
-          "title": "Repro Rate",
+          "title": "Repro Pct",
           "type": "integer"
         },
         "ae_memberships": {
@@ -201,13 +201,13 @@
         "display_name",
         "affiliation",
         "display_affiliation",
-        "artifacts",
+        "artifact_count",
         "artifact_score",
         "artifact_citations",
         "citation_score",
         "total_papers",
-        "artifact_rate",
-        "repro_rate",
+        "artifact_pct",
+        "repro_pct",
         "ae_memberships",
         "chair_count",
         "ae_score",

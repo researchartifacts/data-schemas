@@ -43,10 +43,10 @@
           "title": "Combined Score",
           "type": "integer"
         },
-        "artifacts": {
+        "artifact_count": {
           "description": "Number of artifacts authored.",
           "minimum": 0,
-          "title": "Artifacts",
+          "title": "Artifact Count",
           "type": "integer"
         },
         "ae_memberships": {
@@ -66,7 +66,7 @@
         "name",
         "affiliation",
         "combined_score",
-        "artifacts",
+        "artifact_count",
         "ae_memberships",
         "total_papers"
       ],
@@ -151,10 +151,10 @@
           "title": "Role",
           "type": "string"
         },
-        "artifacts": {
+        "artifact_count": {
           "description": "Total number of artifacts produced by this institution.",
           "minimum": 0,
-          "title": "Artifacts",
+          "title": "Artifact Count",
           "type": "integer"
         },
         "badges_functional": {
@@ -187,17 +187,17 @@
           "title": "Total Papers",
           "type": "integer"
         },
-        "artifact_rate": {
+        "artifact_pct": {
           "description": "Percentage of papers with artifacts.",
           "maximum": 100,
           "minimum": 0,
-          "title": "Artifact Rate",
+          "title": "Artifact Pct",
           "type": "number"
         },
-        "num_authors": {
+        "author_count": {
           "description": "Count of unique authors.",
           "minimum": 1,
-          "title": "Num Authors",
+          "title": "Author Count",
           "type": "integer"
         },
         "conferences": {
@@ -232,14 +232,14 @@
         "artifact_score",
         "ae_score",
         "role",
-        "artifacts",
+        "artifact_count",
         "badges_functional",
         "badges_reproducible",
         "ae_memberships",
         "chair_count",
         "total_papers",
-        "artifact_rate",
-        "num_authors",
+        "artifact_pct",
+        "author_count",
         "conferences",
         "years",
         "top_authors"

@@ -13,10 +13,10 @@
       "additionalProperties": false,
       "description": "Aggregate GitHub metrics for a group of repositories in a given year.",
       "properties": {
-        "repos": {
+        "github_repos": {
           "description": "Number of repositories.",
           "minimum": 0,
-          "title": "Repos",
+          "title": "Github Repos",
           "type": "integer"
         },
         "avg_stars": {
@@ -57,7 +57,7 @@
         }
       },
       "required": [
-        "repos",
+        "github_repos",
         "avg_stars",
         "avg_forks",
         "min_stars",

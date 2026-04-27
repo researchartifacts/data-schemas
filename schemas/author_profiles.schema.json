@@ -90,11 +90,11 @@
           "title": "Total Papers",
           "type": "integer"
         },
-        "artifact_rate": {
+        "artifact_pct": {
           "description": "Percentage of papers with artifacts.",
           "maximum": 100,
           "minimum": 0,
-          "title": "Artifact Rate",
+          "title": "Artifact Pct",
           "type": "number"
         },
         "artifact_citations": {
@@ -228,7 +228,7 @@
         "years",
         "artifact_count",
         "total_papers",
-        "artifact_rate",
+        "artifact_pct",
         "artifact_citations",
         "badges_available",
         "badges_functional",
