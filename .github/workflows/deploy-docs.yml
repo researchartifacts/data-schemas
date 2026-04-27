@@ -3,6 +3,7 @@ name: Generate & Deploy Schema Docs
 on:
   push:
     branches: [main]
+    tags: ['v*']
   workflow_dispatch:
 
 permissions:
@@ -19,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0        # need full history for tags
 
       - uses: actions/setup-python@v5
         with:
@@ -27,7 +30,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Validate schemas
+      - name: Validate schemas (current)
         run: |
           python -c "
           import json, pathlib, jsonschema
@@ -38,7 +41,7 @@ jobs:
           print('All schemas valid.')
           "
 
-      - name: Generate documentation
+      - name: Generate documentation (all versions)
         run: bash generate_docs.sh
 
       - uses: actions/upload-pages-artifact@v3
