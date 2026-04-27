@@ -306,6 +306,18 @@
           "default": null,
           "title": "Total Forks"
         },
+        "max_stars": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Max Stars",
+          "type": "integer"
+        },
+        "max_forks": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Max Forks",
+          "type": "integer"
+        },
         "avg_stars": {
           "anyOf": [
             {
