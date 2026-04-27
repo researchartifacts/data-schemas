@@ -1,0 +1,113 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/institution_ranking_history.schema.json",
+  "title": "InstitutionRankingHistoryEntry Collection",
+  "description": "A dated snapshot of all institution rankings.",
+  "version": "1.0.0",
+  "type": "array",
+  "items": {
+    "$ref": "#/$defs/InstitutionRankingHistoryEntry"
+  },
+  "$defs": {
+    "InstitutionRankingSnapshot": {
+      "additionalProperties": false,
+      "description": "A single institution's ranking at a point in time.",
+      "properties": {
+        "rank": {
+          "description": "Ranking position.",
+          "minimum": 1,
+          "title": "Rank",
+          "type": "integer"
+        },
+        "score": {
+          "description": "Combined score.",
+          "minimum": 0,
+          "title": "Score",
+          "type": "integer"
+        },
+        "as": {
+          "description": "Artifact score.",
+          "minimum": 0,
+          "title": "As",
+          "type": "integer"
+        },
+        "aes": {
+          "description": "AE service score.",
+          "minimum": 0,
+          "title": "Aes",
+          "type": "integer"
+        },
+        "tp": {
+          "description": "Total papers.",
+          "minimum": 0,
+          "title": "Tp",
+          "type": "integer"
+        },
+        "ta": {
+          "description": "Total artifacts.",
+          "minimum": 0,
+          "title": "Ta",
+          "type": "integer"
+        },
+        "ar": {
+          "description": "Artifact rate (%).",
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Ar",
+          "type": "number"
+        },
+        "rr": {
+          "description": "Reproducibility rate (%).",
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Rr",
+          "type": "number"
+        },
+        "r": {
+          "description": "Number of unique researchers.",
+          "minimum": 0,
+          "title": "R",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "rank",
+        "score",
+        "as",
+        "aes",
+        "tp",
+        "ta",
+        "ar",
+        "rr",
+        "r"
+      ],
+      "title": "InstitutionRankingSnapshot",
+      "type": "object"
+    },
+    "InstitutionRankingHistoryEntry": {
+      "additionalProperties": false,
+      "description": "A dated snapshot of all institution rankings.",
+      "properties": {
+        "date": {
+          "description": "ISO date string (YYYY-MM-DD) of the snapshot.",
+          "title": "Date",
+          "type": "string"
+        },
+        "entries": {
+          "additionalProperties": {
+            "$ref": "#/$defs/InstitutionRankingSnapshot"
+          },
+          "description": "Institution name → ranking snapshot mapping.",
+          "title": "Entries",
+          "type": "object"
+        }
+      },
+      "required": [
+        "date",
+        "entries"
+      ],
+      "title": "InstitutionRankingHistoryEntry",
+      "type": "object"
+    }
+  }
+}

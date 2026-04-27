@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/top_repos.schema.json",
+  "title": "TopRepo Collection",
+  "description": "A top-ranked artifact repository by GitHub stars.",
+  "version": "1.0.0",
+  "type": "array",
+  "items": {
+    "$ref": "#/$defs/TopRepo"
+  },
+  "$defs": {
+    "TopRepo": {
+      "additionalProperties": false,
+      "description": "A top-ranked artifact repository by GitHub stars.",
+      "properties": {
+        "title": {
+          "description": "Paper title associated with this repository.",
+          "title": "Title",
+          "type": "string"
+        },
+        "url": {
+          "description": "GitHub repository URL.",
+          "title": "Url",
+          "type": "string"
+        },
+        "year": {
+          "description": "Publication year.",
+          "title": "Year",
+          "type": "integer"
+        },
+        "stars": {
+          "description": "GitHub star count.",
+          "minimum": 0,
+          "title": "Stars",
+          "type": "integer"
+        },
+        "forks": {
+          "description": "GitHub fork count.",
+          "minimum": 0,
+          "title": "Forks",
+          "type": "integer"
+        },
+        "authors": {
+          "description": "Comma-separated author names.",
+          "title": "Authors",
+          "type": "string"
+        },
+        "github_org": {
+          "default": "",
+          "description": "GitHub organization or user.",
+          "title": "Github Org",
+          "type": "string"
+        },
+        "badges": {
+          "default": "",
+          "description": "Comma-separated badge names.",
+          "title": "Badges",
+          "type": "string"
+        },
+        "last_active": {
+          "default": "",
+          "description": "Last activity date (YYYY-MM format).",
+          "title": "Last Active",
+          "type": "string"
+        },
+        "description": {
+          "default": "",
+          "description": "Repository description.",
+          "title": "Description",
+          "type": "string"
+        },
+        "language": {
+          "default": "",
+          "description": "Primary programming language.",
+          "title": "Language",
+          "type": "string"
+        },
+        "conference": {
+          "description": "Conference where the artifact was published.",
+          "title": "Conference",
+          "type": "string"
+        },
+        "area": {
+          "description": "Research area: 'systems' or 'security'.",
+          "title": "Area",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "url",
+        "year",
+        "stars",
+        "forks",
+        "authors",
+        "conference",
+        "area"
+      ],
+      "title": "TopRepo",
+      "type": "object"
+    }
+  }
+}

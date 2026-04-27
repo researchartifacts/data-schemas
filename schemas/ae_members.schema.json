@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/ae_members.schema.json",
+  "title": "AEMember Collection",
+  "description": "A recurring Artifact Evaluation committee member.",
+  "version": "1.0.0",
+  "type": "array",
+  "items": {
+    "$ref": "#/$defs/AEMember"
+  },
+  "$defs": {
+    "AEMember": {
+      "additionalProperties": false,
+      "description": "A recurring Artifact Evaluation committee member.",
+      "properties": {
+        "name": {
+          "description": "Full name of the AE member.",
+          "title": "Name",
+          "type": "string"
+        },
+        "display_name": {
+          "description": "Display name (may differ from canonical name).",
+          "title": "Display Name",
+          "type": "string"
+        },
+        "affiliation": {
+          "description": "Current institutional affiliation.",
+          "title": "Affiliation",
+          "type": "string"
+        },
+        "total_memberships": {
+          "description": "Total number of AE committee memberships.",
+          "minimum": 0,
+          "title": "Total Memberships",
+          "type": "integer"
+        },
+        "chair_count": {
+          "description": "Number of times served as AE chair.",
+          "minimum": 0,
+          "title": "Chair Count",
+          "type": "integer"
+        },
+        "conferences": {
+          "description": "List of [conference, year, role] tuples for each membership.",
+          "items": {
+            "items": {},
+            "type": "array"
+          },
+          "title": "Conferences",
+          "type": "array"
+        },
+        "years": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "description": "Year → membership count mapping.",
+          "title": "Years",
+          "type": "object"
+        },
+        "area": {
+          "description": "Research area: 'systems', 'security', or 'both'.",
+          "title": "Area",
+          "type": "string"
+        },
+        "first_year": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Earliest year of AE service.",
+          "title": "First Year"
+        },
+        "last_year": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Most recent year of AE service.",
+          "title": "Last Year"
+        }
+      },
+      "required": [
+        "name",
+        "display_name",
+        "affiliation",
+        "total_memberships",
+        "chair_count",
+        "conferences",
+        "years",
+        "area"
+      ],
+      "title": "AEMember",
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/artifact_citations.schema.json",
+  "title": "ArtifactCitation Collection",
+  "description": "Citation data for a single artifact DOI.",
+  "version": "1.0.0",
+  "type": "array",
+  "items": {
+    "$ref": "#/$defs/ArtifactCitation"
+  },
+  "$defs": {
+    "ArtifactCitation": {
+      "additionalProperties": false,
+      "description": "Citation data for a single artifact DOI.",
+      "properties": {
+        "title": {
+          "description": "Paper title.",
+          "title": "Title",
+          "type": "string"
+        },
+        "normalized_title": {
+          "description": "Lowercased, stripped title for deduplication.",
+          "title": "Normalized Title",
+          "type": "string"
+        },
+        "conference": {
+          "description": "Conference name.",
+          "title": "Conference",
+          "type": "string"
+        },
+        "year": {
+          "description": "Publication year.",
+          "title": "Year",
+          "type": "integer"
+        },
+        "doi": {
+          "default": "",
+          "description": "Artifact DOI (empty if not found).",
+          "title": "Doi",
+          "type": "string"
+        },
+        "doi_source": {
+          "default": "",
+          "description": "Source of the DOI (e.g. 'zenodo').",
+          "title": "Doi Source",
+          "type": "string"
+        },
+        "cited_by_count": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Aggregate citation count (best of OpenAlex/Semantic Scholar).",
+          "title": "Cited By Count"
+        },
+        "citations_openalex": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Citation count from OpenAlex.",
+          "title": "Citations Openalex"
+        },
+        "citations_semantic_scholar": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Citation count from Semantic Scholar.",
+          "title": "Citations Semantic Scholar"
+        },
+        "citing_dois_openalex": {
+          "description": "DOIs of citing works from OpenAlex.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Citing Dois Openalex",
+          "type": "array"
+        },
+        "citing_dois_semantic_scholar": {
+          "description": "DOIs of citing works from Semantic Scholar.",
+          "items": {
+            "type": "string"
+          },
+          "title": "Citing Dois Semantic Scholar",
+          "type": "array"
+        },
+        "citing_dois_openalex_truncated": {
+          "default": false,
+          "description": "Whether the OpenAlex citing DOI list was truncated.",
+          "title": "Citing Dois Openalex Truncated",
+          "type": "boolean"
+        },
+        "citing_dois_semantic_scholar_truncated": {
+          "default": false,
+          "description": "Whether the Semantic Scholar citing DOI list was truncated.",
+          "title": "Citing Dois Semantic Scholar Truncated",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "title",
+        "normalized_title",
+        "conference",
+        "year"
+      ],
+      "title": "ArtifactCitation",
+      "type": "object"
+    }
+  }
+}

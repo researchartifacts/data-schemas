@@ -1,0 +1,217 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/artifact_availability.schema.json",
+  "version": "1.0.0",
+  "$defs": {
+    "AvailabilityRecord": {
+      "additionalProperties": false,
+      "description": "Accessibility check result for a single artifact URL.",
+      "properties": {
+        "conference": {
+          "description": "Conference name.",
+          "title": "Conference",
+          "type": "string"
+        },
+        "year": {
+          "description": "Publication year.",
+          "title": "Year",
+          "type": "integer"
+        },
+        "area": {
+          "description": "Research area.",
+          "title": "Area",
+          "type": "string"
+        },
+        "title": {
+          "description": "Paper title.",
+          "title": "Title",
+          "type": "string"
+        },
+        "url_key": {
+          "description": "Key indicating URL type (e.g. 'repository_url').",
+          "title": "Url Key",
+          "type": "string"
+        },
+        "url": {
+          "description": "The artifact URL checked.",
+          "title": "Url",
+          "type": "string"
+        },
+        "platform": {
+          "description": "Detected hosting platform.",
+          "title": "Platform",
+          "type": "string"
+        },
+        "accessible": {
+          "description": "Whether the URL was accessible.",
+          "title": "Accessible",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "conference",
+        "year",
+        "area",
+        "title",
+        "url_key",
+        "url",
+        "platform",
+        "accessible"
+      ],
+      "title": "AvailabilityRecord",
+      "type": "object"
+    },
+    "AvailabilitySummary": {
+      "additionalProperties": false,
+      "description": "Aggregate summary of artifact URL accessibility.",
+      "properties": {
+        "checked_at": {
+          "description": "Timestamp of the check (UTC).",
+          "title": "Checked At",
+          "type": "string"
+        },
+        "total_urls": {
+          "description": "Total URLs checked.",
+          "minimum": 0,
+          "title": "Total Urls",
+          "type": "integer"
+        },
+        "accessible_urls": {
+          "description": "URLs that were accessible.",
+          "minimum": 0,
+          "title": "Accessible Urls",
+          "type": "integer"
+        },
+        "accessibility_pct": {
+          "description": "Overall accessibility percentage.",
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Accessibility Pct",
+          "type": "number"
+        },
+        "by_platform": {
+          "additionalProperties": {
+            "$ref": "#/$defs/PlatformStats"
+          },
+          "description": "Stats per hosting platform.",
+          "title": "By Platform",
+          "type": "object"
+        },
+        "by_area": {
+          "additionalProperties": {
+            "$ref": "#/$defs/PlatformStats"
+          },
+          "description": "Stats per research area.",
+          "title": "By Area",
+          "type": "object"
+        },
+        "by_year": {
+          "additionalProperties": {
+            "$ref": "#/$defs/PlatformStats"
+          },
+          "description": "Stats per year.",
+          "title": "By Year",
+          "type": "object"
+        },
+        "by_year_area": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "$ref": "#/$defs/PlatformStats"
+            },
+            "type": "object"
+          },
+          "description": "Stats per year per area.",
+          "title": "By Year Area",
+          "type": "object"
+        },
+        "by_year_platform": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "$ref": "#/$defs/PlatformStats"
+            },
+            "type": "object"
+          },
+          "description": "Stats per year per platform.",
+          "title": "By Year Platform",
+          "type": "object"
+        },
+        "by_conference": {
+          "additionalProperties": {
+            "$ref": "#/$defs/PlatformStats"
+          },
+          "description": "Stats per conference.",
+          "title": "By Conference",
+          "type": "object"
+        }
+      },
+      "required": [
+        "checked_at",
+        "total_urls",
+        "accessible_urls",
+        "accessibility_pct",
+        "by_platform",
+        "by_area",
+        "by_year",
+        "by_year_area",
+        "by_year_platform",
+        "by_conference"
+      ],
+      "title": "AvailabilitySummary",
+      "type": "object"
+    },
+    "PlatformStats": {
+      "additionalProperties": false,
+      "description": "Accessibility stats for a single platform.",
+      "properties": {
+        "total": {
+          "description": "Total URLs checked.",
+          "minimum": 0,
+          "title": "Total",
+          "type": "integer"
+        },
+        "accessible": {
+          "description": "URLs that were accessible.",
+          "minimum": 0,
+          "title": "Accessible",
+          "type": "integer"
+        },
+        "pct": {
+          "description": "Accessibility percentage.",
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Pct",
+          "type": "number"
+        }
+      },
+      "required": [
+        "total",
+        "accessible",
+        "pct"
+      ],
+      "title": "PlatformStats",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Top-level artifact availability output.",
+  "properties": {
+    "summary": {
+      "$ref": "#/$defs/AvailabilitySummary",
+      "description": "Aggregate accessibility summary."
+    },
+    "records": {
+      "description": "Per-URL check results.",
+      "items": {
+        "$ref": "#/$defs/AvailabilityRecord"
+      },
+      "title": "Records",
+      "type": "array"
+    }
+  },
+  "required": [
+    "summary",
+    "records"
+  ],
+  "title": "ArtifactAvailability",
+  "type": "object"
+}

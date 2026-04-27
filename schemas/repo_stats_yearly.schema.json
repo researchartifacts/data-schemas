@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/repo_stats_yearly.schema.json",
+  "title": "RepoStatsYearly Collection",
+  "description": "Repository statistics for a single year, split by area.",
+  "version": "1.0.0",
+  "type": "array",
+  "items": {
+    "$ref": "#/$defs/RepoStatsYearly"
+  },
+  "$defs": {
+    "YearlyRepoMetrics": {
+      "additionalProperties": false,
+      "description": "Aggregate GitHub metrics for a group of repositories in a given year.",
+      "properties": {
+        "repos": {
+          "description": "Number of repositories.",
+          "minimum": 0,
+          "title": "Repos",
+          "type": "integer"
+        },
+        "avg_stars": {
+          "description": "Average star count.",
+          "minimum": 0,
+          "title": "Avg Stars",
+          "type": "number"
+        },
+        "avg_forks": {
+          "description": "Average fork count.",
+          "minimum": 0,
+          "title": "Avg Forks",
+          "type": "number"
+        },
+        "min_stars": {
+          "description": "Minimum star count.",
+          "minimum": 0,
+          "title": "Min Stars",
+          "type": "number"
+        },
+        "max_stars": {
+          "description": "Maximum star count.",
+          "minimum": 0,
+          "title": "Max Stars",
+          "type": "number"
+        },
+        "min_forks": {
+          "description": "Minimum fork count.",
+          "minimum": 0,
+          "title": "Min Forks",
+          "type": "number"
+        },
+        "max_forks": {
+          "description": "Maximum fork count.",
+          "minimum": 0,
+          "title": "Max Forks",
+          "type": "number"
+        }
+      },
+      "required": [
+        "repos",
+        "avg_stars",
+        "avg_forks",
+        "min_stars",
+        "max_stars",
+        "min_forks",
+        "max_forks"
+      ],
+      "title": "YearlyRepoMetrics",
+      "type": "object"
+    },
+    "RepoStatsYearly": {
+      "additionalProperties": false,
+      "description": "Repository statistics for a single year, split by area.",
+      "properties": {
+        "year": {
+          "description": "Year.",
+          "title": "Year",
+          "type": "integer"
+        },
+        "all": {
+          "$ref": "#/$defs/YearlyRepoMetrics",
+          "description": "Combined metrics across all areas."
+        },
+        "systems": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/YearlyRepoMetrics"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Systems-only metrics (absent if no systems data for this year)."
+        },
+        "security": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/YearlyRepoMetrics"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Security-only metrics (absent if no security data for this year)."
+        }
+      },
+      "required": [
+        "year",
+        "all"
+      ],
+      "title": "RepoStatsYearly",
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/ranking_history.schema.json",
+  "title": "RankingHistoryEntry Collection",
+  "description": "A dated snapshot of all author rankings.",
+  "version": "1.0.0",
+  "type": "array",
+  "items": {
+    "$ref": "#/$defs/RankingHistoryEntry"
+  },
+  "$defs": {
+    "RankingSnapshot": {
+      "additionalProperties": false,
+      "description": "A single author's ranking at a point in time.",
+      "properties": {
+        "rank": {
+          "description": "Ranking position.",
+          "minimum": 1,
+          "title": "Rank",
+          "type": "integer"
+        },
+        "score": {
+          "description": "Combined score.",
+          "minimum": 0,
+          "title": "Score",
+          "type": "integer"
+        },
+        "as": {
+          "description": "Artifact score.",
+          "minimum": 0,
+          "title": "As",
+          "type": "integer"
+        },
+        "aes": {
+          "description": "AE service score.",
+          "minimum": 0,
+          "title": "Aes",
+          "type": "integer"
+        },
+        "tp": {
+          "description": "Total papers.",
+          "minimum": 0,
+          "title": "Tp",
+          "type": "integer"
+        },
+        "ta": {
+          "description": "Total artifacts.",
+          "minimum": 0,
+          "title": "Ta",
+          "type": "integer"
+        },
+        "ar": {
+          "description": "Artifact rate (%).",
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Ar",
+          "type": "number"
+        },
+        "rr": {
+          "description": "Reproducibility rate (%).",
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Rr",
+          "type": "number"
+        }
+      },
+      "required": [
+        "rank",
+        "score",
+        "as",
+        "aes",
+        "tp",
+        "ta",
+        "ar",
+        "rr"
+      ],
+      "title": "RankingSnapshot",
+      "type": "object"
+    },
+    "RankingHistoryEntry": {
+      "additionalProperties": false,
+      "description": "A dated snapshot of all author rankings.",
+      "properties": {
+        "date": {
+          "description": "ISO date string (YYYY-MM-DD) of the snapshot.",
+          "title": "Date",
+          "type": "string"
+        },
+        "entries": {
+          "additionalProperties": {
+            "$ref": "#/$defs/RankingSnapshot"
+          },
+          "description": "Author name → ranking snapshot mapping.",
+          "title": "Entries",
+          "type": "object"
+        }
+      },
+      "required": [
+        "date",
+        "entries"
+      ],
+      "title": "RankingHistoryEntry",
+      "type": "object"
+    }
+  }
+}

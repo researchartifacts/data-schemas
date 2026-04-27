@@ -3,6 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/artifacts_by_year.schema.json",
   "title": "YearCount Collection",
   "description": "Artifact count for a single year with systems/security breakdown.",
+  "version": "1.0.0",
   "type": "array",
   "items": {
     "$ref": "#/$defs/YearCount"

@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/participation_stats.schema.json",
+  "version": "1.0.0",
+  "$defs": {
+    "AreaTrend": {
+      "additionalProperties": false,
+      "description": "Trend data for a research area over time.",
+      "properties": {
+        "years": {
+          "description": "List of years in chronological order.",
+          "items": {
+            "type": "integer"
+          },
+          "title": "Years",
+          "type": "array"
+        },
+        "participation_pct": {
+          "description": "Participation rate per year.",
+          "items": {
+            "type": "number"
+          },
+          "title": "Participation Pct",
+          "type": "array"
+        },
+        "available_pct": {
+          "description": "Available rate per year.",
+          "items": {
+            "type": "number"
+          },
+          "title": "Available Pct",
+          "type": "array"
+        },
+        "functional_pct": {
+          "description": "Functional rate per year.",
+          "items": {
+            "type": "number"
+          },
+          "title": "Functional Pct",
+          "type": "array"
+        },
+        "reproduced_pct": {
+          "description": "Reproduced rate per year.",
+          "items": {
+            "type": "number"
+          },
+          "title": "Reproduced Pct",
+          "type": "array"
+        }
+      },
+      "required": [
+        "years",
+        "participation_pct",
+        "available_pct",
+        "functional_pct",
+        "reproduced_pct"
+      ],
+      "title": "AreaTrend",
+      "type": "object"
+    },
+    "ConferenceYearStats": {
+      "additionalProperties": false,
+      "description": "Participation stats for a single conference-year.",
+      "properties": {
+        "conference": {
+          "description": "Conference name.",
+          "title": "Conference",
+          "type": "string"
+        },
+        "year": {
+          "description": "Year.",
+          "title": "Year",
+          "type": "integer"
+        },
+        "category": {
+          "description": "Paper category/track.",
+          "title": "Category",
+          "type": "string"
+        },
+        "venue_type": {
+          "description": "Venue type: 'conference' or 'workshop'.",
+          "title": "Venue Type",
+          "type": "string"
+        },
+        "total_papers": {
+          "description": "Total papers in this conference-year.",
+          "minimum": 0,
+          "title": "Total Papers",
+          "type": "integer"
+        },
+        "ae_papers": {
+          "description": "Papers submitted to the AE process.",
+          "minimum": 0,
+          "title": "Ae Papers",
+          "type": "integer"
+        },
+        "participation_pct": {
+          "description": "AE participation rate (%).",
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Participation Pct",
+          "type": "number"
+        },
+        "available": {
+          "description": "Papers with 'available' badge.",
+          "minimum": 0,
+          "title": "Available",
+          "type": "integer"
+        },
+        "functional": {
+          "description": "Papers with 'functional' badge.",
+          "minimum": 0,
+          "title": "Functional",
+          "type": "integer"
+        },
+        "reproduced": {
+          "description": "Papers with 'reproduced' badge.",
+          "minimum": 0,
+          "title": "Reproduced",
+          "type": "integer"
+        },
+        "available_pct": {
+          "description": "Available rate (%).",
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Available Pct",
+          "type": "number"
+        },
+        "functional_pct": {
+          "description": "Functional rate (%).",
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Functional Pct",
+          "type": "number"
+        },
+        "reproduced_pct": {
+          "description": "Reproduced rate (%).",
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Reproduced Pct",
+          "type": "number"
+        }
+      },
+      "required": [
+        "conference",
+        "year",
+        "category",
+        "venue_type",
+        "total_papers",
+        "ae_papers",
+        "participation_pct",
+        "available",
+        "functional",
+        "reproduced",
+        "available_pct",
+        "functional_pct",
+        "reproduced_pct"
+      ],
+      "title": "ConferenceYearStats",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Top-level participation statistics output.",
+  "properties": {
+    "by_conference_year": {
+      "description": "Per-conference-year breakdown.",
+      "items": {
+        "$ref": "#/$defs/ConferenceYearStats"
+      },
+      "title": "By Conference Year",
+      "type": "array"
+    },
+    "by_area": {
+      "additionalProperties": {
+        "$ref": "#/$defs/AreaTrend"
+      },
+      "description": "Trend data keyed by area name ('security', 'systems').",
+      "title": "By Area",
+      "type": "object"
+    }
+  },
+  "required": [
+    "by_conference_year",
+    "by_area"
+  ],
+  "title": "ParticipationStats",
+  "type": "object"
+}

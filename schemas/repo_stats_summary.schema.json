@@ -1,4 +1,7 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/repo_stats_summary.schema.json",
+  "version": "1.0.0",
   "$defs": {
     "ConferenceRepoStats": {
       "additionalProperties": false,
@@ -366,7 +369,5 @@
     "by_year"
   ],
   "title": "RepoStatsSummary",
-  "type": "object",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://reprodb.github.io/data-schemas/schemas/repo_stats_summary.schema.json"
+  "type": "object"
 }

@@ -3,6 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/repo_stats.schema.json",
   "title": "RepoStatsEntry Collection",
   "description": "Repository metrics for a single artifact.",
+  "version": "1.0.0",
   "type": "array",
   "items": {
     "$ref": "#/$defs/RepoStatsEntry"

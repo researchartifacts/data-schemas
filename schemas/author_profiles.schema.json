@@ -1,0 +1,246 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/author_profiles.schema.json",
+  "title": "AuthorProfile Collection",
+  "description": "Profile data for a single author combining publications and AE service.",
+  "version": "1.0.0",
+  "type": "array",
+  "items": {
+    "$ref": "#/$defs/AuthorProfile"
+  },
+  "$defs": {
+    "AuthorProfile": {
+      "additionalProperties": false,
+      "description": "Profile data for a single author combining publications and AE service.",
+      "properties": {
+        "name": {
+          "description": "Full author name (may include DBLP disambiguation suffix).",
+          "title": "Name",
+          "type": "string"
+        },
+        "affiliation": {
+          "description": "Current institutional affiliation.",
+          "title": "Affiliation",
+          "type": "string"
+        },
+        "papers": {
+          "description": "List of paper entries associated with this author.",
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Papers",
+          "type": "array"
+        },
+        "papers_without_artifacts": {
+          "description": "Papers by this author that do not have artifacts.",
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Papers Without Artifacts",
+          "type": "array"
+        },
+        "conferences": {
+          "anyOf": [
+            {
+              "items": {
+                "items": {},
+                "type": "array"
+              },
+              "type": "array"
+            },
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            }
+          ],
+          "description": "Conferences: list of [conference, year, role] tuples (AE-only) or conference name strings.",
+          "title": "Conferences"
+        },
+        "years": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            },
+            {
+              "additionalProperties": {
+                "type": "integer"
+              },
+              "type": "object"
+            }
+          ],
+          "description": "Years of activity (list of years or year → count mapping).",
+          "title": "Years"
+        },
+        "artifact_count": {
+          "description": "Number of artifacts authored.",
+          "minimum": 0,
+          "title": "Artifact Count",
+          "type": "integer"
+        },
+        "total_papers": {
+          "description": "Total papers at tracked conferences.",
+          "minimum": 0,
+          "title": "Total Papers",
+          "type": "integer"
+        },
+        "artifact_rate": {
+          "description": "Percentage of papers with artifacts.",
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Artifact Rate",
+          "type": "number"
+        },
+        "artifact_citations": {
+          "description": "Total artifact citations.",
+          "minimum": 0,
+          "title": "Artifact Citations",
+          "type": "integer"
+        },
+        "badges_available": {
+          "description": "Count of 'available' badges.",
+          "minimum": 0,
+          "title": "Badges Available",
+          "type": "integer"
+        },
+        "badges_functional": {
+          "description": "Count of 'functional' badges.",
+          "minimum": 0,
+          "title": "Badges Functional",
+          "type": "integer"
+        },
+        "badges_reproducible": {
+          "description": "Count of 'reproduced' badges.",
+          "minimum": 0,
+          "title": "Badges Reproducible",
+          "type": "integer"
+        },
+        "category": {
+          "description": "Author category based on contribution profile.",
+          "title": "Category",
+          "type": "string"
+        },
+        "ae_memberships": {
+          "default": 0,
+          "description": "Number of AE committee memberships.",
+          "minimum": 0,
+          "title": "Ae Memberships",
+          "type": "integer"
+        },
+        "chair_count": {
+          "default": 0,
+          "description": "Number of AE chair roles.",
+          "minimum": 0,
+          "title": "Chair Count",
+          "type": "integer"
+        },
+        "ae_conferences": {
+          "description": "List of [conference, year, role] tuples for AE service.",
+          "items": {
+            "items": {},
+            "type": "array"
+          },
+          "title": "Ae Conferences",
+          "type": "array"
+        },
+        "ae_years": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "type": "integer"
+              },
+              "type": "object"
+            },
+            {
+              "items": {
+                "type": "integer"
+              },
+              "type": "array"
+            }
+          ],
+          "description": "AE years (dict or list).",
+          "title": "Ae Years"
+        },
+        "combined_score": {
+          "description": "Total combined score.",
+          "minimum": 0,
+          "title": "Combined Score",
+          "type": "integer"
+        },
+        "artifact_score": {
+          "description": "Points from artifacts.",
+          "minimum": 0,
+          "title": "Artifact Score",
+          "type": "integer"
+        },
+        "citation_score": {
+          "description": "Points from citations.",
+          "minimum": 0,
+          "title": "Citation Score",
+          "type": "integer"
+        },
+        "ae_score": {
+          "description": "Points from AE service.",
+          "minimum": 0,
+          "title": "Ae Score",
+          "type": "integer"
+        },
+        "rank": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Ranking position.",
+          "title": "Rank"
+        },
+        "author_id": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Stable integer identifier.",
+          "title": "Author Id"
+        }
+      },
+      "required": [
+        "name",
+        "affiliation",
+        "papers",
+        "conferences",
+        "years",
+        "artifact_count",
+        "total_papers",
+        "artifact_rate",
+        "artifact_citations",
+        "badges_available",
+        "badges_functional",
+        "badges_reproducible",
+        "category",
+        "combined_score",
+        "artifact_score",
+        "citation_score",
+        "ae_score"
+      ],
+      "title": "AuthorProfile",
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,249 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/committee_stats.schema.json",
+  "version": "1.0.0",
+  "$defs": {
+    "CommitteeSize": {
+      "additionalProperties": false,
+      "description": "Committee size for a single conference-year.",
+      "properties": {
+        "conference": {
+          "description": "Conference name.",
+          "title": "Conference",
+          "type": "string"
+        },
+        "year": {
+          "description": "Year.",
+          "title": "Year",
+          "type": "integer"
+        },
+        "conf_year": {
+          "description": "Combined conference-year key (e.g. 'acsac2017').",
+          "title": "Conf Year",
+          "type": "string"
+        },
+        "area": {
+          "description": "Research area: 'systems' or 'security'.",
+          "title": "Area",
+          "type": "string"
+        },
+        "size": {
+          "description": "Number of committee members.",
+          "minimum": 0,
+          "title": "Size",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "conference",
+        "year",
+        "conf_year",
+        "area",
+        "size"
+      ],
+      "title": "CommitteeSize",
+      "type": "object"
+    },
+    "CommitteeSummary": {
+      "additionalProperties": false,
+      "description": "Aggregate committee summary statistics.",
+      "properties": {
+        "total_members": {
+          "description": "Total committee members across all years.",
+          "minimum": 0,
+          "title": "Total Members",
+          "type": "integer"
+        },
+        "total_systems": {
+          "description": "Members from systems conferences.",
+          "minimum": 0,
+          "title": "Total Systems",
+          "type": "integer"
+        },
+        "total_security": {
+          "description": "Members from security conferences.",
+          "minimum": 0,
+          "title": "Total Security",
+          "type": "integer"
+        },
+        "total_countries": {
+          "description": "Unique countries represented.",
+          "minimum": 0,
+          "title": "Total Countries",
+          "type": "integer"
+        },
+        "total_continents": {
+          "description": "Unique continents represented.",
+          "minimum": 0,
+          "title": "Total Continents",
+          "type": "integer"
+        },
+        "total_institutions": {
+          "description": "Unique institutions represented.",
+          "minimum": 0,
+          "title": "Total Institutions",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "total_members",
+        "total_systems",
+        "total_security",
+        "total_countries",
+        "total_continents",
+        "total_institutions"
+      ],
+      "title": "CommitteeSummary",
+      "type": "object"
+    },
+    "FailedClassification": {
+      "additionalProperties": false,
+      "description": "A committee member whose institution could not be geolocated.",
+      "properties": {
+        "conference": {
+          "description": "Conference-year key.",
+          "title": "Conference",
+          "type": "string"
+        },
+        "name": {
+          "description": "Member name.",
+          "title": "Name",
+          "type": "string"
+        },
+        "affiliation": {
+          "description": "Raw affiliation string that failed lookup.",
+          "title": "Affiliation",
+          "type": "string"
+        }
+      },
+      "required": [
+        "conference",
+        "name",
+        "affiliation"
+      ],
+      "title": "FailedClassification",
+      "type": "object"
+    },
+    "NameCount": {
+      "additionalProperties": false,
+      "description": "A simple name/count pair used for country, continent, and institution tallies.",
+      "properties": {
+        "name": {
+          "description": "Country, continent, or institution name.",
+          "title": "Name",
+          "type": "string"
+        },
+        "count": {
+          "description": "Member count.",
+          "minimum": 0,
+          "title": "Count",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "name",
+        "count"
+      ],
+      "title": "NameCount",
+      "type": "object"
+    },
+    "SplitCounts": {
+      "additionalProperties": false,
+      "description": "Country/institution counts split by overall/systems/security.",
+      "properties": {
+        "overall": {
+          "description": "Overall counts.",
+          "items": {
+            "$ref": "#/$defs/NameCount"
+          },
+          "title": "Overall",
+          "type": "array"
+        },
+        "systems": {
+          "description": "Systems-only counts.",
+          "items": {
+            "$ref": "#/$defs/NameCount"
+          },
+          "title": "Systems",
+          "type": "array"
+        },
+        "security": {
+          "description": "Security-only counts.",
+          "items": {
+            "$ref": "#/$defs/NameCount"
+          },
+          "title": "Security",
+          "type": "array"
+        }
+      },
+      "required": [
+        "overall",
+        "systems",
+        "security"
+      ],
+      "title": "SplitCounts",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Top-level committee statistics output.",
+  "properties": {
+    "summary": {
+      "$ref": "#/$defs/CommitteeSummary",
+      "description": "Aggregate summary."
+    },
+    "by_country": {
+      "$ref": "#/$defs/SplitCounts",
+      "description": "Member counts by country."
+    },
+    "by_continent": {
+      "$ref": "#/$defs/SplitCounts",
+      "description": "Member counts by continent."
+    },
+    "by_institution": {
+      "$ref": "#/$defs/SplitCounts",
+      "description": "Member counts by institution."
+    },
+    "by_year": {
+      "additionalProperties": {
+        "additionalProperties": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        "type": "object"
+      },
+      "description": "Year-level breakdowns keyed by category (e.g. 'country', 'continent'), then year, then name → count.",
+      "title": "By Year",
+      "type": "object"
+    },
+    "committee_sizes": {
+      "description": "Committee sizes per conference-year.",
+      "items": {
+        "$ref": "#/$defs/CommitteeSize"
+      },
+      "title": "Committee Sizes",
+      "type": "array"
+    },
+    "failed_classifications": {
+      "description": "Members whose affiliation could not be geolocated.",
+      "items": {
+        "$ref": "#/$defs/FailedClassification"
+      },
+      "title": "Failed Classifications",
+      "type": "array"
+    }
+  },
+  "required": [
+    "summary",
+    "by_country",
+    "by_continent",
+    "by_institution",
+    "by_year",
+    "committee_sizes",
+    "failed_classifications"
+  ],
+  "title": "CommitteeStats",
+  "type": "object"
+}
