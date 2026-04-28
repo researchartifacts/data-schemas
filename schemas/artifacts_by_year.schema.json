@@ -2,8 +2,8 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/artifacts_by_year.schema.json",
   "title": "ArtifactsByYear Collection",
-  "description": "Artifact count for a single year with systems/security breakdown.",
-  "version": "0.1.0",
+  "description": "Array of ArtifactsByYear records. Each element: Total artifact count for a single year, split into systems and security conferences.",
+  "version": "0.1.1",
   "type": "array",
   "items": {
     "$ref": "#/$defs/ArtifactsByYear"
@@ -11,7 +11,7 @@
   "$defs": {
     "ArtifactsByYear": {
       "additionalProperties": false,
-      "description": "Artifact count for a single year with systems/security breakdown.",
+      "description": "Total artifact count for a single year, split into systems and security conferences.",
       "properties": {
         "year": {
           "description": "Publication year.",

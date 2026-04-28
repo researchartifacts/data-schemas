@@ -2,8 +2,8 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/ae_members.schema.json",
   "title": "AEMember Collection",
-  "description": "An Artifact Evaluation committee member.",
-  "version": "0.1.0",
+  "description": "Array of AEMember records. Each element: An Artifact Evaluation committee member with service history and institutional affiliation.",
+  "version": "0.1.1",
   "type": "array",
   "items": {
     "$ref": "#/$defs/AEMember"
@@ -39,7 +39,7 @@
     },
     "AEMember": {
       "additionalProperties": false,
-      "description": "An Artifact Evaluation committee member.",
+      "description": "An Artifact Evaluation committee member with service history and institutional affiliation.",
       "properties": {
         "name": {
           "description": "Full name of the AE member.",

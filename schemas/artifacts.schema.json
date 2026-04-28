@@ -2,8 +2,8 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/artifacts.schema.json",
   "title": "Artifact Collection",
-  "description": "A single research artifact associated with a conference paper.",
-  "version": "0.1.0",
+  "description": "Array of Artifact records. Each element: A single research artifact associated with a conference paper.",
+  "version": "0.1.1",
   "type": "array",
   "items": {
     "$ref": "#/$defs/Artifact"

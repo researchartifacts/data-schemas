@@ -1,9 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/summary.schema.json",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "additionalProperties": false,
-  "description": "High-level summary statistics for the Jekyll site.\n\nWritten as ``summary.yml`` in ``_data/``.",
+  "description": "High-level summary: total artifact and conference counts, year range, and last-updated timestamp.",
   "properties": {
     "schema_version": {
       "description": "Semantic version of the data schema bundle.",

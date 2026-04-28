@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/artifact_availability.schema.json",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "$defs": {
     "AvailabilityRecord": {
       "additionalProperties": false,
@@ -193,7 +193,7 @@
     }
   },
   "additionalProperties": false,
-  "description": "Top-level artifact availability output.",
+  "description": "Artifact URL accessibility report: aggregate summary and per-URL check results.",
   "properties": {
     "summary": {
       "$ref": "#/$defs/AvailabilitySummary",

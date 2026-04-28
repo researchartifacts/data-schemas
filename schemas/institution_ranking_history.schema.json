@@ -2,8 +2,8 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/institution_ranking_history.schema.json",
   "title": "InstitutionRankingHistoryEntry Collection",
-  "description": "A dated snapshot of all institution rankings.",
-  "version": "0.1.0",
+  "description": "Array of InstitutionRankingHistoryEntry records. Each element: Dated snapshot of all institution rankings, enabling rank-over-time analysis.",
+  "version": "0.1.1",
   "type": "array",
   "items": {
     "$ref": "#/$defs/InstitutionRankingHistoryEntry"
@@ -86,7 +86,7 @@
     },
     "InstitutionRankingHistoryEntry": {
       "additionalProperties": false,
-      "description": "A dated snapshot of all institution rankings.",
+      "description": "Dated snapshot of all institution rankings, enabling rank-over-time analysis.",
       "properties": {
         "date": {
           "description": "ISO date string (YYYY-MM-DD) of the snapshot.",

@@ -2,8 +2,8 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/top_repos.schema.json",
   "title": "TopRepo Collection",
-  "description": "A top-ranked artifact repository by GitHub stars.",
-  "version": "0.1.0",
+  "description": "Array of TopRepo records. Each element: Top-ranked artifact repository by GitHub stars, with paper metadata and activity info.",
+  "version": "0.1.1",
   "type": "array",
   "items": {
     "$ref": "#/$defs/TopRepo"
@@ -11,7 +11,7 @@
   "$defs": {
     "TopRepo": {
       "additionalProperties": false,
-      "description": "A top-ranked artifact repository by GitHub stars.",
+      "description": "Top-ranked artifact repository by GitHub stars, with paper metadata and activity info.",
       "properties": {
         "title": {
           "description": "Paper title associated with this repository.",

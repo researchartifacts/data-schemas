@@ -2,8 +2,8 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/repo_stats.schema.json",
   "title": "RepoStatsEntry Collection",
-  "description": "Repository metrics for a single artifact.",
-  "version": "0.1.0",
+  "description": "Array of RepoStatsEntry records. Each element: GitHub/Zenodo repository metrics for a single artifact (stars, forks, views, downloads).",
+  "version": "0.1.1",
   "type": "array",
   "items": {
     "$ref": "#/$defs/RepoStatsEntry"
@@ -11,7 +11,7 @@
   "$defs": {
     "RepoStatsEntry": {
       "additionalProperties": false,
-      "description": "Repository metrics for a single artifact.",
+      "description": "GitHub/Zenodo repository metrics for a single artifact (stars, forks, views, downloads).",
       "properties": {
         "conference": {
           "description": "Conference abbreviation.",

@@ -2,8 +2,8 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/artifact_citations.schema.json",
   "title": "ArtifactCitation Collection",
-  "description": "Citation data for a single artifact DOI.",
-  "version": "0.1.0",
+  "description": "Array of ArtifactCitation records. Each element: Citation counts for a single artifact DOI, aggregated from OpenAlex and Semantic Scholar.",
+  "version": "0.1.1",
   "type": "array",
   "items": {
     "$ref": "#/$defs/ArtifactCitation"
@@ -11,7 +11,7 @@
   "$defs": {
     "ArtifactCitation": {
       "additionalProperties": false,
-      "description": "Citation data for a single artifact DOI.",
+      "description": "Citation counts for a single artifact DOI, aggregated from OpenAlex and Semantic Scholar.",
       "properties": {
         "title": {
           "description": "Paper title.",

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/participation_stats.schema.json",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "$defs": {
     "AreaTrend": {
       "additionalProperties": false,
@@ -161,7 +161,7 @@
     }
   },
   "additionalProperties": false,
-  "description": "Top-level participation statistics output.",
+  "description": "Artifact evaluation participation rates per conference-year, with area-level trends over time.",
   "properties": {
     "by_conference_year": {
       "description": "Per-conference-year breakdown.",

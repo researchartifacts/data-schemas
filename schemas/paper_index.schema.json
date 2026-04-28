@@ -2,8 +2,8 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/paper_index.schema.json",
   "title": "Paper Collection",
-  "description": "A unique paper associated with tracked conferences.\n\nEach paper is stored once in the index; authors reference papers by ID.",
-  "version": "0.1.0",
+  "description": "Array of Paper records. Each element: A paper published at a tracked conference, with artifact badges and citation data.",
+  "version": "0.1.1",
   "type": "array",
   "items": {
     "$ref": "#/$defs/Paper"
@@ -11,7 +11,7 @@
   "$defs": {
     "Paper": {
       "additionalProperties": false,
-      "description": "A unique paper associated with tracked conferences.\n\nEach paper is stored once in the index; authors reference papers by ID.",
+      "description": "A paper published at a tracked conference, with artifact badges and citation data.",
       "properties": {
         "id": {
           "description": "Stable integer ID for this paper. Preserved across pipeline runs.",

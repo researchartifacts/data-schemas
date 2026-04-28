@@ -2,8 +2,8 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/artifacts_by_conference.schema.json",
   "title": "ConferenceEntry Collection",
-  "description": "Artifact counts and badge breakdowns for a single conference.",
-  "version": "0.1.0",
+  "description": "Array of ConferenceEntry records. Each element: Artifact counts and badge breakdowns for a single conference across all tracked years.",
+  "version": "0.1.1",
   "type": "array",
   "items": {
     "$ref": "#/$defs/ConferenceEntry"
@@ -62,7 +62,7 @@
     },
     "ConferenceEntry": {
       "additionalProperties": false,
-      "description": "Artifact counts and badge breakdowns for a single conference.",
+      "description": "Artifact counts and badge breakdowns for a single conference across all tracked years.",
       "properties": {
         "name": {
           "description": "Conference abbreviation.",
