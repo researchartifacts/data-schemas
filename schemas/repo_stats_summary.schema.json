@@ -8,45 +8,54 @@
       "description": "Repository metrics grouped by conference.",
       "properties": {
         "name": {
+          "description": "Conference abbreviation, e.g. 'ACSAC', 'OSDI'.",
           "title": "Name",
           "type": "string"
         },
         "github_repos": {
+          "description": "Total GitHub repositories across all years for this conference.",
           "minimum": 0,
           "title": "Github Repos",
           "type": "integer"
         },
         "total_stars": {
+          "description": "Sum of GitHub stars across all repos for this conference.",
           "minimum": 0,
           "title": "Total Stars",
           "type": "integer"
         },
         "total_forks": {
+          "description": "Sum of GitHub forks across all repos for this conference.",
           "minimum": 0,
           "title": "Total Forks",
           "type": "integer"
         },
         "avg_stars": {
+          "description": "Mean star count per repository for this conference.",
           "minimum": 0,
           "title": "Avg Stars",
           "type": "number"
         },
         "avg_forks": {
+          "description": "Mean fork count per repository for this conference.",
           "minimum": 0,
           "title": "Avg Forks",
           "type": "number"
         },
         "max_stars": {
+          "description": "Maximum star count among all repos for this conference.",
           "minimum": 0,
           "title": "Max Stars",
           "type": "integer"
         },
         "max_forks": {
+          "description": "Maximum fork count among all repos for this conference.",
           "minimum": 0,
           "title": "Max Forks",
           "type": "integer"
         },
         "years": {
+          "description": "Per-year repository metrics, ordered chronologically.",
           "items": {
             "$ref": "#/$defs/ConferenceYearStats"
           },
@@ -54,6 +63,7 @@
           "type": "array"
         },
         "top_repos": {
+          "description": "Highlighted repositories for this conference, sorted by stars descending.",
           "items": {
             "$ref": "#/$defs/TopRepo"
           },
@@ -78,30 +88,36 @@
       "description": "Repository metrics for a single conference-year.",
       "properties": {
         "year": {
+          "description": "Publication year, e.g. 2023.",
           "title": "Year",
           "type": "integer"
         },
         "github_repos": {
+          "description": "Number of GitHub repositories for this conference-year.",
           "minimum": 0,
           "title": "Github Repos",
           "type": "integer"
         },
         "total_stars": {
+          "description": "Sum of GitHub stars across all repos for this conference-year.",
           "minimum": 0,
           "title": "Total Stars",
           "type": "integer"
         },
         "total_forks": {
+          "description": "Sum of GitHub forks across all repos for this conference-year.",
           "minimum": 0,
           "title": "Total Forks",
           "type": "integer"
         },
         "avg_stars": {
+          "description": "Mean star count per repository for this conference-year.",
           "minimum": 0,
           "title": "Avg Stars",
           "type": "number"
         },
         "avg_forks": {
+          "description": "Mean fork count per repository for this conference-year.",
           "minimum": 0,
           "title": "Avg Forks",
           "type": "number"
@@ -123,57 +139,67 @@
       "description": "Global repository metrics.",
       "properties": {
         "github_repos": {
+          "description": "Total GitHub repositories across all conferences, e.g. 1344.",
           "minimum": 0,
           "title": "Github Repos",
           "type": "integer"
         },
         "total_stars": {
+          "description": "Sum of GitHub stars across all repositories, e.g. 126724.",
           "minimum": 0,
           "title": "Total Stars",
           "type": "integer"
         },
         "total_forks": {
+          "description": "Sum of GitHub forks across all repositories.",
           "minimum": 0,
           "title": "Total Forks",
           "type": "integer"
         },
         "max_stars": {
+          "description": "Maximum star count among all repositories.",
           "minimum": 0,
           "title": "Max Stars",
           "type": "integer"
         },
         "max_forks": {
+          "description": "Maximum fork count among all repositories.",
           "minimum": 0,
           "title": "Max Forks",
           "type": "integer"
         },
         "zenodo_repos": {
+          "description": "Total Zenodo-hosted artifact records, e.g. 902.",
           "minimum": 0,
           "title": "Zenodo Repos",
           "type": "integer"
         },
         "total_views": {
+          "description": "Sum of Zenodo page views across all records.",
           "minimum": 0,
           "title": "Total Views",
           "type": "integer"
         },
         "total_downloads": {
+          "description": "Sum of Zenodo file downloads across all records.",
           "minimum": 0,
           "title": "Total Downloads",
           "type": "integer"
         },
         "avg_stars": {
+          "description": "Mean GitHub star count per repository, e.g. 94.3.",
           "minimum": 0,
           "title": "Avg Stars",
           "type": "number"
         },
         "avg_forks": {
+          "description": "Mean GitHub fork count per repository, e.g. 12.3.",
           "minimum": 0,
           "title": "Avg Forks",
           "type": "number"
         },
         "last_updated": {
-          "description": "ISO 8601 UTC timestamp of when the stats were collected.",
+          "description": "ISO 8601 UTC timestamp of when the stats were collected, e.g. '2026-04-27 21:26:09 UTC'.",
           "title": "Last Updated",
           "type": "string"
         }
@@ -207,6 +233,7 @@
             }
           ],
           "default": null,
+          "description": "Repository identifier, e.g. 'microsoft/nni'. Null if unknown.",
           "title": "Name"
         },
         "url": {
@@ -219,6 +246,7 @@
             }
           ],
           "default": null,
+          "description": "Repository URL, e.g. 'https://github.com/microsoft/nni'. Null if unknown.",
           "title": "Url"
         },
         "stars": {
@@ -232,6 +260,7 @@
             }
           ],
           "default": null,
+          "description": "GitHub star count. Null if not available.",
           "title": "Stars"
         },
         "forks": {
@@ -245,6 +274,7 @@
             }
           ],
           "default": null,
+          "description": "GitHub fork count. Null if not available.",
           "title": "Forks"
         },
         "language": {
@@ -257,6 +287,7 @@
             }
           ],
           "default": null,
+          "description": "Primary programming language, e.g. 'Python'. Null if unknown.",
           "title": "Language"
         },
         "description": {
@@ -269,6 +300,7 @@
             }
           ],
           "default": null,
+          "description": "Short repository description. Null if not set.",
           "title": "Description"
         }
       },
@@ -280,15 +312,18 @@
       "description": "Repository metrics grouped by year.",
       "properties": {
         "year": {
+          "description": "Publication year, e.g. 2023.",
           "title": "Year",
           "type": "integer"
         },
         "github_repos": {
+          "description": "Number of GitHub repositories for this year across all conferences.",
           "minimum": 0,
           "title": "Github Repos",
           "type": "integer"
         },
         "total_stars": {
+          "description": "Sum of GitHub stars across all repos for this year.",
           "minimum": 0,
           "title": "Total Stars",
           "type": "integer"
@@ -304,16 +339,19 @@
             }
           ],
           "default": null,
+          "description": "Sum of GitHub forks. Null if not tracked for this year.",
           "title": "Total Forks"
         },
         "max_stars": {
           "default": 0,
+          "description": "Maximum star count among all repos for this year.",
           "minimum": 0,
           "title": "Max Stars",
           "type": "integer"
         },
         "max_forks": {
           "default": 0,
+          "description": "Maximum fork count among all repos for this year.",
           "minimum": 0,
           "title": "Max Forks",
           "type": "integer"
@@ -329,6 +367,7 @@
             }
           ],
           "default": null,
+          "description": "Mean star count per repository. Null if not computed.",
           "title": "Avg Stars"
         },
         "avg_forks": {
@@ -342,6 +381,7 @@
             }
           ],
           "default": null,
+          "description": "Mean fork count per repository. Null if not computed.",
           "title": "Avg Forks"
         }
       },
@@ -358,9 +398,11 @@
   "description": "Aggregated repository metrics: overall stats, per-conference breakdowns, and yearly trends.",
   "properties": {
     "overall": {
-      "$ref": "#/$defs/OverallStats"
+      "$ref": "#/$defs/OverallStats",
+      "description": "Global repository metrics across all conferences and years."
     },
     "by_conference": {
+      "description": "Repository metrics grouped by conference, each with per-year breakdown.",
       "items": {
         "$ref": "#/$defs/ConferenceRepoStats"
       },
@@ -368,6 +410,7 @@
       "type": "array"
     },
     "by_year": {
+      "description": "Repository metrics grouped by year across all conferences, ordered chronologically.",
       "items": {
         "$ref": "#/$defs/YearRepoStats"
       },
