@@ -1,0 +1,50 @@
+/* Compact overrides for json-schema-for-humans flat template */
+
+body {
+  padding: 20px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+h1 { font-size: 1.6rem; margin-bottom: 0.5rem; }
+
+/* Tighter cards */
+.card { margin-bottom: 0.4rem; }
+.card-header { padding: 0.4rem 0.75rem; }
+.card-header h2 { font-size: 0.95rem; margin: 0; }
+.card-body { padding: 0.5rem 0.75rem; }
+
+/* Smaller badges */
+.badge { font-size: 80%; margin: 0.15rem 0; }
+.badge.value-type, .badge.no-additional, .badge.default-value {
+  font-size: 90%;
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+.badge.required-property, .badge.deprecated-property, .badge.pattern-property {
+  font-size: 55%;
+  margin-left: 6px;
+}
+.badge.restriction { margin: 0; }
+
+/* Compact examples */
+.jumbotron.examples, .highlight.jumbotron {
+  padding: 0.4rem 0.6rem !important;
+  margin-bottom: 0.3rem;
+}
+.examples pre { margin-bottom: 0; font-size: 0.85rem; }
+.badge.badge-secondary { margin-bottom: 0.1rem; }
+
+/* Tighter description */
+p { margin-bottom: 0.3rem; }
+
+/* Remove excessive br spacing */
+br + br { display: none; }
+
+/* Property name inline sizing */
+.property-name { font-size: 0.95rem; }
+
+/* Nested cards (sub-properties) */
+.card .card { margin-bottom: 0.3rem; }
+.card .card .card-header { padding: 0.3rem 0.6rem; }
+.card .card .card-body { padding: 0.4rem 0.6rem; }

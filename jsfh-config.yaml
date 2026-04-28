@@ -1,6 +1,6 @@
 # json-schema-for-humans HTML config
 template_name: flat
-show_breadcrumbs: true
+show_breadcrumbs: false
 collapse_long_descriptions: false
 collapse_long_examples: false
 copy_css: true

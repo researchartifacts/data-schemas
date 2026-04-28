@@ -34,6 +34,15 @@ _generate_version_docs() {
             "$schema" "$out_dir/${base}.html"
     done
 
+    # Copy compact CSS overrides and inject link into each generated HTML
+    if [[ -f "$SCRIPT_DIR/schema_doc_compact.css" ]]; then
+        cp "$SCRIPT_DIR/schema_doc_compact.css" "$out_dir/schema_doc_compact.css"
+        for html in "$out_dir"/*.html; do
+            [[ "$(basename "$html")" == "index.html" ]] && continue
+            sed -i 's|schema_doc.css">|schema_doc.css"><link rel="stylesheet" type="text/css" href="schema_doc_compact.css">|' "$html"
+        done
+    fi
+
     # Per-version index
     cat > "$out_dir/index.html" << VHEREDOC
 <!DOCTYPE html>
