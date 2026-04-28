@@ -5,6 +5,11 @@
   "additionalProperties": false,
   "description": "High-level summary statistics for the Jekyll site.\n\nWritten as ``summary.yml`` in ``_data/``.",
   "properties": {
+    "schema_version": {
+      "description": "Semantic version of the data schema bundle.",
+      "title": "Schema Version",
+      "type": "string"
+    },
     "total_artifacts": {
       "description": "Total number of artifacts across all conferences.",
       "minimum": 0,
@@ -66,6 +71,7 @@
     }
   },
   "required": [
+    "schema_version",
     "total_artifacts",
     "total_conferences",
     "systems_artifacts",

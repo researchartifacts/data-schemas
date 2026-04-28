@@ -70,6 +70,12 @@
           "title": "Artifact Urls",
           "type": "array"
         },
+        "doi": {
+          "default": "",
+          "description": "Canonical artifact DOI (e.g. '10.5281/zenodo.12345'). Extracted from artifact_urls.",
+          "title": "Doi",
+          "type": "string"
+        },
         "paper_url": {
           "anyOf": [
             {
