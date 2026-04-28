@@ -30,6 +30,14 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
+      - name: Restore cached docs
+        uses: actions/cache@v4
+        with:
+          path: docs
+          key: schema-docs-${{ github.sha }}
+          restore-keys: |
+            schema-docs-
+
       - name: Validate schemas (current)
         run: |
           python -c "

@@ -16,7 +16,6 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 SCHEMAS_DIR="$SCRIPT_DIR/schemas"
 DOCS_DIR="$SCRIPT_DIR/docs"
 
-rm -rf "$DOCS_DIR"
 mkdir -p "$DOCS_DIR"
 
 # ---------------------------------------------------------------------------
@@ -25,7 +24,7 @@ mkdir -p "$DOCS_DIR"
 # ---------------------------------------------------------------------------
 _generate_version_docs() {
     local src_dir="$1" out_dir="$2" ver="$3"
-    mkdir -p "$out_dir" "$out_dir/md"
+    mkdir -p "$out_dir"
 
     for schema in "$src_dir"/*.schema.json; do
         [[ -f "$schema" ]] || continue
@@ -33,8 +32,6 @@ _generate_version_docs() {
         base="$(basename "$schema" .schema.json)"
         generate-schema-doc --config-file "$SCRIPT_DIR/jsfh-config.yaml" \
             "$schema" "$out_dir/${base}.html"
-        generate-schema-doc --config-file "$SCRIPT_DIR/jsfh-config-md.yaml" \
-            "$schema" "$out_dir/md/${base}.md"
     done
 
     # Per-version index
@@ -74,7 +71,6 @@ VHEREDOC
     <a href="${base}.html">${title}</a>
     <div class="desc">${desc}</div>
     <div class="links">
-      <a href="md/${base}.md">Markdown</a>
       <a href="https://github.com/ReproDB/data-schemas/blob/${ver}/schemas/${base}.schema.json">Schema source</a>
     </div>
   </li>
@@ -98,19 +94,29 @@ if git tag -l 'v*' | grep -q '^v'; then
     done < <(git tag -l 'v*' | sort -V)
 fi
 
-CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo main)"
-STASH_NEEDED=false
-if ! git diff --quiet 2>/dev/null; then
-    STASH_NEEDED=true
-fi
+# Determine HEAD version label early so we can skip it in the tag loop.
+HEAD_VERSION=$(python3 -c "import json,sys; print(json.load(open(sys.argv[1])).get('version','latest'))" \
+    "$SCHEMAS_DIR"/summary.schema.json 2>/dev/null || echo "latest")
+HEAD_TAG="v${HEAD_VERSION}"
 
 echo "Generating documentation from JSON Schema files..."
 echo "  Found ${#VERSION_TAGS[@]} version tag(s): ${VERSION_TAGS[*]:-none}"
+echo "  HEAD version: $HEAD_TAG"
 
 # ---------------------------------------------------------------------------
 # Build docs for each tagged version by checking out the tag's schemas.
+# Skip versions whose docs already exist (cached) and the HEAD version
+# (will be rendered from on-disk schemas below).
 # ---------------------------------------------------------------------------
 for tag in "${VERSION_TAGS[@]}"; do
+    if [[ "$tag" == "$HEAD_TAG" ]]; then
+        echo "── $tag (HEAD, will render from working tree) ──"
+        continue
+    fi
+    if [[ -d "$DOCS_DIR/$tag" ]]; then
+        echo "── $tag (cached, skipping) ──"
+        continue
+    fi
     echo "── $tag ──"
     # Extract schemas from tagged commit into a temp dir
     TMPSCHEMAS="$(mktemp -d)"
@@ -120,15 +126,11 @@ for tag in "${VERSION_TAGS[@]}"; do
 done
 
 # ---------------------------------------------------------------------------
-# Build docs for HEAD (current schemas on disk).
+# Build docs for HEAD (current schemas on disk).  Always re-render since
+# schemas may have changed since the tag was created.
 # ---------------------------------------------------------------------------
-# Determine the version label from the first schema file.
-HEAD_VERSION=$(python3 -c "import json,sys; print(json.load(open(sys.argv[1])).get('version','latest'))" \
-    "$SCHEMAS_DIR"/summary.schema.json 2>/dev/null || echo "latest")
-HEAD_TAG="v${HEAD_VERSION}"
-
 echo "── HEAD ($HEAD_TAG) ──"
-# If HEAD version already matches a tag, overwrite with current on-disk schemas
+rm -rf "$DOCS_DIR/$HEAD_TAG"
 _generate_version_docs "$SCHEMAS_DIR" "$DOCS_DIR/$HEAD_TAG" "$HEAD_TAG"
 
 # Symlink latest
