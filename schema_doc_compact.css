@@ -27,9 +27,22 @@ h1 { font-size: 1.6rem; margin-bottom: 0.5rem; }
 }
 .badge.restriction { margin: 0; }
 
+/* Type badge + description inline: hide the <br/> between them */
+.badge.value-type + br { display: none; }
+.badge.value-type + br + p,
+.badge.value-type ~ p:first-of-type {
+  display: inline;
+  margin-left: 6px;
+}
+
+/* Example badge + content closer: hide surrounding <br/> tags */
+.badge.badge-secondary + br { display: none; }
+br + .badge.badge-secondary { display: inline; }
+
 /* Compact examples */
 .jumbotron.examples, .highlight.jumbotron {
   padding: 0.4rem 0.6rem !important;
+  margin-top: 0.2rem;
   margin-bottom: 0.3rem;
 }
 .examples pre { margin-bottom: 0; font-size: 0.85rem; }
@@ -41,8 +54,14 @@ p { margin-bottom: 0.3rem; }
 /* Remove excessive br spacing */
 br + br { display: none; }
 
-/* Property name inline sizing */
-.property-name { font-size: 0.95rem; }
+/* Property name slightly larger than body text */
+.property-name { font-size: 1.05em; font-weight: 600; }
+
+/* "Option 1" / "Option 2" headings — reduce from h3 to small text */
+.any-of-value h3 { font-size: 0.9rem; margin: 0.3rem 0; }
+
+/* "Each item of this array must be:" — reduce h4 to regular text */
+h4 { font-size: 0.9rem; font-weight: normal; margin: 0.3rem 0; }
 
 /* Nested cards (sub-properties) */
 .card .card { margin-bottom: 0.3rem; }
