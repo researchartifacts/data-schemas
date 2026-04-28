@@ -15,28 +15,43 @@
       "properties": {
         "title": {
           "description": "Full paper title as it appears in the proceedings.",
+          "examples": [
+            "Understanding and Detecting Software Upgrade Failures in Distributed Systems"
+          ],
           "title": "Title",
           "type": "string"
         },
         "conference": {
           "description": "Conference abbreviation, e.g. 'OSDI', 'USENIXSEC'.",
+          "examples": [
+            "OSDI"
+          ],
           "title": "Conference",
           "type": "string"
         },
         "year": {
           "description": "Publication year, e.g. 2023.",
+          "examples": [
+            2023
+          ],
           "title": "Year",
           "type": "integer"
         },
         "doi": {
           "default": "",
           "description": "Artifact DOI, e.g. '10.5281/zenodo.12345'. Empty string if not found.",
+          "examples": [
+            "10.5281/zenodo.12345"
+          ],
           "title": "Doi",
           "type": "string"
         },
         "doi_source": {
           "default": "",
           "description": "Source of the DOI, e.g. 'zenodo', 'figshare'. Empty string if not applicable.",
+          "examples": [
+            "zenodo"
+          ],
           "title": "Doi Source",
           "type": "string"
         },
@@ -51,6 +66,9 @@
           ],
           "default": null,
           "description": "Best citation count: max(OpenAlex, Semantic Scholar). Null if neither source returned data.",
+          "examples": [
+            12
+          ],
           "title": "Cited By Count"
         },
         "citations_openalex": {
@@ -64,6 +82,9 @@
           ],
           "default": null,
           "description": "Citation count from OpenAlex. Null if lookup failed or no data.",
+          "examples": [
+            10
+          ],
           "title": "Citations Openalex"
         },
         "citations_semantic_scholar": {
@@ -77,10 +98,18 @@
           ],
           "default": null,
           "description": "Citation count from Semantic Scholar. Null if lookup failed or no data.",
+          "examples": [
+            8
+          ],
           "title": "Citations Semantic Scholar"
         },
         "citing_dois_openalex": {
           "description": "DOIs of papers citing this artifact, sourced from OpenAlex. Empty list if none.",
+          "examples": [
+            [
+              "10.1145/1234567.1234568"
+            ]
+          ],
           "items": {
             "type": "string"
           },
@@ -89,6 +118,11 @@
         },
         "citing_dois_semantic_scholar": {
           "description": "DOIs of papers citing this artifact, sourced from Semantic Scholar. Empty list if none.",
+          "examples": [
+            [
+              "10.1145/9876543.9876544"
+            ]
+          ],
           "items": {
             "type": "string"
           },

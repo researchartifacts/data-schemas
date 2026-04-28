@@ -15,23 +15,35 @@
       "properties": {
         "year": {
           "description": "Publication year, e.g. 2023.",
+          "examples": [
+            2023
+          ],
           "title": "Year",
           "type": "integer"
         },
         "count": {
           "description": "Total evaluated artifacts across all conferences for this year.",
+          "examples": [
+            127
+          ],
           "minimum": 0,
           "title": "Count",
           "type": "integer"
         },
         "systems": {
           "description": "Number of artifacts from systems conferences (ATC, EUROSYS, FAST, OSDI, SC, SOSP).",
+          "examples": [
+            75
+          ],
           "minimum": 0,
           "title": "Systems",
           "type": "integer"
         },
         "security": {
           "description": "Number of artifacts from security conferences (ACSAC, CHES, NDSS, PETS, SYSTEX, USENIXSEC, WOOT).",
+          "examples": [
+            52
+          ],
           "minimum": 0,
           "title": "Security",
           "type": "integer"

@@ -15,21 +15,33 @@
       "properties": {
         "conference": {
           "description": "Conference abbreviation, e.g. 'OSDI', 'USENIXSEC'.",
+          "examples": [
+            "OSDI"
+          ],
           "title": "Conference",
           "type": "string"
         },
         "year": {
           "description": "Publication year, e.g. 2023.",
+          "examples": [
+            2023
+          ],
           "title": "Year",
           "type": "integer"
         },
         "title": {
           "description": "Full paper title associated with this repository.",
+          "examples": [
+            "Understanding and Detecting Software Upgrade Failures in Distributed Systems"
+          ],
           "title": "Title",
           "type": "string"
         },
         "url": {
           "description": "Repository or archive URL, e.g. 'https://github.com/org/repo'.",
+          "examples": [
+            "https://github.com/org/repo"
+          ],
           "title": "Url",
           "type": "string"
         },
@@ -39,6 +51,9 @@
             "github",
             "zenodo",
             "figshare"
+          ],
+          "examples": [
+            "github"
           ],
           "title": "Source",
           "type": "string"
@@ -55,6 +70,9 @@
           ],
           "default": null,
           "description": "GitHub star count at time of collection. Null for non-GitHub platforms.",
+          "examples": [
+            1250
+          ],
           "title": "Github Stars"
         },
         "github_forks": {
@@ -69,6 +87,9 @@
           ],
           "default": null,
           "description": "GitHub fork count at time of collection. Null for non-GitHub platforms.",
+          "examples": [
+            340
+          ],
           "title": "Github Forks"
         },
         "zenodo_views": {
@@ -83,6 +104,9 @@
           ],
           "default": null,
           "description": "Zenodo page view count. Null for non-Zenodo platforms.",
+          "examples": [
+            5000
+          ],
           "title": "Zenodo Views"
         },
         "zenodo_downloads": {
@@ -97,6 +121,9 @@
           ],
           "default": null,
           "description": "Zenodo file download count. Null for non-Zenodo platforms.",
+          "examples": [
+            2000
+          ],
           "title": "Zenodo Downloads"
         },
         "description": {
@@ -111,6 +138,9 @@
           ],
           "default": null,
           "description": "Repository description from the hosting platform, truncated to 120 characters. Null if not available.",
+          "examples": [
+            "High-performance distributed key-value store"
+          ],
           "title": "Description"
         },
         "language": {
@@ -124,6 +154,9 @@
           ],
           "default": null,
           "description": "Primary programming language as reported by the platform, e.g. 'Python', 'C++'. Null if not available.",
+          "examples": [
+            "Python"
+          ],
           "title": "Language"
         },
         "name": {
@@ -137,6 +170,9 @@
           ],
           "default": null,
           "description": "Repository identifier, e.g. 'microsoft/nni'. Null for non-GitHub/GitLab platforms.",
+          "examples": [
+            "Mathias Payer"
+          ],
           "title": "Name"
         },
         "pushed_at": {
@@ -150,6 +186,9 @@
           ],
           "default": null,
           "description": "ISO 8601 timestamp of last push/update, e.g. '2024-07-15T10:30:00Z'. Null if not available.",
+          "examples": [
+            "2025-03-15T10:30:00Z"
+          ],
           "title": "Pushed At"
         }
       },

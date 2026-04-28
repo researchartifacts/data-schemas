@@ -15,16 +15,25 @@
       "properties": {
         "conference": {
           "description": "Conference abbreviation, e.g. 'OSDI', 'USENIXSEC', 'NDSS'.",
+          "examples": [
+            "OSDI"
+          ],
           "title": "Conference",
           "type": "string"
         },
         "year": {
           "description": "Calendar year of service, e.g. 2023.",
+          "examples": [
+            2023
+          ],
           "title": "Year",
           "type": "integer"
         },
         "role": {
           "description": "Role on the committee. One of 'chair' or 'member'.",
+          "examples": [
+            "member"
+          ],
           "title": "Role",
           "type": "string"
         }
@@ -43,33 +52,55 @@
       "properties": {
         "name": {
           "description": "Full name, e.g. 'Mathias Payer'. May include DBLP disambiguation suffix.",
+          "examples": [
+            "Mathias Payer"
+          ],
           "title": "Name",
           "type": "string"
         },
         "display_name": {
           "description": "Human-readable name without disambiguation suffix, e.g. 'Mathias Payer'.",
+          "examples": [
+            "Mathias Payer"
+          ],
           "title": "Display Name",
           "type": "string"
         },
         "affiliation": {
           "description": "Current institutional affiliation, e.g. 'EPFL', 'MIT'.",
+          "examples": [
+            "ETH Zurich"
+          ],
           "title": "Affiliation",
           "type": "string"
         },
         "total_memberships": {
           "description": "Total number of AE committee memberships across all conferences and years.",
+          "examples": [
+            4
+          ],
           "minimum": 0,
           "title": "Total Memberships",
           "type": "integer"
         },
         "chair_count": {
           "description": "Number of conference-years served as AE chair (versus regular member).",
+          "examples": [
+            1
+          ],
           "minimum": 0,
           "title": "Chair Count",
           "type": "integer"
         },
         "conferences": {
           "description": "List of AE committee memberships, one entry per conference-year served. Each has conference, year, role.",
+          "examples": [
+            [
+              "OSDI",
+              "ATC",
+              "USENIXSEC"
+            ]
+          ],
           "items": {
             "$ref": "#/$defs/AEMembership"
           },
@@ -81,11 +112,21 @@
             "type": "integer"
           },
           "description": "Year (as string key, e.g. '2023') → number of AE memberships that year. Example: {'2023': 5, '2024': 3}.",
+          "examples": [
+            [
+              2021,
+              2022,
+              2023
+            ]
+          ],
           "title": "Years",
           "type": "object"
         },
         "area": {
           "description": "Research area based on conferences served: 'systems', 'security', or 'both' if spanning both.",
+          "examples": [
+            "systems"
+          ],
           "title": "Area",
           "type": "string"
         },
@@ -100,6 +141,9 @@
           ],
           "default": null,
           "description": "Earliest year of AE service, e.g. 2020. Null if unknown.",
+          "examples": [
+            2019
+          ],
           "title": "First Year"
         },
         "last_year": {
@@ -113,6 +157,9 @@
           ],
           "default": null,
           "description": "Most recent year of AE service, e.g. 2026. Null if unknown.",
+          "examples": [
+            2025
+          ],
           "title": "Last Year"
         }
       },

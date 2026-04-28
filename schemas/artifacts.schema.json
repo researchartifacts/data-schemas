@@ -30,6 +30,9 @@
             "USENIXSEC",
             "WOOT"
           ],
+          "examples": [
+            "OSDI"
+          ],
           "title": "Conference",
           "type": "string"
         },
@@ -44,6 +47,9 @@
         },
         "year": {
           "description": "Publication year (2017–2030), e.g. 2023.",
+          "examples": [
+            2023
+          ],
           "maximum": 2030,
           "minimum": 2017,
           "title": "Year",
@@ -51,11 +57,21 @@
         },
         "title": {
           "description": "Full paper title as it appears in the conference proceedings.",
+          "examples": [
+            "Understanding and Detecting Software Upgrade Failures in Distributed Systems"
+          ],
           "title": "Title",
           "type": "string"
         },
         "badges": {
           "description": "Artifact evaluation badges awarded by the AE committee. Canonical lowercase values: 'available', 'functional', 'reproduced', 'reusable', 'replicated'. Some older data retains capitalized variants, e.g. 'Available', 'Functional'.",
+          "examples": [
+            [
+              "available",
+              "functional",
+              "reproduced"
+            ]
+          ],
           "items": {
             "type": "string"
           },
@@ -64,6 +80,12 @@
         },
         "artifact_urls": {
           "description": "All artifact-related URLs for this paper. Includes GitHub/GitLab repos, Zenodo DOIs, and other archives. Example: ['https://github.com/org/repo', 'https://doi.org/10.5281/zenodo.12345'].",
+          "examples": [
+            [
+              "https://github.com/org/repo",
+              "https://doi.org/10.5281/zenodo.12345"
+            ]
+          ],
           "items": {
             "type": "string"
           },
@@ -73,6 +95,9 @@
         "doi": {
           "default": "",
           "description": "Canonical artifact DOI extracted from artifact_urls, e.g. '10.5281/zenodo.12345'. Empty string if none found.",
+          "examples": [
+            "10.5281/zenodo.12345"
+          ],
           "title": "Doi",
           "type": "string"
         },
@@ -87,6 +112,9 @@
           ],
           "default": null,
           "description": "DOI URL or direct link to the published paper, e.g. 'https://doi.org/10.1145/...'. Null if unavailable.",
+          "examples": [
+            "https://doi.org/10.1145/3600006.3613152"
+          ],
           "title": "Paper Url"
         },
         "appendix_url": {
@@ -100,6 +128,9 @@
           ],
           "default": null,
           "description": "URL to supplementary materials or appendix. Null if unavailable.",
+          "examples": [
+            "https://arxiv.org/abs/2301.12345"
+          ],
           "title": "Appendix Url"
         },
         "award": {
@@ -113,6 +144,9 @@
           ],
           "default": null,
           "description": "Award designation such as 'Distinguished Artifact'. Null if no award.",
+          "examples": [
+            "Distinguished Artifact"
+          ],
           "title": "Award"
         }
       },

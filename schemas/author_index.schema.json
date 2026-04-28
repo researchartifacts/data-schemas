@@ -14,16 +14,25 @@
       "properties": {
         "affiliation": {
           "description": "Previous institution name, e.g. 'MIT', 'Google'.",
+          "examples": [
+            "ETH Zurich"
+          ],
           "title": "Affiliation",
           "type": "string"
         },
         "source": {
           "description": "Enrichment source that set this affiliation, e.g. 'dblp', 'openalex', 'manual'.",
+          "examples": [
+            "csrankings"
+          ],
           "title": "Source",
           "type": "string"
         },
         "date": {
           "description": "ISO 8601 date when this affiliation was recorded, e.g. '2025-01-15'.",
+          "examples": [
+            "2025-01-15"
+          ],
           "title": "Date",
           "type": "string"
         }
@@ -51,6 +60,9 @@
           ],
           "default": null,
           "description": "DBLP person identifier, e.g. 'homepages/c/HaiboChen0001'. Used to link to DBLP author pages.",
+          "examples": [
+            "homepages/p/MathiasPayer"
+          ],
           "title": "Dblp Pid"
         },
         "orcid": {
@@ -65,6 +77,9 @@
           ],
           "default": null,
           "description": "ORCID identifier, e.g. '0000-0001-2345-6789'. 16-digit hyphenated format.",
+          "examples": [
+            "0000-0001-2345-6789"
+          ],
           "title": "Orcid"
         },
         "openalex_id": {
@@ -78,6 +93,9 @@
           ],
           "default": null,
           "description": "OpenAlex author ID, e.g. 'A1234567890'. Used for citation lookups.",
+          "examples": [
+            "https://openalex.org/W4388218060"
+          ],
           "title": "Openalex Id"
         }
       },
@@ -90,22 +108,34 @@
       "properties": {
         "id": {
           "description": "Stable integer identifier (starts at 1). Assigned once and never reused or changed across pipeline runs.",
+          "examples": [
+            42
+          ],
           "minimum": 1,
           "title": "Id",
           "type": "integer"
         },
         "name": {
           "description": "Full name in DBLP format. Includes disambiguation suffix when present (e.g., 'Haibo Chen 0001'). Unique across all authors.",
+          "examples": [
+            "Mathias Payer"
+          ],
           "title": "Name",
           "type": "string"
         },
         "display_name": {
           "description": "Human-readable name without DBLP disambiguation suffix, e.g. 'Haibo Chen' (from 'Haibo Chen 0001').",
+          "examples": [
+            "Mathias Payer"
+          ],
           "title": "Display Name",
           "type": "string"
         },
         "affiliation": {
           "description": "Normalized institution affiliation, e.g. 'Shanghai Jiao Tong University'. Empty string if unknown.",
+          "examples": [
+            "ETH Zurich"
+          ],
           "title": "Affiliation",
           "type": "string"
         },
@@ -120,12 +150,18 @@
             "manual",
             ""
           ],
+          "examples": [
+            "dblp"
+          ],
           "title": "Affiliation Source",
           "type": "string"
         },
         "affiliation_updated": {
           "default": "",
           "description": "ISO 8601 date when affiliation was last updated, e.g. '2026-04-07'. Empty string if never updated.",
+          "examples": [
+            "2025-03-15"
+          ],
           "pattern": "^(\\d{4}-\\d{2}-\\d{2})?$",
           "title": "Affiliation Updated",
           "type": "string"

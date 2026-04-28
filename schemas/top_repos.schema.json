@@ -15,51 +15,78 @@
       "properties": {
         "title": {
           "description": "Paper title associated with this repository, as published in proceedings.",
+          "examples": [
+            "Understanding and Detecting Software Upgrade Failures in Distributed Systems"
+          ],
           "title": "Title",
           "type": "string"
         },
         "url": {
           "description": "GitHub repository URL, e.g. 'https://github.com/microsoft/nni/tree/retiarii_artifact'.",
+          "examples": [
+            "https://github.com/org/repo"
+          ],
           "title": "Url",
           "type": "string"
         },
         "year": {
           "description": "Publication year, e.g. 2020.",
+          "examples": [
+            2023
+          ],
           "title": "Year",
           "type": "integer"
         },
         "stars": {
           "description": "GitHub star count at time of collection, e.g. 14340.",
+          "examples": [
+            1250
+          ],
           "minimum": 0,
           "title": "Stars",
           "type": "integer"
         },
         "forks": {
           "description": "GitHub fork count at time of collection, e.g. 1852.",
+          "examples": [
+            340
+          ],
           "minimum": 0,
           "title": "Forks",
           "type": "integer"
         },
         "authors": {
           "description": "Comma-separated author names, e.g. 'Fan Yang 0024, Lidong Zhou, Mao Yang 0004 et al.'.",
+          "examples": [
+            "Mathias Payer, Haibo Chen"
+          ],
           "title": "Authors",
           "type": "string"
         },
         "github_org": {
           "default": "",
           "description": "GitHub organization or user who owns the repo, e.g. 'microsoft'. Empty if not parsed.",
+          "examples": [
+            "microsoft"
+          ],
           "title": "Github Org",
           "type": "string"
         },
         "badges": {
           "default": "",
           "description": "Comma-separated badge names, e.g. 'available,functional,reproduced'. Empty if none.",
+          "examples": [
+            "available, functional, reproduced"
+          ],
           "title": "Badges",
           "type": "string"
         },
         "last_active": {
           "default": "",
           "description": "Last activity date in YYYY-MM format, e.g. '2024-07'. Empty if unknown.",
+          "examples": [
+            "2025-03"
+          ],
           "title": "Last Active",
           "type": "string"
         },
@@ -72,16 +99,25 @@
         "language": {
           "default": "",
           "description": "Primary programming language as reported by GitHub, e.g. 'Python'. Empty if unknown.",
+          "examples": [
+            "Python"
+          ],
           "title": "Language",
           "type": "string"
         },
         "conference": {
           "description": "Conference where the artifact was published, e.g. 'OSDI', 'USENIXSEC'.",
+          "examples": [
+            "OSDI"
+          ],
           "title": "Conference",
           "type": "string"
         },
         "area": {
           "description": "Research area: 'systems' or 'security', determined by the conference.",
+          "examples": [
+            "systems"
+          ],
           "title": "Area",
           "type": "string"
         }

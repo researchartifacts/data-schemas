@@ -15,21 +15,37 @@
       "properties": {
         "title": {
           "description": "Full paper title as it appears in the proceedings.",
+          "examples": [
+            "Understanding and Detecting Software Upgrade Failures in Distributed Systems"
+          ],
           "title": "Title",
           "type": "string"
         },
         "conference": {
           "description": "Conference abbreviation, e.g. 'OSDI', 'USENIXSEC'.",
+          "examples": [
+            "OSDI"
+          ],
           "title": "Conference",
           "type": "string"
         },
         "year": {
           "description": "Publication year, e.g. 2023.",
+          "examples": [
+            2023
+          ],
           "title": "Year",
           "type": "integer"
         },
         "badges": {
           "description": "Artifact evaluation badges awarded by the AE committee. Canonical lowercase values: 'available', 'functional', 'reproduced', 'reusable', 'replicated'.",
+          "examples": [
+            [
+              "available",
+              "functional",
+              "reproduced"
+            ]
+          ],
           "items": {
             "type": "string"
           },
@@ -47,6 +63,9 @@
         },
         "artifact_citations": {
           "description": "Number of times this artifact has been cited (via DOI tracking). 0 if not yet tracked.",
+          "examples": [
+            3
+          ],
           "minimum": 0,
           "title": "Artifact Citations",
           "type": "integer"
@@ -69,16 +88,25 @@
       "properties": {
         "title": {
           "description": "Full paper title as it appears in the proceedings.",
+          "examples": [
+            "Understanding and Detecting Software Upgrade Failures in Distributed Systems"
+          ],
           "title": "Title",
           "type": "string"
         },
         "conference": {
           "description": "Conference abbreviation, e.g. 'OSDI', 'USENIXSEC'.",
+          "examples": [
+            "OSDI"
+          ],
           "title": "Conference",
           "type": "string"
         },
         "year": {
           "description": "Publication year, e.g. 2023.",
+          "examples": [
+            2023
+          ],
           "title": "Year",
           "type": "integer"
         }
@@ -97,11 +125,17 @@
       "properties": {
         "name": {
           "description": "Full name in DBLP format, e.g. 'Mathias Payer' or 'Jing Liu 0074' (with disambiguation suffix).",
+          "examples": [
+            "Mathias Payer"
+          ],
           "title": "Name",
           "type": "string"
         },
         "affiliation": {
           "description": "Normalized institution affiliation, e.g. 'EPFL', 'MIT'. Empty string if unknown.",
+          "examples": [
+            "ETH Zurich"
+          ],
           "title": "Affiliation",
           "type": "string"
         },
@@ -123,6 +157,13 @@
         },
         "conferences": {
           "description": "Conference abbreviations where author has published, e.g. ['OSDI', 'USENIXSEC'].",
+          "examples": [
+            [
+              "OSDI",
+              "ATC",
+              "USENIXSEC"
+            ]
+          ],
           "items": {
             "type": "string"
           },
@@ -131,6 +172,13 @@
         },
         "years": {
           "description": "Sorted list of years with activity, e.g. [2020, 2021, 2023].",
+          "examples": [
+            [
+              2021,
+              2022,
+              2023
+            ]
+          ],
           "items": {
             "type": "integer"
           },
@@ -139,18 +187,27 @@
         },
         "artifact_count": {
           "description": "Total number of artifacts authored across all conferences.",
+          "examples": [
+            5
+          ],
           "minimum": 0,
           "title": "Artifact Count",
           "type": "integer"
         },
         "total_papers": {
           "description": "Total papers published at tracked conferences (both with and without artifacts).",
+          "examples": [
+            42
+          ],
           "minimum": 0,
           "title": "Total Papers",
           "type": "integer"
         },
         "artifact_pct": {
           "description": "Percentage of papers with artifacts: (artifact_count / total_papers) * 100.",
+          "examples": [
+            71.4
+          ],
           "maximum": 100,
           "minimum": 0,
           "title": "Artifact Pct",
@@ -158,24 +215,36 @@
         },
         "artifact_citations": {
           "description": "Sum of citation counts across all this author's artifacts.",
+          "examples": [
+            3
+          ],
           "minimum": 0,
           "title": "Artifact Citations",
           "type": "integer"
         },
         "badges_available": {
           "description": "Total number of 'available' badges across all this author's artifacts.",
+          "examples": [
+            12
+          ],
           "minimum": 0,
           "title": "Badges Available",
           "type": "integer"
         },
         "badges_functional": {
           "description": "Total number of 'functional' badges across all this author's artifacts.",
+          "examples": [
+            10
+          ],
           "minimum": 0,
           "title": "Badges Functional",
           "type": "integer"
         },
         "badges_reproducible": {
           "description": "Total number of 'reproduced' badges across all this author's artifacts.",
+          "examples": [
+            8
+          ],
           "minimum": 0,
           "title": "Badges Reproducible",
           "type": "integer"
@@ -203,10 +272,16 @@
           ],
           "default": null,
           "description": "Stable integer ID referencing the canonical author_index. Null for authors not yet indexed.",
+          "examples": [
+            42
+          ],
           "title": "Author Id"
         },
         "display_name": {
           "description": "Human-readable name without DBLP disambiguation suffix, e.g. 'Mathias Payer'.",
+          "examples": [
+            "Mathias Payer"
+          ],
           "title": "Display Name",
           "type": "string"
         },
@@ -231,6 +306,9 @@
         },
         "repro_pct": {
           "description": "Percentage of artifacts with a 'reproduced' badge: (reproduced / artifact_count) * 100.",
+          "examples": [
+            66.7
+          ],
           "maximum": 100,
           "minimum": 0,
           "title": "Repro Pct",
@@ -238,6 +316,9 @@
         },
         "functional_pct": {
           "description": "Percentage of artifacts with a 'functional' badge: (functional / artifact_count) * 100.",
+          "examples": [
+            83.3
+          ],
           "maximum": 100,
           "minimum": 0,
           "title": "Functional Pct",
@@ -245,18 +326,31 @@
         },
         "year_range": {
           "description": "Activity range as 'YYYY-YYYY', e.g. '2019-2024'.",
+          "examples": [
+            "2017-2026"
+          ],
           "pattern": "^\\d{4}-\\d{4}$",
           "title": "Year Range",
           "type": "string"
         },
         "recent_count": {
           "description": "Number of papers published in the most recent 3 calendar years.",
+          "examples": [
+            3
+          ],
           "minimum": 0,
           "title": "Recent Count",
           "type": "integer"
         },
         "paper_ids": {
           "description": "List of stable paper IDs (from paper_index) for this author's artifact papers.",
+          "examples": [
+            [
+              1,
+              42,
+              137
+            ]
+          ],
           "items": {
             "type": "integer"
           },
@@ -265,6 +359,12 @@
         },
         "papers_without_artifact_ids": {
           "description": "List of stable paper IDs (from paper_index) for this author's non-artifact papers.",
+          "examples": [
+            [
+              5,
+              88
+            ]
+          ],
           "items": {
             "type": "integer"
           },

@@ -9,26 +9,41 @@
       "properties": {
         "conference": {
           "description": "Conference abbreviation, e.g. 'ACSAC', 'OSDI'.",
+          "examples": [
+            "osdi2023"
+          ],
           "title": "Conference",
           "type": "string"
         },
         "year": {
           "description": "Calendar year, e.g. 2023.",
+          "examples": [
+            2023
+          ],
           "title": "Year",
           "type": "integer"
         },
         "conf_year": {
           "description": "Combined lowercase conference-year key, e.g. 'acsac2017', 'osdi2023'.",
+          "examples": [
+            "osdi2023"
+          ],
           "title": "Conf Year",
           "type": "string"
         },
         "area": {
           "description": "Research area of this conference: 'systems' or 'security'.",
+          "examples": [
+            "systems"
+          ],
           "title": "Area",
           "type": "string"
         },
         "size": {
           "description": "Number of AE committee members for this conference-year.",
+          "examples": [
+            25
+          ],
           "minimum": 0,
           "title": "Size",
           "type": "integer"
@@ -50,36 +65,54 @@
       "properties": {
         "total_members": {
           "description": "Total AE committee members across all conferences and years (includes duplicates for multi-year service).",
+          "examples": [
+            1250
+          ],
           "minimum": 0,
           "title": "Total Members",
           "type": "integer"
         },
         "total_systems": {
           "description": "Committee members from systems conferences (ATC, EUROSYS, FAST, OSDI, SC, SOSP).",
+          "examples": [
+            600
+          ],
           "minimum": 0,
           "title": "Total Systems",
           "type": "integer"
         },
         "total_security": {
           "description": "Committee members from security conferences (ACSAC, CHES, NDSS, PETS, SYSTEX, USENIXSEC, WOOT).",
+          "examples": [
+            650
+          ],
           "minimum": 0,
           "title": "Total Security",
           "type": "integer"
         },
         "total_countries": {
           "description": "Number of unique countries represented across all committees, e.g. 59.",
+          "examples": [
+            35
+          ],
           "minimum": 0,
           "title": "Total Countries",
           "type": "integer"
         },
         "total_continents": {
           "description": "Number of unique continents represented, e.g. 7.",
+          "examples": [
+            6
+          ],
           "minimum": 0,
           "title": "Total Continents",
           "type": "integer"
         },
         "total_institutions": {
           "description": "Number of unique institutions represented, e.g. 470.",
+          "examples": [
+            280
+          ],
           "minimum": 0,
           "title": "Total Institutions",
           "type": "integer"
@@ -102,16 +135,25 @@
       "properties": {
         "conference": {
           "description": "Conference abbreviation, e.g. 'ATC', 'USENIXSEC'.",
+          "examples": [
+            "osdi2023"
+          ],
           "title": "Conference",
           "type": "string"
         },
         "name": {
           "description": "Full name of the committee member whose affiliation could not be resolved.",
+          "examples": [
+            "Mathias Payer"
+          ],
           "title": "Name",
           "type": "string"
         },
         "affiliation": {
           "description": "Raw affiliation string that could not be geolocated or matched to an institution.",
+          "examples": [
+            "ETH Zurich"
+          ],
           "title": "Affiliation",
           "type": "string"
         }
@@ -130,11 +172,17 @@
       "properties": {
         "name": {
           "description": "Country, continent, or institution name, e.g. 'United States', 'Europe', 'MIT'.",
+          "examples": [
+            "Mathias Payer"
+          ],
           "title": "Name",
           "type": "string"
         },
         "count": {
           "description": "Number of AE committee members from this entity.",
+          "examples": [
+            127
+          ],
           "minimum": 0,
           "title": "Count",
           "type": "integer"
@@ -161,6 +209,9 @@
         },
         "systems": {
           "description": "Counts from systems conferences only.",
+          "examples": [
+            75
+          ],
           "items": {
             "$ref": "#/$defs/NameCount"
           },
@@ -169,6 +220,9 @@
         },
         "security": {
           "description": "Counts from security conferences only.",
+          "examples": [
+            52
+          ],
           "items": {
             "$ref": "#/$defs/NameCount"
           },

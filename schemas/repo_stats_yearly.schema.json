@@ -15,42 +15,63 @@
       "properties": {
         "github_repos": {
           "description": "Number of GitHub repositories with stats for this year/area combination.",
+          "examples": [
+            180
+          ],
           "minimum": 0,
           "title": "Github Repos",
           "type": "integer"
         },
         "avg_stars": {
           "description": "Mean GitHub star count across repositories in this group.",
+          "examples": [
+            250.5
+          ],
           "minimum": 0,
           "title": "Avg Stars",
           "type": "number"
         },
         "avg_forks": {
           "description": "Mean GitHub fork count across repositories in this group.",
+          "examples": [
+            65.3
+          ],
           "minimum": 0,
           "title": "Avg Forks",
           "type": "number"
         },
         "min_stars": {
           "description": "Minimum GitHub star count in this group.",
+          "examples": [
+            0.0
+          ],
           "minimum": 0,
           "title": "Min Stars",
           "type": "number"
         },
         "max_stars": {
           "description": "Maximum GitHub star count in this group.",
+          "examples": [
+            5200
+          ],
           "minimum": 0,
           "title": "Max Stars",
           "type": "number"
         },
         "min_forks": {
           "description": "Minimum GitHub fork count in this group.",
+          "examples": [
+            0.0
+          ],
           "minimum": 0,
           "title": "Min Forks",
           "type": "number"
         },
         "max_forks": {
           "description": "Maximum GitHub fork count in this group.",
+          "examples": [
+            1300
+          ],
           "minimum": 0,
           "title": "Max Forks",
           "type": "number"
@@ -74,6 +95,9 @@
       "properties": {
         "year": {
           "description": "Publication year, e.g. 2023.",
+          "examples": [
+            2023
+          ],
           "title": "Year",
           "type": "integer"
         },
@@ -91,7 +115,10 @@
             }
           ],
           "default": null,
-          "description": "Systems-only GitHub metrics. Null if no systems repositories exist for this year."
+          "description": "Systems-only GitHub metrics. Null if no systems repositories exist for this year.",
+          "examples": [
+            75
+          ]
         },
         "security": {
           "anyOf": [
@@ -103,7 +130,10 @@
             }
           ],
           "default": null,
-          "description": "Security-only GitHub metrics. Null if no security repositories exist for this year."
+          "description": "Security-only GitHub metrics. Null if no security repositories exist for this year.",
+          "examples": [
+            52
+          ]
         }
       },
       "required": [

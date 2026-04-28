@@ -15,6 +15,9 @@
       "properties": {
         "rank": {
           "description": "Ranking position (with ties). Minimum combined_score of 3 to appear.",
+          "examples": [
+            1
+          ],
           "minimum": 1,
           "title": "Rank",
           "type": "integer"
@@ -31,60 +34,93 @@
           ],
           "default": null,
           "description": "Stable integer ID referencing the canonical author_index. Null for authors not yet indexed.",
+          "examples": [
+            42
+          ],
           "title": "Author Id"
         },
         "name": {
           "description": "Full author name including DBLP disambiguation suffix, e.g. 'Jing Liu 0074'.",
+          "examples": [
+            "Mathias Payer"
+          ],
           "title": "Name",
           "type": "string"
         },
         "display_name": {
           "description": "Human-readable name without DBLP disambiguation suffix, e.g. 'Jing Liu'.",
+          "examples": [
+            "Mathias Payer"
+          ],
           "title": "Display Name",
           "type": "string"
         },
         "affiliation": {
           "description": "Raw affiliation string as returned from DBLP, e.g. 'EPFL, Lausanne, Switzerland'.",
+          "examples": [
+            "ETH Zurich"
+          ],
           "title": "Affiliation",
           "type": "string"
         },
         "display_affiliation": {
           "description": "Normalized institution name, e.g. 'EPFL', 'University of Illinois Urbana-Champaign'.",
+          "examples": [
+            "ETH Zurich"
+          ],
           "title": "Display Affiliation",
           "type": "string"
         },
         "artifact_count": {
           "description": "Total number of artifacts authored across all tracked conferences.",
+          "examples": [
+            5
+          ],
           "minimum": 0,
           "title": "Artifact Count",
           "type": "integer"
         },
         "artifact_score": {
           "description": "Points from artifacts. Scoring: 1 pt (available) + 1 pt (functional) + 1 pt (reproduced) per artifact.",
+          "examples": [
+            9
+          ],
           "minimum": 0,
           "title": "Artifact Score",
           "type": "integer"
         },
         "artifact_citations": {
           "description": "Sum of artifact citation counts. Currently 0 for all authors (tracking in progress).",
+          "examples": [
+            3
+          ],
           "minimum": 0,
           "title": "Artifact Citations",
           "type": "integer"
         },
         "citation_score": {
           "description": "Points from artifact citations. Currently 0 for all authors (tracking in progress).",
+          "examples": [
+            0
+          ],
           "minimum": 0,
           "title": "Citation Score",
           "type": "integer"
         },
         "total_papers": {
           "description": "Total papers published at tracked conferences, sourced from DBLP.",
+          "examples": [
+            42
+          ],
           "minimum": 0,
           "title": "Total Papers",
           "type": "integer"
         },
         "artifact_pct": {
           "description": "Percentage of papers with artifacts: (artifact_count / total_papers) * 100.",
+          "examples": [
+            71.4
+          ],
           "maximum": 100,
           "minimum": 0,
           "title": "Artifact Pct",
@@ -92,6 +128,9 @@
         },
         "repro_pct": {
           "description": "Percentage of artifacts with a 'reproduced' badge: (reproduced / artifact_count) * 100.",
+          "examples": [
+            66.7
+          ],
           "maximum": 100,
           "minimum": 0,
           "title": "Repro Pct",
@@ -99,18 +138,27 @@
         },
         "ae_memberships": {
           "description": "Total number of AE committee memberships across all conferences and years.",
+          "examples": [
+            4
+          ],
           "minimum": 0,
           "title": "Ae Memberships",
           "type": "integer"
         },
         "chair_count": {
           "description": "Number of times served as AE chair.",
+          "examples": [
+            1
+          ],
           "minimum": 0,
           "title": "Chair Count",
           "type": "integer"
         },
         "ae_score": {
           "description": "Points from AE service: (memberships × 3) + (chairs × 2).",
+          "examples": [
+            6
+          ],
           "minimum": 0,
           "title": "Ae Score",
           "type": "integer"
@@ -126,34 +174,56 @@
           ],
           "default": null,
           "description": "Artifact-to-AE score ratio (artifact_score / ae_score). Null if ae_score is 0.",
+          "examples": [
+            1.5
+          ],
           "title": "Ae Ratio"
         },
         "combined_score": {
           "description": "Total score: artifact_score + citation_score + ae_score. Only authors with ≥3 appear.",
+          "examples": [
+            15
+          ],
           "minimum": 3,
           "title": "Combined Score",
           "type": "integer"
         },
         "badges_available": {
           "description": "Total number of 'available' badges across this author's artifacts.",
+          "examples": [
+            12
+          ],
           "minimum": 0,
           "title": "Badges Available",
           "type": "integer"
         },
         "badges_functional": {
           "description": "Total number of 'functional' badges across this author's artifacts.",
+          "examples": [
+            10
+          ],
           "minimum": 0,
           "title": "Badges Functional",
           "type": "integer"
         },
         "badges_reproducible": {
           "description": "Total number of 'reproduced' badges across this author's artifacts.",
+          "examples": [
+            8
+          ],
           "minimum": 0,
           "title": "Badges Reproducible",
           "type": "integer"
         },
         "conferences": {
           "description": "Distinct conference abbreviations where author contributed, e.g. ['ATC', 'OSDI', 'USENIXSEC'].",
+          "examples": [
+            [
+              "OSDI",
+              "ATC",
+              "USENIXSEC"
+            ]
+          ],
           "items": {
             "type": "string"
           },
@@ -165,6 +235,13 @@
             "type": "integer"
           },
           "description": "Year (as string) → activity count for that year, e.g. {'2023': 5, '2024': 7}.",
+          "examples": [
+            [
+              2021,
+              2022,
+              2023
+            ]
+          ],
           "title": "Years",
           "type": "object"
         },
@@ -179,6 +256,9 @@
           ],
           "default": null,
           "description": "Earliest year of activity, e.g. 2020. Null if unknown.",
+          "examples": [
+            2019
+          ],
           "title": "First Year"
         },
         "last_year": {
@@ -192,6 +272,9 @@
           ],
           "default": null,
           "description": "Most recent year of activity, e.g. 2026. Null if unknown.",
+          "examples": [
+            2025
+          ],
           "title": "Last Year"
         }
       },

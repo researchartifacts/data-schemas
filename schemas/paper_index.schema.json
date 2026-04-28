@@ -15,17 +15,26 @@
       "properties": {
         "id": {
           "description": "Stable integer ID (starts at 1). Assigned once and preserved across pipeline runs.",
+          "examples": [
+            42
+          ],
           "minimum": 1,
           "title": "Id",
           "type": "integer"
         },
         "title": {
           "description": "Full paper title as found in DBLP proceedings.",
+          "examples": [
+            "Understanding and Detecting Software Upgrade Failures in Distributed Systems"
+          ],
           "title": "Title",
           "type": "string"
         },
         "conference": {
           "description": "Conference abbreviation, e.g. 'OSDI', 'USENIXSEC', 'NDSS'.",
+          "examples": [
+            "OSDI"
+          ],
           "title": "Conference",
           "type": "string"
         },
@@ -42,6 +51,9 @@
           ],
           "default": null,
           "description": "Publication year (2017–2030), e.g. 2023. Null if unknown.",
+          "examples": [
+            2023
+          ],
           "title": "Year"
         },
         "category": {
@@ -52,6 +64,13 @@
         },
         "badges": {
           "description": "Artifact evaluation badges, e.g. ['Available', 'Functional', 'Reproduced']. Empty if no artifact.",
+          "examples": [
+            [
+              "available",
+              "functional",
+              "reproduced"
+            ]
+          ],
           "items": {
             "type": "string"
           },
@@ -61,6 +80,9 @@
         "artifact_citations": {
           "default": 0,
           "description": "Number of citations to this paper's artifact DOI. 0 if not tracked or no artifact.",
+          "examples": [
+            3
+          ],
           "minimum": 0,
           "title": "Artifact Citations",
           "type": "integer"
@@ -68,6 +90,9 @@
         "has_artifact": {
           "default": true,
           "description": "True if this paper has an evaluated artifact, false for papers without artifacts.",
+          "examples": [
+            true
+          ],
           "title": "Has Artifact",
           "type": "boolean"
         }

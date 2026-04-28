@@ -9,6 +9,13 @@
       "properties": {
         "years": {
           "description": "List of years in chronological order, e.g. [2017, 2018, ..., 2026].",
+          "examples": [
+            [
+              2021,
+              2022,
+              2023
+            ]
+          ],
           "items": {
             "type": "integer"
           },
@@ -17,6 +24,9 @@
         },
         "participation_pct": {
           "description": "AE participation rate per year (%), parallel to the years list.",
+          "examples": [
+            85.0
+          ],
           "items": {
             "type": "number"
           },
@@ -25,6 +35,9 @@
         },
         "available_pct": {
           "description": "Available badge rate per year (%), parallel to the years list.",
+          "examples": [
+            90.0
+          ],
           "items": {
             "type": "number"
           },
@@ -33,6 +46,9 @@
         },
         "functional_pct": {
           "description": "Functional badge rate per year (%), parallel to the years list.",
+          "examples": [
+            83.3
+          ],
           "items": {
             "type": "number"
           },
@@ -41,6 +57,9 @@
         },
         "reproduced_pct": {
           "description": "Reproduced badge rate per year (%), parallel to the years list.",
+          "examples": [
+            60.0
+          ],
           "items": {
             "type": "number"
           },
@@ -64,11 +83,17 @@
       "properties": {
         "conference": {
           "description": "Conference abbreviation, e.g. 'ACSAC', 'OSDI', 'USENIXSEC'.",
+          "examples": [
+            "OSDI"
+          ],
           "title": "Conference",
           "type": "string"
         },
         "year": {
           "description": "Calendar year, e.g. 2023.",
+          "examples": [
+            2023
+          ],
           "title": "Year",
           "type": "integer"
         },
@@ -79,23 +104,35 @@
         },
         "venue_type": {
           "description": "Venue type: 'conference' for main conferences, 'workshop' for co-located workshops.",
+          "examples": [
+            "conference"
+          ],
           "title": "Venue Type",
           "type": "string"
         },
         "total_papers": {
           "description": "Total accepted papers in this conference-year (including those without artifacts).",
+          "examples": [
+            42
+          ],
           "minimum": 0,
           "title": "Total Papers",
           "type": "integer"
         },
         "ae_papers": {
           "description": "Number of papers that participated in the artifact evaluation process.",
+          "examples": [
+            35
+          ],
           "minimum": 0,
           "title": "Ae Papers",
           "type": "integer"
         },
         "participation_pct": {
           "description": "AE participation rate: (ae_papers / total_papers) * 100.",
+          "examples": [
+            85.0
+          ],
           "maximum": 100,
           "minimum": 0,
           "title": "Participation Pct",
@@ -103,24 +140,36 @@
         },
         "available": {
           "description": "Number of papers that received the 'available' badge.",
+          "examples": [
+            30
+          ],
           "minimum": 0,
           "title": "Available",
           "type": "integer"
         },
         "functional": {
           "description": "Number of papers that received the 'functional' badge.",
+          "examples": [
+            25
+          ],
           "minimum": 0,
           "title": "Functional",
           "type": "integer"
         },
         "reproduced": {
           "description": "Number of papers that received the 'reproduced' badge.",
+          "examples": [
+            18
+          ],
           "minimum": 0,
           "title": "Reproduced",
           "type": "integer"
         },
         "available_pct": {
           "description": "Percentage of total papers with 'available' badge: (available / total_papers) * 100.",
+          "examples": [
+            90.0
+          ],
           "maximum": 100,
           "minimum": 0,
           "title": "Available Pct",
@@ -128,6 +177,9 @@
         },
         "functional_pct": {
           "description": "Percentage of total papers with 'functional' badge: (functional / total_papers) * 100.",
+          "examples": [
+            83.3
+          ],
           "maximum": 100,
           "minimum": 0,
           "title": "Functional Pct",
@@ -135,6 +187,9 @@
         },
         "reproduced_pct": {
           "description": "Percentage of total papers with 'reproduced' badge: (reproduced / total_papers) * 100.",
+          "examples": [
+            60.0
+          ],
           "maximum": 100,
           "minimum": 0,
           "title": "Reproduced Pct",

@@ -9,41 +9,65 @@
       "properties": {
         "conference": {
           "description": "Conference abbreviation, e.g. 'ATC', 'USENIXSEC'.",
+          "examples": [
+            "OSDI"
+          ],
           "title": "Conference",
           "type": "string"
         },
         "year": {
           "description": "Publication year, e.g. 2023.",
+          "examples": [
+            2023
+          ],
           "title": "Year",
           "type": "integer"
         },
         "area": {
           "description": "Research area: 'systems' or 'security'.",
+          "examples": [
+            "systems"
+          ],
           "title": "Area",
           "type": "string"
         },
         "title": {
           "description": "Title of the paper whose artifact URL was checked.",
+          "examples": [
+            "Understanding and Detecting Software Upgrade Failures in Distributed Systems"
+          ],
           "title": "Title",
           "type": "string"
         },
         "url_key": {
           "description": "URL field name from the source data, e.g. 'repository_url', 'artifact_url'.",
+          "examples": [
+            "repository_url"
+          ],
           "title": "Url Key",
           "type": "string"
         },
         "url": {
           "description": "The artifact URL that was checked, e.g. 'https://github.com/org/repo'.",
+          "examples": [
+            "https://github.com/org/repo"
+          ],
           "title": "Url",
           "type": "string"
         },
         "platform": {
           "description": "Detected hosting platform: 'GitHub', 'GitLab', 'Zenodo', 'Figshare', 'Bitbucket', or 'DOI-other'.",
+          "examples": [
+            "github.com"
+          ],
           "title": "Platform",
           "type": "string"
         },
         "accessible": {
           "description": "True if the URL returned HTTP 200 at check time, false otherwise.",
+          "examples": [
+            true
+          ],
           "title": "Accessible",
           "type": "boolean"
         }
@@ -67,23 +91,35 @@
       "properties": {
         "checked_at": {
           "description": "UTC timestamp when the availability check was run, e.g. '2026-04-27 21:27:11 UTC'.",
+          "examples": [
+            "2026-04-01T12:00:00Z"
+          ],
           "title": "Checked At",
           "type": "string"
         },
         "total_urls": {
           "description": "Total number of artifact URLs checked across all platforms.",
+          "examples": [
+            2831
+          ],
           "minimum": 0,
           "title": "Total Urls",
           "type": "integer"
         },
         "accessible_urls": {
           "description": "Number of URLs that were accessible (HTTP 200).",
+          "examples": [
+            2450
+          ],
           "minimum": 0,
           "title": "Accessible Urls",
           "type": "integer"
         },
         "accessibility_pct": {
           "description": "Overall accessibility percentage: (accessible_urls / total_urls) * 100.",
+          "examples": [
+            86.7
+          ],
           "maximum": 100,
           "minimum": 0,
           "title": "Accessibility Pct",
@@ -165,18 +201,27 @@
       "properties": {
         "total": {
           "description": "Total number of artifact URLs checked on this platform.",
+          "examples": [
+            45
+          ],
           "minimum": 0,
           "title": "Total",
           "type": "integer"
         },
         "accessible": {
           "description": "Number of URLs that returned HTTP 200 (accessible).",
+          "examples": [
+            true
+          ],
           "minimum": 0,
           "title": "Accessible",
           "type": "integer"
         },
         "pct": {
           "description": "Accessibility percentage: (accessible / total) * 100.",
+          "examples": [
+            87.5
+          ],
           "maximum": 100,
           "minimum": 0,
           "title": "Pct",

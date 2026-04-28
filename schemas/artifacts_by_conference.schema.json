@@ -15,23 +15,35 @@
       "properties": {
         "year": {
           "description": "Publication year, e.g. 2023.",
+          "examples": [
+            2023
+          ],
           "title": "Year",
           "type": "integer"
         },
         "total": {
           "description": "Total number of evaluated artifacts for this conference in this year.",
+          "examples": [
+            45
+          ],
           "minimum": 0,
           "title": "Total",
           "type": "integer"
         },
         "available": {
           "description": "Number of artifacts that received the 'available' badge.",
+          "examples": [
+            30
+          ],
           "minimum": 0,
           "title": "Available",
           "type": "integer"
         },
         "functional": {
           "description": "Number of artifacts that received the 'functional' badge.",
+          "examples": [
+            25
+          ],
           "minimum": 0,
           "title": "Functional",
           "type": "integer"
@@ -44,6 +56,9 @@
         },
         "reusable": {
           "description": "Number of artifacts that received the 'reusable' badge.",
+          "examples": [
+            5
+          ],
           "minimum": 0,
           "title": "Reusable",
           "type": "integer"
@@ -66,6 +81,9 @@
       "properties": {
         "name": {
           "description": "Conference abbreviation, e.g. 'ACSAC', 'OSDI', 'USENIXSEC'.",
+          "examples": [
+            "Mathias Payer"
+          ],
           "title": "Name",
           "type": "string"
         },
@@ -84,17 +102,30 @@
             "conference",
             "workshop"
           ],
+          "examples": [
+            "conference"
+          ],
           "title": "Venue Type",
           "type": "string"
         },
         "total_artifacts": {
           "description": "Total number of evaluated artifacts across all years for this conference.",
+          "examples": [
+            127
+          ],
           "minimum": 0,
           "title": "Total Artifacts",
           "type": "integer"
         },
         "years": {
           "description": "Per-year breakdown of artifact counts and badge distributions. Ordered chronologically.",
+          "examples": [
+            [
+              2021,
+              2022,
+              2023
+            ]
+          ],
           "items": {
             "$ref": "#/$defs/YearBreakdown"
           },

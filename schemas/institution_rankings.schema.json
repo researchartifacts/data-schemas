@@ -15,6 +15,9 @@
       "properties": {
         "name": {
           "description": "Full author name, may include DBLP disambiguation suffix, e.g. 'Jing Liu 0074'.",
+          "examples": [
+            "Mathias Payer"
+          ],
           "title": "Name",
           "type": "string"
         },
@@ -30,33 +33,51 @@
           ],
           "default": null,
           "description": "Stable integer ID referencing the canonical author_index. Null for authors not yet indexed.",
+          "examples": [
+            42
+          ],
           "title": "Author Id"
         },
         "affiliation": {
           "description": "Author's institution affiliation, e.g. 'University of Illinois Urbana-Champaign'.",
+          "examples": [
+            "ETH Zurich"
+          ],
           "title": "Affiliation",
           "type": "string"
         },
         "combined_score": {
           "description": "Author's combined score: artifact_score + citation_score + ae_score.",
+          "examples": [
+            15
+          ],
           "minimum": 0,
           "title": "Combined Score",
           "type": "integer"
         },
         "artifact_count": {
           "description": "Number of artifacts authored by this individual.",
+          "examples": [
+            5
+          ],
           "minimum": 0,
           "title": "Artifact Count",
           "type": "integer"
         },
         "ae_memberships": {
           "description": "Number of AE committee memberships for this individual.",
+          "examples": [
+            4
+          ],
           "minimum": 0,
           "title": "Ae Memberships",
           "type": "integer"
         },
         "total_papers": {
           "description": "Total papers by this individual at tracked conferences.",
+          "examples": [
+            42
+          ],
           "minimum": 0,
           "title": "Total Papers",
           "type": "integer"
@@ -79,17 +100,26 @@
       "properties": {
         "affiliation": {
           "description": "Normalized institution name, e.g. 'University of Illinois Urbana-Champaign', 'EPFL'.",
+          "examples": [
+            "ETH Zurich"
+          ],
           "title": "Affiliation",
           "type": "string"
         },
         "combined_score": {
           "description": "Total score: artifact_score + citation_score + ae_score. Example: 633.",
+          "examples": [
+            15
+          ],
           "minimum": 3,
           "title": "Combined Score",
           "type": "integer"
         },
         "artifact_score": {
           "description": "Points from artifact contributions. Scoring: 1 (available) + 1 (functional) + 1 (reproduced) per artifact.",
+          "examples": [
+            9
+          ],
           "minimum": 0,
           "title": "Artifact Score",
           "type": "integer"
@@ -106,6 +136,9 @@
           ],
           "default": null,
           "description": "Sum of artifact citation counts. Currently 0 for most institutions (tracking in progress).",
+          "examples": [
+            3
+          ],
           "title": "Artifact Citations"
         },
         "citation_score": {
@@ -120,10 +153,16 @@
           ],
           "default": null,
           "description": "Points from artifact citations. Currently 0 for most institutions (tracking in progress).",
+          "examples": [
+            0
+          ],
           "title": "Citation Score"
         },
         "ae_score": {
           "description": "Points from AE service: (memberships × 3) + (chairs × 2).",
+          "examples": [
+            6
+          ],
           "minimum": 0,
           "title": "Ae Score",
           "type": "integer"
@@ -139,6 +178,9 @@
           ],
           "default": null,
           "description": "Artifact-to-AE score ratio (artifact_score / ae_score). Null when ae_score is 0. E.g. 0.48.",
+          "examples": [
+            1.5
+          ],
           "title": "Ae Ratio"
         },
         "role": {
@@ -148,47 +190,71 @@
             "Consumer",
             "Balanced"
           ],
+          "examples": [
+            "member"
+          ],
           "title": "Role",
           "type": "string"
         },
         "artifact_count": {
           "description": "Total number of artifacts produced by authors at this institution.",
+          "examples": [
+            5
+          ],
           "minimum": 0,
           "title": "Artifact Count",
           "type": "integer"
         },
         "badges_functional": {
           "description": "Total 'functional' badges across all artifacts from this institution.",
+          "examples": [
+            10
+          ],
           "minimum": 0,
           "title": "Badges Functional",
           "type": "integer"
         },
         "badges_reproducible": {
           "description": "Total 'reproduced'/'replicated' badges across all artifacts from this institution.",
+          "examples": [
+            8
+          ],
           "minimum": 0,
           "title": "Badges Reproducible",
           "type": "integer"
         },
         "ae_memberships": {
           "description": "Total AE committee memberships by authors at this institution.",
+          "examples": [
+            4
+          ],
           "minimum": 0,
           "title": "Ae Memberships",
           "type": "integer"
         },
         "chair_count": {
           "description": "Number of AE chair roles held by authors at this institution.",
+          "examples": [
+            1
+          ],
           "minimum": 0,
           "title": "Chair Count",
           "type": "integer"
         },
         "total_papers": {
           "description": "Total papers at tracked conferences by authors at this institution, sourced from DBLP.",
+          "examples": [
+            42
+          ],
           "minimum": 0,
           "title": "Total Papers",
           "type": "integer"
         },
         "artifact_pct": {
           "description": "Percentage of papers with artifacts: (artifact_count / total_papers) * 100. E.g. 53.4.",
+          "examples": [
+            71.4
+          ],
           "maximum": 100,
           "minimum": 0,
           "title": "Artifact Pct",
@@ -196,12 +262,22 @@
         },
         "author_count": {
           "description": "Number of unique authors affiliated with this institution.",
+          "examples": [
+            15
+          ],
           "minimum": 1,
           "title": "Author Count",
           "type": "integer"
         },
         "conferences": {
           "description": "Distinct conference abbreviations, e.g. ['ATC', 'OSDI', 'USENIXSEC'].",
+          "examples": [
+            [
+              "OSDI",
+              "ATC",
+              "USENIXSEC"
+            ]
+          ],
           "items": {
             "type": "string"
           },
@@ -213,6 +289,13 @@
             "type": "integer"
           },
           "description": "Year (as string) → activity count, e.g. {'2023': 31, '2024': 59}.",
+          "examples": [
+            [
+              2021,
+              2022,
+              2023
+            ]
+          ],
           "title": "Years",
           "type": "object"
         },

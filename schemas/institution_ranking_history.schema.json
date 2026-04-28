@@ -15,42 +15,63 @@
       "properties": {
         "rank": {
           "description": "Ranking position at this snapshot date (with ties).",
+          "examples": [
+            1
+          ],
           "minimum": 1,
           "title": "Rank",
           "type": "integer"
         },
         "score": {
           "description": "Combined score at this snapshot: artifact_score + citation_score + ae_score.",
+          "examples": [
+            15
+          ],
           "minimum": 0,
           "title": "Score",
           "type": "integer"
         },
         "as": {
           "description": "Artifact score at this snapshot. Abbreviated 'as' in JSON output.",
+          "examples": [
+            9
+          ],
           "minimum": 0,
           "title": "As",
           "type": "integer"
         },
         "aes": {
           "description": "AE service score: (memberships × 3) + (chairs × 2).",
+          "examples": [
+            6
+          ],
           "minimum": 0,
           "title": "Aes",
           "type": "integer"
         },
         "tp": {
           "description": "Total papers at tracked conferences by authors at this institution.",
+          "examples": [
+            42
+          ],
           "minimum": 0,
           "title": "Tp",
           "type": "integer"
         },
         "ta": {
           "description": "Total artifacts produced by authors at this institution.",
+          "examples": [
+            5
+          ],
           "minimum": 0,
           "title": "Ta",
           "type": "integer"
         },
         "ar": {
           "description": "Artifact rate: (total_artifacts / total_papers) * 100.",
+          "examples": [
+            71.4
+          ],
           "maximum": 100,
           "minimum": 0,
           "title": "Ar",
@@ -58,6 +79,9 @@
         },
         "rr": {
           "description": "Reproducibility rate: percentage of artifacts with 'reproduced' badge.",
+          "examples": [
+            66.7
+          ],
           "maximum": 100,
           "minimum": 0,
           "title": "Rr",
@@ -65,6 +89,9 @@
         },
         "r": {
           "description": "Number of unique researchers (authors) affiliated with this institution.",
+          "examples": [
+            15
+          ],
           "minimum": 0,
           "title": "R",
           "type": "integer"
@@ -90,6 +117,9 @@
       "properties": {
         "date": {
           "description": "Snapshot date in 'YYYY-MM' format, e.g. '2026-04'.",
+          "examples": [
+            "2025-01-15"
+          ],
           "title": "Date",
           "type": "string"
         },
