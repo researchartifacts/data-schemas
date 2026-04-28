@@ -93,7 +93,7 @@
           "additionalProperties": {
             "$ref": "#/$defs/PlatformStats"
           },
-          "description": "Stats per hosting platform.",
+          "description": "Stats keyed by hosting platform domain (e.g. 'github.com', 'zenodo.org', 'figshare.com').",
           "title": "By Platform",
           "type": "object"
         },
@@ -101,7 +101,7 @@
           "additionalProperties": {
             "$ref": "#/$defs/PlatformStats"
           },
-          "description": "Stats per research area.",
+          "description": "Stats keyed by research area ('systems' or 'security').",
           "title": "By Area",
           "type": "object"
         },
@@ -109,7 +109,7 @@
           "additionalProperties": {
             "$ref": "#/$defs/PlatformStats"
           },
-          "description": "Stats per year.",
+          "description": "Stats keyed by publication year as string (e.g. '2023').",
           "title": "By Year",
           "type": "object"
         },
@@ -120,7 +120,7 @@
             },
             "type": "object"
           },
-          "description": "Stats per year per area.",
+          "description": "Stats keyed by year (str), then by area ('systems'/'security').",
           "title": "By Year Area",
           "type": "object"
         },
@@ -131,7 +131,7 @@
             },
             "type": "object"
           },
-          "description": "Stats per year per platform.",
+          "description": "Stats keyed by year (str), then by platform domain.",
           "title": "By Year Platform",
           "type": "object"
         },
@@ -139,7 +139,7 @@
           "additionalProperties": {
             "$ref": "#/$defs/PlatformStats"
           },
-          "description": "Stats per conference.",
+          "description": "Stats keyed by conference abbreviation (e.g. 'OSDI', 'USENIXSEC').",
           "title": "By Conference",
           "type": "object"
         }

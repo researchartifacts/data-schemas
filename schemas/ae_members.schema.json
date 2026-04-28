@@ -9,6 +9,34 @@
     "$ref": "#/$defs/AEMember"
   },
   "$defs": {
+    "AEMembership": {
+      "additionalProperties": false,
+      "description": "A single AE committee membership record.",
+      "properties": {
+        "conference": {
+          "description": "Conference abbreviation (e.g. 'OSDI', 'USENIXSEC').",
+          "title": "Conference",
+          "type": "string"
+        },
+        "year": {
+          "description": "Year of service.",
+          "title": "Year",
+          "type": "integer"
+        },
+        "role": {
+          "description": "Role on the committee: 'chair' or 'member'.",
+          "title": "Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "conference",
+        "year",
+        "role"
+      ],
+      "title": "AEMembership",
+      "type": "object"
+    },
     "AEMember": {
       "additionalProperties": false,
       "description": "An Artifact Evaluation committee member.",
@@ -41,10 +69,9 @@
           "type": "integer"
         },
         "conferences": {
-          "description": "List of [conference, year, role] tuples for each membership.",
+          "description": "AE committee memberships, one per conference-year served.",
           "items": {
-            "items": {},
-            "type": "array"
+            "$ref": "#/$defs/AEMembership"
           },
           "title": "Conferences",
           "type": "array"
@@ -53,7 +80,7 @@
           "additionalProperties": {
             "type": "integer"
           },
-          "description": "Year → membership count mapping.",
+          "description": "Year (as string, e.g. '2023') → number of memberships that year.",
           "title": "Years",
           "type": "object"
         },

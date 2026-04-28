@@ -24,11 +24,6 @@
           "title": "Title",
           "type": "string"
         },
-        "normalized_title": {
-          "description": "Lowercased title with punctuation removed, used for deduplication matching.",
-          "title": "Normalized Title",
-          "type": "string"
-        },
         "conference": {
           "description": "Conference abbreviation.",
           "title": "Conference",
@@ -80,7 +75,6 @@
       "required": [
         "id",
         "title",
-        "normalized_title",
         "conference"
       ],
       "title": "Paper",

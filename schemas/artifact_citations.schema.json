@@ -18,11 +18,6 @@
           "title": "Title",
           "type": "string"
         },
-        "normalized_title": {
-          "description": "Lowercased, stripped title for deduplication.",
-          "title": "Normalized Title",
-          "type": "string"
-        },
         "conference": {
           "description": "Conference name.",
           "title": "Conference",
@@ -99,23 +94,10 @@
           },
           "title": "Citing Dois Semantic Scholar",
           "type": "array"
-        },
-        "citing_dois_openalex_truncated": {
-          "default": false,
-          "description": "Whether the OpenAlex citing DOI list was truncated.",
-          "title": "Citing Dois Openalex Truncated",
-          "type": "boolean"
-        },
-        "citing_dois_semantic_scholar_truncated": {
-          "default": false,
-          "description": "Whether the Semantic Scholar citing DOI list was truncated.",
-          "title": "Citing Dois Semantic Scholar Truncated",
-          "type": "boolean"
         }
       },
       "required": [
         "title",
-        "normalized_title",
         "conference",
         "year"
       ],
