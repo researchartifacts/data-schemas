@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/combined_rankings.schema.json",
   "title": "AuthorRanking Collection",
   "description": "Array of AuthorRanking records. Each element: Author ranking entry combining artifact contributions, citation impact, and AE committee service.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/AuthorRanking"
@@ -14,7 +14,7 @@
       "description": "Author ranking entry combining artifact contributions, citation impact, and AE committee service.",
       "properties": {
         "rank": {
-          "description": "Ranking position (with ties).",
+          "description": "Ranking position (with ties). Minimum combined_score of 3 to appear.",
           "minimum": 1,
           "title": "Rank",
           "type": "integer"
@@ -30,87 +30,87 @@
             }
           ],
           "default": null,
-          "description": "Stable integer identifier referencing the canonical author_index.",
+          "description": "Stable integer ID referencing the canonical author_index. Null for authors not yet indexed.",
           "title": "Author Id"
         },
         "name": {
-          "description": "Full author name including DBLP disambiguation suffix.",
+          "description": "Full author name including DBLP disambiguation suffix, e.g. 'Jing Liu 0074'.",
           "title": "Name",
           "type": "string"
         },
         "display_name": {
-          "description": "Author name without DBLP disambiguation suffix.",
+          "description": "Human-readable name without DBLP disambiguation suffix, e.g. 'Jing Liu'.",
           "title": "Display Name",
           "type": "string"
         },
         "affiliation": {
-          "description": "Raw affiliation string from DBLP.",
+          "description": "Raw affiliation string as returned from DBLP, e.g. 'EPFL, Lausanne, Switzerland'.",
           "title": "Affiliation",
           "type": "string"
         },
         "display_affiliation": {
-          "description": "Normalized/cleaned institution name.",
+          "description": "Normalized institution name, e.g. 'EPFL', 'University of Illinois Urbana-Champaign'.",
           "title": "Display Affiliation",
           "type": "string"
         },
         "artifact_count": {
-          "description": "Total number of artifacts authored.",
+          "description": "Total number of artifacts authored across all tracked conferences.",
           "minimum": 0,
           "title": "Artifact Count",
           "type": "integer"
         },
         "artifact_score": {
-          "description": "Points from artifacts: each artifact scores 1 (available) + 1 (functional) + 1 (reproducible).",
+          "description": "Points from artifacts. Scoring: 1 pt (available) + 1 pt (functional) + 1 pt (reproduced) per artifact.",
           "minimum": 0,
           "title": "Artifact Score",
           "type": "integer"
         },
         "artifact_citations": {
-          "description": "Citation count for artifacts (currently 0).",
+          "description": "Sum of artifact citation counts. Currently 0 for all authors (tracking in progress).",
           "minimum": 0,
           "title": "Artifact Citations",
           "type": "integer"
         },
         "citation_score": {
-          "description": "Points from citations (currently 0).",
+          "description": "Points from artifact citations. Currently 0 for all authors (tracking in progress).",
           "minimum": 0,
           "title": "Citation Score",
           "type": "integer"
         },
         "total_papers": {
-          "description": "Total papers published at tracked conferences (from DBLP).",
+          "description": "Total papers published at tracked conferences, sourced from DBLP.",
           "minimum": 0,
           "title": "Total Papers",
           "type": "integer"
         },
         "artifact_pct": {
-          "description": "Percentage of papers with artifacts.",
+          "description": "Percentage of papers with artifacts: (artifact_count / total_papers) * 100.",
           "maximum": 100,
           "minimum": 0,
           "title": "Artifact Pct",
           "type": "number"
         },
         "repro_pct": {
-          "description": "Percentage of artifacts with a reproducibility badge.",
+          "description": "Percentage of artifacts with a 'reproduced' badge: (reproduced / artifact_count) * 100.",
           "maximum": 100,
           "minimum": 0,
           "title": "Repro Pct",
           "type": "integer"
         },
         "ae_memberships": {
-          "description": "Number of AE committee memberships.",
+          "description": "Total number of AE committee memberships across all conferences and years.",
           "minimum": 0,
           "title": "Ae Memberships",
           "type": "integer"
         },
         "chair_count": {
-          "description": "Number of AE chair roles.",
+          "description": "Number of times served as AE chair.",
           "minimum": 0,
           "title": "Chair Count",
           "type": "integer"
         },
         "ae_score": {
-          "description": "Points from AE service: memberships * 3 + chairs * 2.",
+          "description": "Points from AE service: (memberships × 3) + (chairs × 2).",
           "minimum": 0,
           "title": "Ae Score",
           "type": "integer"
@@ -125,35 +125,35 @@
             }
           ],
           "default": null,
-          "description": "Artifact score / AE score ratio. Null if ae_score is 0.",
+          "description": "Artifact-to-AE score ratio (artifact_score / ae_score). Null if ae_score is 0.",
           "title": "Ae Ratio"
         },
         "combined_score": {
-          "description": "Total score: artifact_score + citation_score + ae_score. Minimum threshold of 3.",
+          "description": "Total score: artifact_score + citation_score + ae_score. Only authors with ≥3 appear.",
           "minimum": 3,
           "title": "Combined Score",
           "type": "integer"
         },
         "badges_available": {
-          "description": "Count of 'available' badges.",
+          "description": "Total number of 'available' badges across this author's artifacts.",
           "minimum": 0,
           "title": "Badges Available",
           "type": "integer"
         },
         "badges_functional": {
-          "description": "Count of 'functional' badges.",
+          "description": "Total number of 'functional' badges across this author's artifacts.",
           "minimum": 0,
           "title": "Badges Functional",
           "type": "integer"
         },
         "badges_reproducible": {
-          "description": "Count of 'reproduced' badges.",
+          "description": "Total number of 'reproduced' badges across this author's artifacts.",
           "minimum": 0,
           "title": "Badges Reproducible",
           "type": "integer"
         },
         "conferences": {
-          "description": "Conferences where the author has contributed.",
+          "description": "Distinct conference abbreviations where author contributed, e.g. ['ATC', 'OSDI', 'USENIXSEC'].",
           "items": {
             "type": "string"
           },
@@ -164,7 +164,7 @@
           "additionalProperties": {
             "type": "integer"
           },
-          "description": "Year-to-activity-count mapping.",
+          "description": "Year (as string) → activity count for that year, e.g. {'2023': 5, '2024': 7}.",
           "title": "Years",
           "type": "object"
         },
@@ -178,7 +178,7 @@
             }
           ],
           "default": null,
-          "description": "Earliest year of activity.",
+          "description": "Earliest year of activity, e.g. 2020. Null if unknown.",
           "title": "First Year"
         },
         "last_year": {
@@ -191,7 +191,7 @@
             }
           ],
           "default": null,
-          "description": "Most recent year of activity.",
+          "description": "Most recent year of activity, e.g. 2026. Null if unknown.",
           "title": "Last Year"
         }
       },

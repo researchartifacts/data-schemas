@@ -1,49 +1,49 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/artifact_availability.schema.json",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "$defs": {
     "AvailabilityRecord": {
       "additionalProperties": false,
       "description": "Accessibility check result for a single artifact URL.",
       "properties": {
         "conference": {
-          "description": "Conference name.",
+          "description": "Conference abbreviation, e.g. 'ATC', 'USENIXSEC'.",
           "title": "Conference",
           "type": "string"
         },
         "year": {
-          "description": "Publication year.",
+          "description": "Publication year, e.g. 2023.",
           "title": "Year",
           "type": "integer"
         },
         "area": {
-          "description": "Research area.",
+          "description": "Research area: 'systems' or 'security'.",
           "title": "Area",
           "type": "string"
         },
         "title": {
-          "description": "Paper title.",
+          "description": "Title of the paper whose artifact URL was checked.",
           "title": "Title",
           "type": "string"
         },
         "url_key": {
-          "description": "Key indicating URL type (e.g. 'repository_url').",
+          "description": "URL field name from the source data, e.g. 'repository_url', 'artifact_url'.",
           "title": "Url Key",
           "type": "string"
         },
         "url": {
-          "description": "The artifact URL checked.",
+          "description": "The artifact URL that was checked, e.g. 'https://github.com/org/repo'.",
           "title": "Url",
           "type": "string"
         },
         "platform": {
-          "description": "Detected hosting platform.",
+          "description": "Detected hosting platform: 'GitHub', 'GitLab', 'Zenodo', 'Figshare', 'Bitbucket', or 'DOI-other'.",
           "title": "Platform",
           "type": "string"
         },
         "accessible": {
-          "description": "Whether the URL was accessible.",
+          "description": "True if the URL returned HTTP 200 at check time, false otherwise.",
           "title": "Accessible",
           "type": "boolean"
         }
@@ -66,24 +66,24 @@
       "description": "Aggregate summary of artifact URL accessibility.",
       "properties": {
         "checked_at": {
-          "description": "Timestamp of the check (UTC).",
+          "description": "UTC timestamp when the availability check was run, e.g. '2026-04-27 21:27:11 UTC'.",
           "title": "Checked At",
           "type": "string"
         },
         "total_urls": {
-          "description": "Total URLs checked.",
+          "description": "Total number of artifact URLs checked across all platforms.",
           "minimum": 0,
           "title": "Total Urls",
           "type": "integer"
         },
         "accessible_urls": {
-          "description": "URLs that were accessible.",
+          "description": "Number of URLs that were accessible (HTTP 200).",
           "minimum": 0,
           "title": "Accessible Urls",
           "type": "integer"
         },
         "accessibility_pct": {
-          "description": "Overall accessibility percentage.",
+          "description": "Overall accessibility percentage: (accessible_urls / total_urls) * 100.",
           "maximum": 100,
           "minimum": 0,
           "title": "Accessibility Pct",
@@ -93,7 +93,7 @@
           "additionalProperties": {
             "$ref": "#/$defs/PlatformStats"
           },
-          "description": "Stats keyed by hosting platform domain (e.g. 'github.com', 'zenodo.org', 'figshare.com').",
+          "description": "Breakdown by hosting platform. Keys are platform names: 'GitHub', 'GitLab', 'Zenodo', 'Figshare', 'Bitbucket', 'DOI-other'.",
           "title": "By Platform",
           "type": "object"
         },
@@ -101,7 +101,7 @@
           "additionalProperties": {
             "$ref": "#/$defs/PlatformStats"
           },
-          "description": "Stats keyed by research area ('systems' or 'security').",
+          "description": "Breakdown by research area. Keys: 'systems', 'security'.",
           "title": "By Area",
           "type": "object"
         },
@@ -109,7 +109,7 @@
           "additionalProperties": {
             "$ref": "#/$defs/PlatformStats"
           },
-          "description": "Stats keyed by publication year as string (e.g. '2023').",
+          "description": "Breakdown by publication year. Keys are year strings, e.g. '2020', '2023'.",
           "title": "By Year",
           "type": "object"
         },
@@ -120,7 +120,7 @@
             },
             "type": "object"
           },
-          "description": "Stats keyed by year (str), then by area ('systems'/'security').",
+          "description": "Nested breakdown: year string → area ('systems'/'security') → PlatformStats.",
           "title": "By Year Area",
           "type": "object"
         },
@@ -131,7 +131,7 @@
             },
             "type": "object"
           },
-          "description": "Stats keyed by year (str), then by platform domain.",
+          "description": "Nested breakdown: year string → platform name → PlatformStats.",
           "title": "By Year Platform",
           "type": "object"
         },
@@ -139,7 +139,7 @@
           "additionalProperties": {
             "$ref": "#/$defs/PlatformStats"
           },
-          "description": "Stats keyed by conference abbreviation (e.g. 'OSDI', 'USENIXSEC').",
+          "description": "Breakdown by conference. Keys are abbreviations, e.g. 'OSDI', 'USENIXSEC', 'NDSS'.",
           "title": "By Conference",
           "type": "object"
         }
@@ -164,19 +164,19 @@
       "description": "Accessibility stats for a single platform.",
       "properties": {
         "total": {
-          "description": "Total URLs checked.",
+          "description": "Total number of artifact URLs checked on this platform.",
           "minimum": 0,
           "title": "Total",
           "type": "integer"
         },
         "accessible": {
-          "description": "URLs that were accessible.",
+          "description": "Number of URLs that returned HTTP 200 (accessible).",
           "minimum": 0,
           "title": "Accessible",
           "type": "integer"
         },
         "pct": {
-          "description": "Accessibility percentage.",
+          "description": "Accessibility percentage: (accessible / total) * 100.",
           "maximum": 100,
           "minimum": 0,
           "title": "Pct",
@@ -197,10 +197,10 @@
   "properties": {
     "summary": {
       "$ref": "#/$defs/AvailabilitySummary",
-      "description": "Aggregate accessibility summary."
+      "description": "Aggregate accessibility summary with breakdowns by platform, area, year, and conference."
     },
     "records": {
-      "description": "Per-URL check results.",
+      "description": "Individual check results, one record per artifact URL tested.",
       "items": {
         "$ref": "#/$defs/AvailabilityRecord"
       },

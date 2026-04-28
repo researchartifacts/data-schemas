@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/author_profiles.schema.json",
   "title": "AuthorProfile Collection",
   "description": "Array of AuthorProfile records. Each element: Unified author profile combining publication record, artifact metrics, and AE committee service.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/AuthorProfile"
@@ -14,17 +14,17 @@
       "description": "A single AE committee membership record.",
       "properties": {
         "conference": {
-          "description": "Conference abbreviation (e.g. 'OSDI', 'USENIXSEC').",
+          "description": "Conference abbreviation, e.g. 'OSDI', 'USENIXSEC', 'NDSS'.",
           "title": "Conference",
           "type": "string"
         },
         "year": {
-          "description": "Year of service.",
+          "description": "Calendar year of service, e.g. 2023.",
           "title": "Year",
           "type": "integer"
         },
         "role": {
-          "description": "Role on the committee: 'chair' or 'member'.",
+          "description": "Role on the committee. One of 'chair' or 'member'.",
           "title": "Role",
           "type": "string"
         }
@@ -42,22 +42,22 @@
       "description": "A paper that has an associated artifact evaluation.",
       "properties": {
         "title": {
-          "description": "Paper title.",
+          "description": "Full paper title as it appears in the proceedings.",
           "title": "Title",
           "type": "string"
         },
         "conference": {
-          "description": "Conference abbreviation.",
+          "description": "Conference abbreviation, e.g. 'OSDI', 'USENIXSEC'.",
           "title": "Conference",
           "type": "string"
         },
         "year": {
-          "description": "Publication year.",
+          "description": "Publication year, e.g. 2023.",
           "title": "Year",
           "type": "integer"
         },
         "badges": {
-          "description": "Artifact evaluation badges. Canonical values: 'available', 'functional', 'reproduced', 'reusable', 'replicated'.",
+          "description": "Artifact evaluation badges awarded by the AE committee. Canonical lowercase values: 'available', 'functional', 'reproduced', 'reusable', 'replicated'.",
           "items": {
             "type": "string"
           },
@@ -65,7 +65,7 @@
           "type": "array"
         },
         "category": {
-          "description": "Research domain.",
+          "description": "Research domain: 'systems' or 'security', determined by the conference.",
           "enum": [
             "systems",
             "security"
@@ -74,7 +74,7 @@
           "type": "string"
         },
         "artifact_citations": {
-          "description": "Citation count for this artifact.",
+          "description": "Number of times this artifact has been cited (via DOI tracking). 0 if not yet tracked.",
           "minimum": 0,
           "title": "Artifact Citations",
           "type": "integer"
@@ -96,17 +96,17 @@
       "description": "A published paper without an artifact evaluation.",
       "properties": {
         "title": {
-          "description": "Paper title.",
+          "description": "Full paper title as it appears in the proceedings.",
           "title": "Title",
           "type": "string"
         },
         "conference": {
-          "description": "Conference abbreviation.",
+          "description": "Conference abbreviation, e.g. 'OSDI', 'USENIXSEC'.",
           "title": "Conference",
           "type": "string"
         },
         "year": {
-          "description": "Publication year.",
+          "description": "Publication year, e.g. 2023.",
           "title": "Year",
           "type": "integer"
         }
@@ -124,17 +124,17 @@
       "description": "Unified author profile combining publication record, artifact metrics, and AE committee service.",
       "properties": {
         "name": {
-          "description": "Full name in DBLP format (may include disambiguation suffix).",
+          "description": "Full name in DBLP format, e.g. 'Mathias Payer' or 'Jing Liu 0074' (with disambiguation suffix).",
           "title": "Name",
           "type": "string"
         },
         "affiliation": {
-          "description": "Normalized institution affiliation.",
+          "description": "Normalized institution affiliation, e.g. 'EPFL', 'MIT'. Empty string if unknown.",
           "title": "Affiliation",
           "type": "string"
         },
         "papers": {
-          "description": "Artifact papers authored.",
+          "description": "Papers by this author that have evaluated artifacts, with badge and citation details.",
           "items": {
             "$ref": "#/$defs/ArtifactPaper"
           },
@@ -142,7 +142,7 @@
           "type": "array"
         },
         "papers_without_artifacts": {
-          "description": "Papers by this author that do not have artifacts.",
+          "description": "Papers by this author at tracked conferences that do not have evaluated artifacts.",
           "items": {
             "$ref": "#/$defs/PlainPaper"
           },
@@ -150,7 +150,7 @@
           "type": "array"
         },
         "conferences": {
-          "description": "Conference abbreviations where author has published.",
+          "description": "Conference abbreviations where author has published, e.g. ['OSDI', 'USENIXSEC'].",
           "items": {
             "type": "string"
           },
@@ -158,7 +158,7 @@
           "type": "array"
         },
         "years": {
-          "description": "Sorted list of years with activity.",
+          "description": "Sorted list of years with activity, e.g. [2020, 2021, 2023].",
           "items": {
             "type": "integer"
           },
@@ -166,50 +166,50 @@
           "type": "array"
         },
         "artifact_count": {
-          "description": "Total artifacts authored.",
+          "description": "Total number of artifacts authored across all conferences.",
           "minimum": 0,
           "title": "Artifact Count",
           "type": "integer"
         },
         "total_papers": {
-          "description": "Total papers at tracked conferences.",
+          "description": "Total papers published at tracked conferences (both with and without artifacts).",
           "minimum": 0,
           "title": "Total Papers",
           "type": "integer"
         },
         "artifact_pct": {
-          "description": "Percentage of papers with artifacts.",
+          "description": "Percentage of papers with artifacts: (artifact_count / total_papers) * 100.",
           "maximum": 100,
           "minimum": 0,
           "title": "Artifact Pct",
           "type": "number"
         },
         "artifact_citations": {
-          "description": "Total citation count for artifacts.",
+          "description": "Sum of citation counts across all this author's artifacts.",
           "minimum": 0,
           "title": "Artifact Citations",
           "type": "integer"
         },
         "badges_available": {
-          "description": "Count of 'available' badges across all artifacts.",
+          "description": "Total number of 'available' badges across all this author's artifacts.",
           "minimum": 0,
           "title": "Badges Available",
           "type": "integer"
         },
         "badges_functional": {
-          "description": "Count of 'functional' badges across all artifacts.",
+          "description": "Total number of 'functional' badges across all this author's artifacts.",
           "minimum": 0,
           "title": "Badges Functional",
           "type": "integer"
         },
         "badges_reproducible": {
-          "description": "Count of 'reproduced' badges across all artifacts.",
+          "description": "Total number of 'reproduced' badges across all this author's artifacts.",
           "minimum": 0,
           "title": "Badges Reproducible",
           "type": "integer"
         },
         "category": {
-          "description": "Research domain based on conferences published at.",
+          "description": "Research domain based on conferences published at: 'systems', 'security', or 'both'.",
           "enum": [
             "systems",
             "security",
@@ -229,25 +229,25 @@
             }
           ],
           "default": null,
-          "description": "Stable integer identifier referencing the canonical author_index.",
+          "description": "Stable integer ID referencing the canonical author_index. Null for authors not yet indexed.",
           "title": "Author Id"
         },
         "ae_memberships": {
           "default": 0,
-          "description": "Number of AE committee memberships.",
+          "description": "Total number of AE committee memberships across all conferences and years.",
           "minimum": 0,
           "title": "Ae Memberships",
           "type": "integer"
         },
         "chair_count": {
           "default": 0,
-          "description": "Number of AE chair roles.",
+          "description": "Number of times served as AE chair (versus regular member).",
           "minimum": 0,
           "title": "Chair Count",
           "type": "integer"
         },
         "ae_conferences": {
-          "description": "AE committee memberships, one per conference-year served.",
+          "description": "AE committee memberships, one per conference-year served. Each entry has conference, year, role.",
           "items": {
             "$ref": "#/$defs/AEMembership"
           },
@@ -258,30 +258,30 @@
           "additionalProperties": {
             "type": "integer"
           },
-          "description": "Year (as string, e.g. '2023') → number of AE memberships that year.",
+          "description": "Year (as string key, e.g. '2023') → number of AE memberships that year. Example: {'2023': 5, '2024': 3}.",
           "title": "Ae Years",
           "type": "object"
         },
         "combined_score": {
-          "description": "Total combined score.",
+          "description": "Total combined score: artifact_score + citation_score + ae_score.",
           "minimum": 0,
           "title": "Combined Score",
           "type": "integer"
         },
         "artifact_score": {
-          "description": "Points from artifacts.",
+          "description": "Points from artifacts: each artifact scores 1 (available) + 1 (functional) + 1 (reproducible).",
           "minimum": 0,
           "title": "Artifact Score",
           "type": "integer"
         },
         "citation_score": {
-          "description": "Points from citations.",
+          "description": "Points from artifact citations. Currently 0 for all authors.",
           "minimum": 0,
           "title": "Citation Score",
           "type": "integer"
         },
         "ae_score": {
-          "description": "Points from AE service.",
+          "description": "Points from AE service: memberships * 3 + chairs * 2.",
           "minimum": 0,
           "title": "Ae Score",
           "type": "integer"
@@ -297,7 +297,7 @@
             }
           ],
           "default": null,
-          "description": "Ranking position.",
+          "description": "Ranking position among all author profiles (with ties). Null if unranked.",
           "title": "Rank"
         }
       },

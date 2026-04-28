@@ -1,34 +1,34 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/committee_stats.schema.json",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "$defs": {
     "CommitteeSize": {
       "additionalProperties": false,
       "description": "Committee size for a single conference-year.",
       "properties": {
         "conference": {
-          "description": "Conference name.",
+          "description": "Conference abbreviation, e.g. 'ACSAC', 'OSDI'.",
           "title": "Conference",
           "type": "string"
         },
         "year": {
-          "description": "Year.",
+          "description": "Calendar year, e.g. 2023.",
           "title": "Year",
           "type": "integer"
         },
         "conf_year": {
-          "description": "Combined conference-year key (e.g. 'acsac2017').",
+          "description": "Combined lowercase conference-year key, e.g. 'acsac2017', 'osdi2023'.",
           "title": "Conf Year",
           "type": "string"
         },
         "area": {
-          "description": "Research area: 'systems' or 'security'.",
+          "description": "Research area of this conference: 'systems' or 'security'.",
           "title": "Area",
           "type": "string"
         },
         "size": {
-          "description": "Number of committee members.",
+          "description": "Number of AE committee members for this conference-year.",
           "minimum": 0,
           "title": "Size",
           "type": "integer"
@@ -49,37 +49,37 @@
       "description": "Aggregate committee summary statistics.",
       "properties": {
         "total_members": {
-          "description": "Total committee members across all years.",
+          "description": "Total AE committee members across all conferences and years (includes duplicates for multi-year service).",
           "minimum": 0,
           "title": "Total Members",
           "type": "integer"
         },
         "total_systems": {
-          "description": "Members from systems conferences.",
+          "description": "Committee members from systems conferences (ATC, EUROSYS, FAST, OSDI, SC, SOSP).",
           "minimum": 0,
           "title": "Total Systems",
           "type": "integer"
         },
         "total_security": {
-          "description": "Members from security conferences.",
+          "description": "Committee members from security conferences (ACSAC, CHES, NDSS, PETS, SYSTEX, USENIXSEC, WOOT).",
           "minimum": 0,
           "title": "Total Security",
           "type": "integer"
         },
         "total_countries": {
-          "description": "Unique countries represented.",
+          "description": "Number of unique countries represented across all committees, e.g. 59.",
           "minimum": 0,
           "title": "Total Countries",
           "type": "integer"
         },
         "total_continents": {
-          "description": "Unique continents represented.",
+          "description": "Number of unique continents represented, e.g. 7.",
           "minimum": 0,
           "title": "Total Continents",
           "type": "integer"
         },
         "total_institutions": {
-          "description": "Unique institutions represented.",
+          "description": "Number of unique institutions represented, e.g. 470.",
           "minimum": 0,
           "title": "Total Institutions",
           "type": "integer"
@@ -101,17 +101,17 @@
       "description": "A committee member whose institution could not be geolocated.",
       "properties": {
         "conference": {
-          "description": "Conference-year key.",
+          "description": "Conference abbreviation, e.g. 'ATC', 'USENIXSEC'.",
           "title": "Conference",
           "type": "string"
         },
         "name": {
-          "description": "Member name.",
+          "description": "Full name of the committee member whose affiliation could not be resolved.",
           "title": "Name",
           "type": "string"
         },
         "affiliation": {
-          "description": "Raw affiliation string that failed lookup.",
+          "description": "Raw affiliation string that could not be geolocated or matched to an institution.",
           "title": "Affiliation",
           "type": "string"
         }
@@ -129,12 +129,12 @@
       "description": "A simple name/count pair used for country, continent, and institution tallies.",
       "properties": {
         "name": {
-          "description": "Country, continent, or institution name.",
+          "description": "Country, continent, or institution name, e.g. 'United States', 'Europe', 'MIT'.",
           "title": "Name",
           "type": "string"
         },
         "count": {
-          "description": "Member count.",
+          "description": "Number of AE committee members from this entity.",
           "minimum": 0,
           "title": "Count",
           "type": "integer"
@@ -152,7 +152,7 @@
       "description": "Country/institution counts split by overall/systems/security.",
       "properties": {
         "overall": {
-          "description": "Overall counts.",
+          "description": "Counts combining all areas (systems + security).",
           "items": {
             "$ref": "#/$defs/NameCount"
           },
@@ -160,7 +160,7 @@
           "type": "array"
         },
         "systems": {
-          "description": "Systems-only counts.",
+          "description": "Counts from systems conferences only.",
           "items": {
             "$ref": "#/$defs/NameCount"
           },
@@ -168,7 +168,7 @@
           "type": "array"
         },
         "security": {
-          "description": "Security-only counts.",
+          "description": "Counts from security conferences only.",
           "items": {
             "$ref": "#/$defs/NameCount"
           },
@@ -190,19 +190,19 @@
   "properties": {
     "summary": {
       "$ref": "#/$defs/CommitteeSummary",
-      "description": "Aggregate summary."
+      "description": "Aggregate summary with totals for members, countries, continents, and institutions."
     },
     "by_country": {
       "$ref": "#/$defs/SplitCounts",
-      "description": "Member counts by country."
+      "description": "Member counts by country, split into overall/systems/security. e.g. 'United States': 2103."
     },
     "by_continent": {
       "$ref": "#/$defs/SplitCounts",
-      "description": "Member counts by continent."
+      "description": "Member counts by continent, split into overall/systems/security."
     },
     "by_institution": {
       "$ref": "#/$defs/SplitCounts",
-      "description": "Member counts by institution."
+      "description": "Member counts by institution, split into overall/systems/security."
     },
     "by_year": {
       "additionalProperties": {
@@ -214,12 +214,12 @@
         },
         "type": "object"
       },
-      "description": "Year-level breakdowns keyed by category (e.g. 'country', 'continent'), then year, then name → count.",
+      "description": "Year-level geographic/institutional breakdowns keyed by category (e.g. 'country', 'continent'), then year, then name → count.",
       "title": "By Year",
       "type": "object"
     },
     "committee_sizes": {
-      "description": "Committee sizes per conference-year.",
+      "description": "Committee sizes for each conference-year. One entry per conference-year combination.",
       "items": {
         "$ref": "#/$defs/CommitteeSize"
       },
@@ -227,7 +227,7 @@
       "type": "array"
     },
     "failed_classifications": {
-      "description": "Members whose affiliation could not be geolocated.",
+      "description": "Members whose affiliation string could not be resolved to a country/institution.",
       "items": {
         "$ref": "#/$defs/FailedClassification"
       },

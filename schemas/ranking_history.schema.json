@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/ranking_history.schema.json",
   "title": "RankingHistoryEntry Collection",
   "description": "Array of RankingHistoryEntry records. Each element: Dated snapshot of all author rankings, enabling rank-over-time analysis.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/RankingHistoryEntry"
@@ -14,50 +14,50 @@
       "description": "A single author's ranking at a point in time.",
       "properties": {
         "rank": {
-          "description": "Ranking position.",
+          "description": "Ranking position at this snapshot date (with ties).",
           "minimum": 1,
           "title": "Rank",
           "type": "integer"
         },
         "score": {
-          "description": "Combined score.",
+          "description": "Combined score at this snapshot: artifact_score + citation_score + ae_score.",
           "minimum": 0,
           "title": "Score",
           "type": "integer"
         },
         "as": {
-          "description": "Artifact score.",
+          "description": "Artifact score at this snapshot. Abbreviated 'as' in JSON output.",
           "minimum": 0,
           "title": "As",
           "type": "integer"
         },
         "aes": {
-          "description": "AE service score.",
+          "description": "AE service score: (memberships × 3) + (chairs × 2).",
           "minimum": 0,
           "title": "Aes",
           "type": "integer"
         },
         "tp": {
-          "description": "Total papers.",
+          "description": "Total papers at tracked conferences at this snapshot.",
           "minimum": 0,
           "title": "Tp",
           "type": "integer"
         },
         "ta": {
-          "description": "Total artifacts.",
+          "description": "Total artifacts authored at this snapshot.",
           "minimum": 0,
           "title": "Ta",
           "type": "integer"
         },
         "ar": {
-          "description": "Artifact rate (%).",
+          "description": "Artifact rate: (total_artifacts / total_papers) * 100.",
           "maximum": 100,
           "minimum": 0,
           "title": "Ar",
           "type": "number"
         },
         "rr": {
-          "description": "Reproducibility rate (%).",
+          "description": "Reproducibility rate: percentage of artifacts with 'reproduced' badge.",
           "maximum": 100,
           "minimum": 0,
           "title": "Rr",
@@ -82,7 +82,7 @@
       "description": "Dated snapshot of all author rankings, enabling rank-over-time analysis.",
       "properties": {
         "date": {
-          "description": "ISO date string (YYYY-MM-DD) of the snapshot.",
+          "description": "Snapshot date in 'YYYY-MM' format, e.g. '2026-04'.",
           "title": "Date",
           "type": "string"
         },
@@ -90,7 +90,7 @@
           "additionalProperties": {
             "$ref": "#/$defs/RankingSnapshot"
           },
-          "description": "Author name → ranking snapshot mapping.",
+          "description": "Author name (DBLP format) → ranking snapshot. Keys include disambiguation suffixes.",
           "title": "Entries",
           "type": "object"
         }

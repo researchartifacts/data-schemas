@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/search_data.schema.json",
   "title": "SearchEntry Collection",
   "description": "Array of SearchEntry records. Each element: Searchable artifact entry with paper metadata, badges, author names, and institutional affiliations.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/SearchEntry"
@@ -14,17 +14,17 @@
       "description": "Searchable artifact entry with paper metadata, badges, author names, and institutional affiliations.",
       "properties": {
         "title": {
-          "description": "Paper title.",
+          "description": "Full paper title as it appears in the proceedings.",
           "title": "Title",
           "type": "string"
         },
         "conference": {
-          "description": "Conference abbreviation.",
+          "description": "Conference abbreviation, e.g. 'OSDI', 'NDSS', 'USENIXSEC'.",
           "title": "Conference",
           "type": "string"
         },
         "category": {
-          "description": "Research domain.",
+          "description": "Research domain: 'systems' or 'security'.",
           "enum": [
             "systems",
             "security"
@@ -33,12 +33,12 @@
           "type": "string"
         },
         "year": {
-          "description": "Publication year.",
+          "description": "Publication year, e.g. 2023.",
           "title": "Year",
           "type": "integer"
         },
         "badges": {
-          "description": "Artifact evaluation badges. Canonical values: 'available', 'functional', 'reproduced', 'reusable', 'replicated'.",
+          "description": "Artifact evaluation badges awarded by the AE committee. Canonical lowercase values: 'available', 'functional', 'reproduced', 'reusable', 'replicated'.",
           "items": {
             "type": "string"
           },
@@ -46,7 +46,7 @@
           "type": "array"
         },
         "artifact_urls": {
-          "description": "All artifact-related URLs (repositories, archives, DOIs).",
+          "description": "Artifact URLs (repos, archives, DOIs), e.g. ['https://github.com/org/repo', 'https://doi.org/10.5281/zenodo.12345'].",
           "items": {
             "type": "string"
           },
@@ -54,12 +54,12 @@
           "type": "array"
         },
         "doi_url": {
-          "description": "Paper DOI URL. Empty string if not available.",
+          "description": "Paper DOI URL, e.g. 'https://doi.org/10.1145/...'. Empty string if not available.",
           "title": "Doi Url",
           "type": "string"
         },
         "authors": {
-          "description": "Author names (DBLP disambiguation suffixes removed).",
+          "description": "Author names with disambiguation suffixes removed, e.g. ['Mathias Payer', 'Haibo Chen'].",
           "items": {
             "type": "string"
           },
@@ -67,7 +67,7 @@
           "type": "array"
         },
         "affiliations": {
-          "description": "Sorted unique institution affiliations of all authors.",
+          "description": "Sorted unique institution affiliations of all authors, e.g. ['EPFL', 'MIT'].",
           "items": {
             "type": "string"
           },
@@ -84,7 +84,7 @@
             }
           ],
           "default": null,
-          "description": "Paper DOI or direct link.",
+          "description": "Paper DOI URL or direct link to the paper. Null if not available.",
           "title": "Paper Url"
         },
         "appendix_url": {
@@ -97,7 +97,7 @@
             }
           ],
           "default": null,
-          "description": "Supplementary materials URL.",
+          "description": "URL to supplementary materials or appendix. Null if not available.",
           "title": "Appendix Url"
         },
         "award": {
@@ -110,7 +110,7 @@
             }
           ],
           "default": null,
-          "description": "Award designation, if any.",
+          "description": "Award designation such as 'Distinguished Artifact'. Null if no award.",
           "title": "Award"
         }
       },

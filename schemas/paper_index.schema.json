@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/paper_index.schema.json",
   "title": "Paper Collection",
   "description": "Array of Paper records. Each element: A paper published at a tracked conference, with artifact badges and citation data.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/Paper"
@@ -14,18 +14,18 @@
       "description": "A paper published at a tracked conference, with artifact badges and citation data.",
       "properties": {
         "id": {
-          "description": "Stable integer ID for this paper. Preserved across pipeline runs.",
+          "description": "Stable integer ID (starts at 1). Assigned once and preserved across pipeline runs.",
           "minimum": 1,
           "title": "Id",
           "type": "integer"
         },
         "title": {
-          "description": "Original paper title as found in DBLP.",
+          "description": "Full paper title as found in DBLP proceedings.",
           "title": "Title",
           "type": "string"
         },
         "conference": {
-          "description": "Conference abbreviation.",
+          "description": "Conference abbreviation, e.g. 'OSDI', 'USENIXSEC', 'NDSS'.",
           "title": "Conference",
           "type": "string"
         },
@@ -41,17 +41,17 @@
             }
           ],
           "default": null,
-          "description": "Publication year.",
+          "description": "Publication year (2017–2030), e.g. 2023. Null if unknown.",
           "title": "Year"
         },
         "category": {
           "default": "",
-          "description": "Research domain category.",
+          "description": "Research domain: 'systems' or 'security'. Empty string if not yet classified.",
           "title": "Category",
           "type": "string"
         },
         "badges": {
-          "description": "Artifact evaluation badges for this paper.",
+          "description": "Artifact evaluation badges, e.g. ['Available', 'Functional', 'Reproduced']. Empty if no artifact.",
           "items": {
             "type": "string"
           },
@@ -60,14 +60,14 @@
         },
         "artifact_citations": {
           "default": 0,
-          "description": "Number of citations to this paper's artifact.",
+          "description": "Number of citations to this paper's artifact DOI. 0 if not tracked or no artifact.",
           "minimum": 0,
           "title": "Artifact Citations",
           "type": "integer"
         },
         "has_artifact": {
           "default": true,
-          "description": "Whether this paper has an associated artifact (false for papers_without_artifacts).",
+          "description": "True if this paper has an evaluated artifact, false for papers without artifacts.",
           "title": "Has Artifact",
           "type": "boolean"
         }

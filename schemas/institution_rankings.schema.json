@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/institution_rankings.schema.json",
   "title": "InstitutionRanking Collection",
   "description": "Array of InstitutionRanking records. Each element: Institution ranking aggregating artifact production, citation impact, and AE committee service across affiliated authors.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/InstitutionRanking"
@@ -14,7 +14,7 @@
       "description": "Summary of a top-contributing author within an institution.",
       "properties": {
         "name": {
-          "description": "Author name (may include DBLP disambiguation suffix).",
+          "description": "Full author name, may include DBLP disambiguation suffix, e.g. 'Jing Liu 0074'.",
           "title": "Name",
           "type": "string"
         },
@@ -29,34 +29,34 @@
             }
           ],
           "default": null,
-          "description": "Stable integer identifier referencing the canonical author_index.",
+          "description": "Stable integer ID referencing the canonical author_index. Null for authors not yet indexed.",
           "title": "Author Id"
         },
         "affiliation": {
-          "description": "Author's institution affiliation.",
+          "description": "Author's institution affiliation, e.g. 'University of Illinois Urbana-Champaign'.",
           "title": "Affiliation",
           "type": "string"
         },
         "combined_score": {
-          "description": "Author's combined artifact + AE score.",
+          "description": "Author's combined score: artifact_score + citation_score + ae_score.",
           "minimum": 0,
           "title": "Combined Score",
           "type": "integer"
         },
         "artifact_count": {
-          "description": "Number of artifacts authored.",
+          "description": "Number of artifacts authored by this individual.",
           "minimum": 0,
           "title": "Artifact Count",
           "type": "integer"
         },
         "ae_memberships": {
-          "description": "Number of AE committee memberships.",
+          "description": "Number of AE committee memberships for this individual.",
           "minimum": 0,
           "title": "Ae Memberships",
           "type": "integer"
         },
         "total_papers": {
-          "description": "Total papers at tracked conferences.",
+          "description": "Total papers by this individual at tracked conferences.",
           "minimum": 0,
           "title": "Total Papers",
           "type": "integer"
@@ -78,18 +78,18 @@
       "description": "Institution ranking aggregating artifact production, citation impact, and AE committee service across affiliated authors.",
       "properties": {
         "affiliation": {
-          "description": "Normalized institution name.",
+          "description": "Normalized institution name, e.g. 'University of Illinois Urbana-Champaign', 'EPFL'.",
           "title": "Affiliation",
           "type": "string"
         },
         "combined_score": {
-          "description": "Total score combining artifact_score, citation_score, and ae_score.",
+          "description": "Total score: artifact_score + citation_score + ae_score. Example: 633.",
           "minimum": 3,
           "title": "Combined Score",
           "type": "integer"
         },
         "artifact_score": {
-          "description": "Points from artifact contributions.",
+          "description": "Points from artifact contributions. Scoring: 1 (available) + 1 (functional) + 1 (reproduced) per artifact.",
           "minimum": 0,
           "title": "Artifact Score",
           "type": "integer"
@@ -105,7 +105,7 @@
             }
           ],
           "default": null,
-          "description": "Total citation count for artifacts. Present when citation tracking is enabled.",
+          "description": "Sum of artifact citation counts. Currently 0 for most institutions (tracking in progress).",
           "title": "Artifact Citations"
         },
         "citation_score": {
@@ -119,11 +119,11 @@
             }
           ],
           "default": null,
-          "description": "Points from citations. Present when citation tracking is enabled.",
+          "description": "Points from artifact citations. Currently 0 for most institutions (tracking in progress).",
           "title": "Citation Score"
         },
         "ae_score": {
-          "description": "Points from AE committee memberships (3 pts each) and chair roles (+2 pts each).",
+          "description": "Points from AE service: (memberships × 3) + (chairs × 2).",
           "minimum": 0,
           "title": "Ae Score",
           "type": "integer"
@@ -138,11 +138,11 @@
             }
           ],
           "default": null,
-          "description": "Artifact-to-evaluation ratio. Null when ae_score is 0.",
+          "description": "Artifact-to-AE score ratio (artifact_score / ae_score). Null when ae_score is 0. E.g. 0.48.",
           "title": "Ae Ratio"
         },
         "role": {
-          "description": "Classification based on A:E ratio.",
+          "description": "Role classification based on artifact-to-AE ratio: 'Producer', 'Consumer', 'Balanced'.",
           "enum": [
             "Producer",
             "Consumer",
@@ -152,56 +152,56 @@
           "type": "string"
         },
         "artifact_count": {
-          "description": "Total number of artifacts produced by this institution.",
+          "description": "Total number of artifacts produced by authors at this institution.",
           "minimum": 0,
           "title": "Artifact Count",
           "type": "integer"
         },
         "badges_functional": {
-          "description": "Count of functional badges.",
+          "description": "Total 'functional' badges across all artifacts from this institution.",
           "minimum": 0,
           "title": "Badges Functional",
           "type": "integer"
         },
         "badges_reproducible": {
-          "description": "Count of reproduced/replicated badges.",
+          "description": "Total 'reproduced'/'replicated' badges across all artifacts from this institution.",
           "minimum": 0,
           "title": "Badges Reproducible",
           "type": "integer"
         },
         "ae_memberships": {
-          "description": "Number of AE committee memberships.",
+          "description": "Total AE committee memberships by authors at this institution.",
           "minimum": 0,
           "title": "Ae Memberships",
           "type": "integer"
         },
         "chair_count": {
-          "description": "Number of AE chair roles.",
+          "description": "Number of AE chair roles held by authors at this institution.",
           "minimum": 0,
           "title": "Chair Count",
           "type": "integer"
         },
         "total_papers": {
-          "description": "Total DBLP paper count at tracked conferences.",
+          "description": "Total papers at tracked conferences by authors at this institution, sourced from DBLP.",
           "minimum": 0,
           "title": "Total Papers",
           "type": "integer"
         },
         "artifact_pct": {
-          "description": "Percentage of papers with artifacts.",
+          "description": "Percentage of papers with artifacts: (artifact_count / total_papers) * 100. E.g. 53.4.",
           "maximum": 100,
           "minimum": 0,
           "title": "Artifact Pct",
           "type": "number"
         },
         "author_count": {
-          "description": "Count of unique authors.",
+          "description": "Number of unique authors affiliated with this institution.",
           "minimum": 1,
           "title": "Author Count",
           "type": "integer"
         },
         "conferences": {
-          "description": "List of conferences where the institution contributes.",
+          "description": "Distinct conference abbreviations, e.g. ['ATC', 'OSDI', 'USENIXSEC'].",
           "items": {
             "type": "string"
           },
@@ -212,12 +212,12 @@
           "additionalProperties": {
             "type": "integer"
           },
-          "description": "Mapping of year (as string) to activity count.",
+          "description": "Year (as string) → activity count, e.g. {'2023': 31, '2024': 59}.",
           "title": "Years",
           "type": "object"
         },
         "top_authors": {
-          "description": "Top 20 authors from this institution, sorted by combined_score.",
+          "description": "Up to 20 top-scoring authors from this institution, sorted by combined_score descending.",
           "items": {
             "$ref": "#/$defs/TopAuthor"
           },

@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/artifacts.schema.json",
   "title": "Artifact Collection",
   "description": "Array of Artifact records. Each element: A single research artifact associated with a conference paper.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/Artifact"
@@ -14,7 +14,7 @@
       "description": "A single research artifact associated with a conference paper.",
       "properties": {
         "conference": {
-          "description": "Conference abbreviation where the paper was published.",
+          "description": "Conference abbreviation, e.g. 'OSDI', 'USENIXSEC', 'NDSS'. See CONFERENCE_NAMES for the full list.",
           "enum": [
             "ACSAC",
             "ATC",
@@ -34,7 +34,7 @@
           "type": "string"
         },
         "category": {
-          "description": "Research domain category.",
+          "description": "Research domain: 'systems' or 'security', determined by the conference.",
           "enum": [
             "systems",
             "security"
@@ -43,19 +43,19 @@
           "type": "string"
         },
         "year": {
-          "description": "Publication year.",
+          "description": "Publication year (2017–2030), e.g. 2023.",
           "maximum": 2030,
           "minimum": 2017,
           "title": "Year",
           "type": "integer"
         },
         "title": {
-          "description": "Paper title.",
+          "description": "Full paper title as it appears in the conference proceedings.",
           "title": "Title",
           "type": "string"
         },
         "badges": {
-          "description": "Artifact evaluation badges. Canonical values: 'available', 'functional', 'reproduced', 'reusable', 'replicated'. Some conferences use non-normalized variants.",
+          "description": "Artifact evaluation badges awarded by the AE committee. Canonical lowercase values: 'available', 'functional', 'reproduced', 'reusable', 'replicated'. Some older data retains capitalized variants, e.g. 'Available', 'Functional'.",
           "items": {
             "type": "string"
           },
@@ -63,7 +63,7 @@
           "type": "array"
         },
         "artifact_urls": {
-          "description": "All artifact-related URLs (repositories, archives, DOIs). Canonical field replacing repository_url, artifact_url, and github_url.",
+          "description": "All artifact-related URLs for this paper. Includes GitHub/GitLab repos, Zenodo DOIs, and other archives. Example: ['https://github.com/org/repo', 'https://doi.org/10.5281/zenodo.12345'].",
           "items": {
             "type": "string"
           },
@@ -72,7 +72,7 @@
         },
         "doi": {
           "default": "",
-          "description": "Canonical artifact DOI (e.g. '10.5281/zenodo.12345'). Extracted from artifact_urls.",
+          "description": "Canonical artifact DOI extracted from artifact_urls, e.g. '10.5281/zenodo.12345'. Empty string if none found.",
           "title": "Doi",
           "type": "string"
         },
@@ -86,7 +86,7 @@
             }
           ],
           "default": null,
-          "description": "DOI or direct link to the published paper.",
+          "description": "DOI URL or direct link to the published paper, e.g. 'https://doi.org/10.1145/...'. Null if unavailable.",
           "title": "Paper Url"
         },
         "appendix_url": {
@@ -99,7 +99,7 @@
             }
           ],
           "default": null,
-          "description": "URL to supplementary materials or appendix.",
+          "description": "URL to supplementary materials or appendix. Null if unavailable.",
           "title": "Appendix Url"
         },
         "award": {
@@ -112,7 +112,7 @@
             }
           ],
           "default": null,
-          "description": "Award designation, if any (e.g., 'Distinguished Artifact').",
+          "description": "Award designation such as 'Distinguished Artifact'. Null if no award.",
           "title": "Award"
         }
       },

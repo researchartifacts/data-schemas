@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/author_index.schema.json",
   "title": "AuthorIndexEntry Collection",
   "description": "Array of AuthorIndexEntry records. Each element: Canonical author record: stable ID, name, affiliation, external identifiers, and enrichment history.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/AuthorIndexEntry"
@@ -13,17 +13,17 @@
       "description": "A previous affiliation with date, tracking institution moves.",
       "properties": {
         "affiliation": {
-          "description": "Previous institution name.",
+          "description": "Previous institution name, e.g. 'MIT', 'Google'.",
           "title": "Affiliation",
           "type": "string"
         },
         "source": {
-          "description": "Enrichment source that set this affiliation.",
+          "description": "Enrichment source that set this affiliation, e.g. 'dblp', 'openalex', 'manual'.",
           "title": "Source",
           "type": "string"
         },
         "date": {
-          "description": "ISO 8601 date when this affiliation was recorded.",
+          "description": "ISO 8601 date when this affiliation was recorded, e.g. '2025-01-15'.",
           "title": "Date",
           "type": "string"
         }
@@ -50,7 +50,7 @@
             }
           ],
           "default": null,
-          "description": "DBLP person identifier (e.g., 'homepages/c/HaiboChen0001').",
+          "description": "DBLP person identifier, e.g. 'homepages/c/HaiboChen0001'. Used to link to DBLP author pages.",
           "title": "Dblp Pid"
         },
         "orcid": {
@@ -64,7 +64,7 @@
             }
           ],
           "default": null,
-          "description": "ORCID identifier (e.g., '0000-0001-2345-6789').",
+          "description": "ORCID identifier, e.g. '0000-0001-2345-6789'. 16-digit hyphenated format.",
           "title": "Orcid"
         },
         "openalex_id": {
@@ -77,7 +77,7 @@
             }
           ],
           "default": null,
-          "description": "OpenAlex author ID (e.g., 'A1234567890').",
+          "description": "OpenAlex author ID, e.g. 'A1234567890'. Used for citation lookups.",
           "title": "Openalex Id"
         }
       },
@@ -89,7 +89,7 @@
       "description": "Canonical author record: stable ID, name, affiliation, external identifiers, and enrichment history.",
       "properties": {
         "id": {
-          "description": "Stable integer identifier. Assigned once, never reused or changed.",
+          "description": "Stable integer identifier (starts at 1). Assigned once and never reused or changed across pipeline runs.",
           "minimum": 1,
           "title": "Id",
           "type": "integer"
@@ -100,18 +100,18 @@
           "type": "string"
         },
         "display_name": {
-          "description": "Human-readable name without DBLP disambiguation suffix.",
+          "description": "Human-readable name without DBLP disambiguation suffix, e.g. 'Haibo Chen' (from 'Haibo Chen 0001').",
           "title": "Display Name",
           "type": "string"
         },
         "affiliation": {
-          "description": "Normalized institution affiliation. Empty string if unknown.",
+          "description": "Normalized institution affiliation, e.g. 'Shanghai Jiao Tong University'. Empty string if unknown.",
           "title": "Affiliation",
           "type": "string"
         },
         "affiliation_source": {
           "default": "",
-          "description": "Which enrichment layer last set the affiliation.",
+          "description": "Which enrichment layer last set the affiliation: 'dblp', 'openalex', or 'manual'. Empty if never set.",
           "enum": [
             "csrankings",
             "dblp",
@@ -125,13 +125,13 @@
         },
         "affiliation_updated": {
           "default": "",
-          "description": "ISO 8601 date when affiliation was last updated.",
+          "description": "ISO 8601 date when affiliation was last updated, e.g. '2026-04-07'. Empty string if never updated.",
           "pattern": "^(\\d{4}-\\d{2}-\\d{2})?$",
           "title": "Affiliation Updated",
           "type": "string"
         },
         "affiliation_history": {
-          "description": "Previous affiliations with dates, tracking institution moves.",
+          "description": "Previous affiliations with dates, tracking institution moves. Most recent first.",
           "items": {
             "$ref": "#/$defs/AffiliationHistoryEntry"
           },
@@ -139,11 +139,12 @@
           "type": "array"
         },
         "external_ids": {
-          "$ref": "#/$defs/ExternalIds"
+          "$ref": "#/$defs/ExternalIds",
+          "description": "Optional identifiers from external databases (DBLP, ORCID, OpenAlex). Empty dict if none known."
         },
         "category": {
           "default": "systems",
-          "description": "Primary research area.",
+          "description": "Primary research area: 'systems', 'security', or 'both'. Based on conferences published at.",
           "enum": [
             "systems",
             "security",

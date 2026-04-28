@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/author_stats.schema.json",
   "title": "AuthorStats Collection",
   "description": "Array of AuthorStats records. Each element: Per-author artifact statistics including badge counts, paper breakdowns, and conference history.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/AuthorStats"
@@ -14,22 +14,22 @@
       "description": "A paper that has an associated artifact evaluation.",
       "properties": {
         "title": {
-          "description": "Paper title.",
+          "description": "Full paper title as it appears in the proceedings.",
           "title": "Title",
           "type": "string"
         },
         "conference": {
-          "description": "Conference abbreviation.",
+          "description": "Conference abbreviation, e.g. 'OSDI', 'USENIXSEC'.",
           "title": "Conference",
           "type": "string"
         },
         "year": {
-          "description": "Publication year.",
+          "description": "Publication year, e.g. 2023.",
           "title": "Year",
           "type": "integer"
         },
         "badges": {
-          "description": "Artifact evaluation badges. Canonical values: 'available', 'functional', 'reproduced', 'reusable', 'replicated'.",
+          "description": "Artifact evaluation badges awarded by the AE committee. Canonical lowercase values: 'available', 'functional', 'reproduced', 'reusable', 'replicated'.",
           "items": {
             "type": "string"
           },
@@ -37,7 +37,7 @@
           "type": "array"
         },
         "category": {
-          "description": "Research domain.",
+          "description": "Research domain: 'systems' or 'security', determined by the conference.",
           "enum": [
             "systems",
             "security"
@@ -46,7 +46,7 @@
           "type": "string"
         },
         "artifact_citations": {
-          "description": "Citation count for this artifact.",
+          "description": "Number of times this artifact has been cited (via DOI tracking). 0 if not yet tracked.",
           "minimum": 0,
           "title": "Artifact Citations",
           "type": "integer"
@@ -68,17 +68,17 @@
       "description": "A published paper without an artifact evaluation.",
       "properties": {
         "title": {
-          "description": "Paper title.",
+          "description": "Full paper title as it appears in the proceedings.",
           "title": "Title",
           "type": "string"
         },
         "conference": {
-          "description": "Conference abbreviation.",
+          "description": "Conference abbreviation, e.g. 'OSDI', 'USENIXSEC'.",
           "title": "Conference",
           "type": "string"
         },
         "year": {
-          "description": "Publication year.",
+          "description": "Publication year, e.g. 2023.",
           "title": "Year",
           "type": "integer"
         }
@@ -96,17 +96,17 @@
       "description": "Per-author artifact statistics including badge counts, paper breakdowns, and conference history.",
       "properties": {
         "name": {
-          "description": "Full name in DBLP format (may include disambiguation suffix).",
+          "description": "Full name in DBLP format, e.g. 'Mathias Payer' or 'Jing Liu 0074' (with disambiguation suffix).",
           "title": "Name",
           "type": "string"
         },
         "affiliation": {
-          "description": "Normalized institution affiliation.",
+          "description": "Normalized institution affiliation, e.g. 'EPFL', 'MIT'. Empty string if unknown.",
           "title": "Affiliation",
           "type": "string"
         },
         "papers": {
-          "description": "Artifact papers authored.",
+          "description": "Papers by this author that have evaluated artifacts, with badge and citation details.",
           "items": {
             "$ref": "#/$defs/ArtifactPaper"
           },
@@ -114,7 +114,7 @@
           "type": "array"
         },
         "papers_without_artifacts": {
-          "description": "Papers by this author that do not have artifacts.",
+          "description": "Papers by this author at tracked conferences that do not have evaluated artifacts.",
           "items": {
             "$ref": "#/$defs/PlainPaper"
           },
@@ -122,7 +122,7 @@
           "type": "array"
         },
         "conferences": {
-          "description": "Conference abbreviations where author has published.",
+          "description": "Conference abbreviations where author has published, e.g. ['OSDI', 'USENIXSEC'].",
           "items": {
             "type": "string"
           },
@@ -130,7 +130,7 @@
           "type": "array"
         },
         "years": {
-          "description": "Sorted list of years with activity.",
+          "description": "Sorted list of years with activity, e.g. [2020, 2021, 2023].",
           "items": {
             "type": "integer"
           },
@@ -138,50 +138,50 @@
           "type": "array"
         },
         "artifact_count": {
-          "description": "Total artifacts authored.",
+          "description": "Total number of artifacts authored across all conferences.",
           "minimum": 0,
           "title": "Artifact Count",
           "type": "integer"
         },
         "total_papers": {
-          "description": "Total papers at tracked conferences.",
+          "description": "Total papers published at tracked conferences (both with and without artifacts).",
           "minimum": 0,
           "title": "Total Papers",
           "type": "integer"
         },
         "artifact_pct": {
-          "description": "Percentage of papers with artifacts.",
+          "description": "Percentage of papers with artifacts: (artifact_count / total_papers) * 100.",
           "maximum": 100,
           "minimum": 0,
           "title": "Artifact Pct",
           "type": "number"
         },
         "artifact_citations": {
-          "description": "Total citation count for artifacts.",
+          "description": "Sum of citation counts across all this author's artifacts.",
           "minimum": 0,
           "title": "Artifact Citations",
           "type": "integer"
         },
         "badges_available": {
-          "description": "Count of 'available' badges across all artifacts.",
+          "description": "Total number of 'available' badges across all this author's artifacts.",
           "minimum": 0,
           "title": "Badges Available",
           "type": "integer"
         },
         "badges_functional": {
-          "description": "Count of 'functional' badges across all artifacts.",
+          "description": "Total number of 'functional' badges across all this author's artifacts.",
           "minimum": 0,
           "title": "Badges Functional",
           "type": "integer"
         },
         "badges_reproducible": {
-          "description": "Count of 'reproduced' badges across all artifacts.",
+          "description": "Total number of 'reproduced' badges across all this author's artifacts.",
           "minimum": 0,
           "title": "Badges Reproducible",
           "type": "integer"
         },
         "category": {
-          "description": "Research domain based on conferences published at.",
+          "description": "Research domain: 'systems', 'security', 'both', or 'unknown' (if no publications yet).",
           "enum": [
             "systems",
             "security",
@@ -202,11 +202,11 @@
             }
           ],
           "default": null,
-          "description": "Stable integer identifier referencing the canonical author_index.",
+          "description": "Stable integer ID referencing the canonical author_index. Null for authors not yet indexed.",
           "title": "Author Id"
         },
         "display_name": {
-          "description": "Name without DBLP disambiguation suffix.",
+          "description": "Human-readable name without DBLP disambiguation suffix, e.g. 'Mathias Payer'.",
           "title": "Display Name",
           "type": "string"
         },
@@ -214,7 +214,7 @@
           "additionalProperties": {
             "type": "integer"
           },
-          "description": "Mapping of conference name to paper count at that conference.",
+          "description": "Conference name → paper count, e.g. {'OSDI': 3, 'USENIXSEC': 5}.",
           "title": "Total Papers By Conf",
           "type": "object"
         },
@@ -225,38 +225,38 @@
             },
             "type": "object"
           },
-          "description": "Nested mapping: conference name → { year → count }.",
+          "description": "Nested mapping: conference → year → count, e.g. {'OSDI': {'2023': 2}}.",
           "title": "Total Papers By Conf Year",
           "type": "object"
         },
         "repro_pct": {
-          "description": "Percentage of artifacts with a reproducibility badge.",
+          "description": "Percentage of artifacts with a 'reproduced' badge: (reproduced / artifact_count) * 100.",
           "maximum": 100,
           "minimum": 0,
           "title": "Repro Pct",
           "type": "number"
         },
         "functional_pct": {
-          "description": "Percentage of artifacts with a functional badge.",
+          "description": "Percentage of artifacts with a 'functional' badge: (functional / artifact_count) * 100.",
           "maximum": 100,
           "minimum": 0,
           "title": "Functional Pct",
           "type": "number"
         },
         "year_range": {
-          "description": "Activity range in 'YYYY-YYYY' format.",
+          "description": "Activity range as 'YYYY-YYYY', e.g. '2019-2024'.",
           "pattern": "^\\d{4}-\\d{4}$",
           "title": "Year Range",
           "type": "string"
         },
         "recent_count": {
-          "description": "Number of papers in the last 3 years.",
+          "description": "Number of papers published in the most recent 3 calendar years.",
           "minimum": 0,
           "title": "Recent Count",
           "type": "integer"
         },
         "paper_ids": {
-          "description": "List of paper index IDs for artifact papers. References papers.json.",
+          "description": "List of stable paper IDs (from paper_index) for this author's artifact papers.",
           "items": {
             "type": "integer"
           },
@@ -264,7 +264,7 @@
           "type": "array"
         },
         "papers_without_artifact_ids": {
-          "description": "List of paper index IDs for non-artifact papers. References papers.json.",
+          "description": "List of stable paper IDs (from paper_index) for this author's non-artifact papers.",
           "items": {
             "type": "integer"
           },

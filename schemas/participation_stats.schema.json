@@ -1,14 +1,14 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/participation_stats.schema.json",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "$defs": {
     "AreaTrend": {
       "additionalProperties": false,
       "description": "Trend data for a research area over time.",
       "properties": {
         "years": {
-          "description": "List of years in chronological order.",
+          "description": "List of years in chronological order, e.g. [2017, 2018, ..., 2026].",
           "items": {
             "type": "integer"
           },
@@ -16,7 +16,7 @@
           "type": "array"
         },
         "participation_pct": {
-          "description": "Participation rate per year.",
+          "description": "AE participation rate per year (%), parallel to the years list.",
           "items": {
             "type": "number"
           },
@@ -24,7 +24,7 @@
           "type": "array"
         },
         "available_pct": {
-          "description": "Available rate per year.",
+          "description": "Available badge rate per year (%), parallel to the years list.",
           "items": {
             "type": "number"
           },
@@ -32,7 +32,7 @@
           "type": "array"
         },
         "functional_pct": {
-          "description": "Functional rate per year.",
+          "description": "Functional badge rate per year (%), parallel to the years list.",
           "items": {
             "type": "number"
           },
@@ -40,7 +40,7 @@
           "type": "array"
         },
         "reproduced_pct": {
-          "description": "Reproduced rate per year.",
+          "description": "Reproduced badge rate per year (%), parallel to the years list.",
           "items": {
             "type": "number"
           },
@@ -63,78 +63,78 @@
       "description": "Participation stats for a single conference-year.",
       "properties": {
         "conference": {
-          "description": "Conference name.",
+          "description": "Conference abbreviation, e.g. 'ACSAC', 'OSDI', 'USENIXSEC'.",
           "title": "Conference",
           "type": "string"
         },
         "year": {
-          "description": "Year.",
+          "description": "Calendar year, e.g. 2023.",
           "title": "Year",
           "type": "integer"
         },
         "category": {
-          "description": "Paper category/track.",
+          "description": "Research area category: 'systems' or 'security'.",
           "title": "Category",
           "type": "string"
         },
         "venue_type": {
-          "description": "Venue type: 'conference' or 'workshop'.",
+          "description": "Venue type: 'conference' for main conferences, 'workshop' for co-located workshops.",
           "title": "Venue Type",
           "type": "string"
         },
         "total_papers": {
-          "description": "Total papers in this conference-year.",
+          "description": "Total accepted papers in this conference-year (including those without artifacts).",
           "minimum": 0,
           "title": "Total Papers",
           "type": "integer"
         },
         "ae_papers": {
-          "description": "Papers submitted to the AE process.",
+          "description": "Number of papers that participated in the artifact evaluation process.",
           "minimum": 0,
           "title": "Ae Papers",
           "type": "integer"
         },
         "participation_pct": {
-          "description": "AE participation rate (%).",
+          "description": "AE participation rate: (ae_papers / total_papers) * 100.",
           "maximum": 100,
           "minimum": 0,
           "title": "Participation Pct",
           "type": "number"
         },
         "available": {
-          "description": "Papers with 'available' badge.",
+          "description": "Number of papers that received the 'available' badge.",
           "minimum": 0,
           "title": "Available",
           "type": "integer"
         },
         "functional": {
-          "description": "Papers with 'functional' badge.",
+          "description": "Number of papers that received the 'functional' badge.",
           "minimum": 0,
           "title": "Functional",
           "type": "integer"
         },
         "reproduced": {
-          "description": "Papers with 'reproduced' badge.",
+          "description": "Number of papers that received the 'reproduced' badge.",
           "minimum": 0,
           "title": "Reproduced",
           "type": "integer"
         },
         "available_pct": {
-          "description": "Available rate (%).",
+          "description": "Percentage of total papers with 'available' badge: (available / total_papers) * 100.",
           "maximum": 100,
           "minimum": 0,
           "title": "Available Pct",
           "type": "number"
         },
         "functional_pct": {
-          "description": "Functional rate (%).",
+          "description": "Percentage of total papers with 'functional' badge: (functional / total_papers) * 100.",
           "maximum": 100,
           "minimum": 0,
           "title": "Functional Pct",
           "type": "number"
         },
         "reproduced_pct": {
-          "description": "Reproduced rate (%).",
+          "description": "Percentage of total papers with 'reproduced' badge: (reproduced / total_papers) * 100.",
           "maximum": 100,
           "minimum": 0,
           "title": "Reproduced Pct",
@@ -164,7 +164,7 @@
   "description": "Artifact evaluation participation rates per conference-year, with area-level trends over time.",
   "properties": {
     "by_conference_year": {
-      "description": "Per-conference-year breakdown.",
+      "description": "Per-conference-year breakdown with paper counts and badge statistics.",
       "items": {
         "$ref": "#/$defs/ConferenceYearStats"
       },
@@ -175,7 +175,7 @@
       "additionalProperties": {
         "$ref": "#/$defs/AreaTrend"
       },
-      "description": "Trend data keyed by area name ('security', 'systems').",
+      "description": "Trend data keyed by area: 'security' and 'systems'. Each has parallel year/rate arrays.",
       "title": "By Area",
       "type": "object"
     }

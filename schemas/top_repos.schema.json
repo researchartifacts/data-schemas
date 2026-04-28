@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/top_repos.schema.json",
   "title": "TopRepo Collection",
   "description": "Array of TopRepo records. Each element: Top-ranked artifact repository by GitHub stars, with paper metadata and activity info.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/TopRepo"
@@ -14,74 +14,74 @@
       "description": "Top-ranked artifact repository by GitHub stars, with paper metadata and activity info.",
       "properties": {
         "title": {
-          "description": "Paper title associated with this repository.",
+          "description": "Paper title associated with this repository, as published in proceedings.",
           "title": "Title",
           "type": "string"
         },
         "url": {
-          "description": "GitHub repository URL.",
+          "description": "GitHub repository URL, e.g. 'https://github.com/microsoft/nni/tree/retiarii_artifact'.",
           "title": "Url",
           "type": "string"
         },
         "year": {
-          "description": "Publication year.",
+          "description": "Publication year, e.g. 2020.",
           "title": "Year",
           "type": "integer"
         },
         "stars": {
-          "description": "GitHub star count.",
+          "description": "GitHub star count at time of collection, e.g. 14340.",
           "minimum": 0,
           "title": "Stars",
           "type": "integer"
         },
         "forks": {
-          "description": "GitHub fork count.",
+          "description": "GitHub fork count at time of collection, e.g. 1852.",
           "minimum": 0,
           "title": "Forks",
           "type": "integer"
         },
         "authors": {
-          "description": "Comma-separated author names.",
+          "description": "Comma-separated author names, e.g. 'Fan Yang 0024, Lidong Zhou, Mao Yang 0004 et al.'.",
           "title": "Authors",
           "type": "string"
         },
         "github_org": {
           "default": "",
-          "description": "GitHub organization or user.",
+          "description": "GitHub organization or user who owns the repo, e.g. 'microsoft'. Empty if not parsed.",
           "title": "Github Org",
           "type": "string"
         },
         "badges": {
           "default": "",
-          "description": "Comma-separated badge names.",
+          "description": "Comma-separated badge names, e.g. 'available,functional,reproduced'. Empty if none.",
           "title": "Badges",
           "type": "string"
         },
         "last_active": {
           "default": "",
-          "description": "Last activity date (YYYY-MM format).",
+          "description": "Last activity date in YYYY-MM format, e.g. '2024-07'. Empty if unknown.",
           "title": "Last Active",
           "type": "string"
         },
         "description": {
           "default": "",
-          "description": "Repository description.",
+          "description": "Repository description from GitHub. Empty if not set.",
           "title": "Description",
           "type": "string"
         },
         "language": {
           "default": "",
-          "description": "Primary programming language.",
+          "description": "Primary programming language as reported by GitHub, e.g. 'Python'. Empty if unknown.",
           "title": "Language",
           "type": "string"
         },
         "conference": {
-          "description": "Conference where the artifact was published.",
+          "description": "Conference where the artifact was published, e.g. 'OSDI', 'USENIXSEC'.",
           "title": "Conference",
           "type": "string"
         },
         "area": {
-          "description": "Research area: 'systems' or 'security'.",
+          "description": "Research area: 'systems' or 'security', determined by the conference.",
           "title": "Area",
           "type": "string"
         }

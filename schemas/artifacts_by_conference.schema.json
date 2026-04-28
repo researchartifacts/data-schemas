@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/artifacts_by_conference.schema.json",
   "title": "ConferenceEntry Collection",
   "description": "Array of ConferenceEntry records. Each element: Artifact counts and badge breakdowns for a single conference across all tracked years.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/ConferenceEntry"
@@ -14,36 +14,36 @@
       "description": "Per-year breakdown of artifact counts and badges.",
       "properties": {
         "year": {
-          "description": "Publication year.",
+          "description": "Publication year, e.g. 2023.",
           "title": "Year",
           "type": "integer"
         },
         "total": {
-          "description": "Total artifacts for this conference-year.",
+          "description": "Total number of evaluated artifacts for this conference in this year.",
           "minimum": 0,
           "title": "Total",
           "type": "integer"
         },
         "available": {
-          "description": "Count of 'available' badges.",
+          "description": "Number of artifacts that received the 'available' badge.",
           "minimum": 0,
           "title": "Available",
           "type": "integer"
         },
         "functional": {
-          "description": "Count of 'functional' badges.",
+          "description": "Number of artifacts that received the 'functional' badge.",
           "minimum": 0,
           "title": "Functional",
           "type": "integer"
         },
         "reproducible": {
-          "description": "Count of 'reproduced' badges.",
+          "description": "Number of artifacts that received the 'reproduced' badge.",
           "minimum": 0,
           "title": "Reproducible",
           "type": "integer"
         },
         "reusable": {
-          "description": "Count of 'reusable' badges.",
+          "description": "Number of artifacts that received the 'reusable' badge.",
           "minimum": 0,
           "title": "Reusable",
           "type": "integer"
@@ -65,12 +65,12 @@
       "description": "Artifact counts and badge breakdowns for a single conference across all tracked years.",
       "properties": {
         "name": {
-          "description": "Conference abbreviation.",
+          "description": "Conference abbreviation, e.g. 'ACSAC', 'OSDI', 'USENIXSEC'.",
           "title": "Name",
           "type": "string"
         },
         "category": {
-          "description": "Research domain.",
+          "description": "Research domain: 'systems' or 'security'.",
           "enum": [
             "systems",
             "security"
@@ -79,7 +79,7 @@
           "type": "string"
         },
         "venue_type": {
-          "description": "Whether this is a full conference or a workshop.",
+          "description": "Venue type: 'conference' for main conferences, 'workshop' for co-located workshops.",
           "enum": [
             "conference",
             "workshop"
@@ -88,13 +88,13 @@
           "type": "string"
         },
         "total_artifacts": {
-          "description": "Total artifacts across all years.",
+          "description": "Total number of evaluated artifacts across all years for this conference.",
           "minimum": 0,
           "title": "Total Artifacts",
           "type": "integer"
         },
         "years": {
-          "description": "Per-year breakdown of artifact counts and badges.",
+          "description": "Per-year breakdown of artifact counts and badge distributions. Ordered chronologically.",
           "items": {
             "$ref": "#/$defs/YearBreakdown"
           },

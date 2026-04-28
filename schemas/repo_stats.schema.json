@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/repo_stats.schema.json",
   "title": "RepoStatsEntry Collection",
   "description": "Array of RepoStatsEntry records. Each element: GitHub/Zenodo repository metrics for a single artifact (stars, forks, views, downloads).",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/RepoStatsEntry"
@@ -14,27 +14,27 @@
       "description": "GitHub/Zenodo repository metrics for a single artifact (stars, forks, views, downloads).",
       "properties": {
         "conference": {
-          "description": "Conference abbreviation.",
+          "description": "Conference abbreviation, e.g. 'OSDI', 'USENIXSEC'.",
           "title": "Conference",
           "type": "string"
         },
         "year": {
-          "description": "Publication year.",
+          "description": "Publication year, e.g. 2023.",
           "title": "Year",
           "type": "integer"
         },
         "title": {
-          "description": "Paper title.",
+          "description": "Full paper title associated with this repository.",
           "title": "Title",
           "type": "string"
         },
         "url": {
-          "description": "Repository or archive URL.",
+          "description": "Repository or archive URL, e.g. 'https://github.com/org/repo'.",
           "title": "Url",
           "type": "string"
         },
         "source": {
-          "description": "Platform hosting the artifact.",
+          "description": "Platform hosting the artifact: 'GitHub', 'GitLab', 'Zenodo', 'Bitbucket', etc.",
           "enum": [
             "github",
             "zenodo",
@@ -54,7 +54,7 @@
             }
           ],
           "default": null,
-          "description": "GitHub star count.",
+          "description": "GitHub star count at time of collection. Null for non-GitHub platforms.",
           "title": "Github Stars"
         },
         "github_forks": {
@@ -68,7 +68,7 @@
             }
           ],
           "default": null,
-          "description": "GitHub fork count.",
+          "description": "GitHub fork count at time of collection. Null for non-GitHub platforms.",
           "title": "Github Forks"
         },
         "zenodo_views": {
@@ -82,7 +82,7 @@
             }
           ],
           "default": null,
-          "description": "Zenodo view count.",
+          "description": "Zenodo page view count. Null for non-Zenodo platforms.",
           "title": "Zenodo Views"
         },
         "zenodo_downloads": {
@@ -96,7 +96,7 @@
             }
           ],
           "default": null,
-          "description": "Zenodo download count.",
+          "description": "Zenodo file download count. Null for non-Zenodo platforms.",
           "title": "Zenodo Downloads"
         },
         "description": {
@@ -110,7 +110,7 @@
             }
           ],
           "default": null,
-          "description": "Repository description (truncated to 120 characters).",
+          "description": "Repository description from the hosting platform, truncated to 120 characters. Null if not available.",
           "title": "Description"
         },
         "language": {
@@ -123,7 +123,7 @@
             }
           ],
           "default": null,
-          "description": "Primary programming language.",
+          "description": "Primary programming language as reported by the platform, e.g. 'Python', 'C++'. Null if not available.",
           "title": "Language"
         },
         "name": {
@@ -136,7 +136,7 @@
             }
           ],
           "default": null,
-          "description": "Repository identifier (e.g., 'owner/repo').",
+          "description": "Repository identifier, e.g. 'microsoft/nni'. Null for non-GitHub/GitLab platforms.",
           "title": "Name"
         },
         "pushed_at": {
@@ -149,7 +149,7 @@
             }
           ],
           "default": null,
-          "description": "Timestamp of last push in ISO 8601 format.",
+          "description": "ISO 8601 timestamp of last push/update, e.g. '2024-07-15T10:30:00Z'. Null if not available.",
           "title": "Pushed At"
         }
       },

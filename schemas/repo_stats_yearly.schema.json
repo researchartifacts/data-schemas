@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/repo_stats_yearly.schema.json",
   "title": "RepoStatsYearly Collection",
   "description": "Array of RepoStatsYearly records. Each element: Yearly repository statistics split by area (all, systems, security) with aggregate GitHub metrics.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/RepoStatsYearly"
@@ -14,43 +14,43 @@
       "description": "Aggregate GitHub metrics for a group of repositories in a given year.",
       "properties": {
         "github_repos": {
-          "description": "Number of repositories.",
+          "description": "Number of GitHub repositories with stats for this year/area combination.",
           "minimum": 0,
           "title": "Github Repos",
           "type": "integer"
         },
         "avg_stars": {
-          "description": "Average star count.",
+          "description": "Mean GitHub star count across repositories in this group.",
           "minimum": 0,
           "title": "Avg Stars",
           "type": "number"
         },
         "avg_forks": {
-          "description": "Average fork count.",
+          "description": "Mean GitHub fork count across repositories in this group.",
           "minimum": 0,
           "title": "Avg Forks",
           "type": "number"
         },
         "min_stars": {
-          "description": "Minimum star count.",
+          "description": "Minimum GitHub star count in this group.",
           "minimum": 0,
           "title": "Min Stars",
           "type": "number"
         },
         "max_stars": {
-          "description": "Maximum star count.",
+          "description": "Maximum GitHub star count in this group.",
           "minimum": 0,
           "title": "Max Stars",
           "type": "number"
         },
         "min_forks": {
-          "description": "Minimum fork count.",
+          "description": "Minimum GitHub fork count in this group.",
           "minimum": 0,
           "title": "Min Forks",
           "type": "number"
         },
         "max_forks": {
-          "description": "Maximum fork count.",
+          "description": "Maximum GitHub fork count in this group.",
           "minimum": 0,
           "title": "Max Forks",
           "type": "number"
@@ -73,13 +73,13 @@
       "description": "Yearly repository statistics split by area (all, systems, security) with aggregate GitHub metrics.",
       "properties": {
         "year": {
-          "description": "Year.",
+          "description": "Publication year, e.g. 2023.",
           "title": "Year",
           "type": "integer"
         },
         "all": {
           "$ref": "#/$defs/YearlyRepoMetrics",
-          "description": "Combined metrics across all areas."
+          "description": "Combined GitHub metrics across all research areas for this year."
         },
         "systems": {
           "anyOf": [
@@ -91,7 +91,7 @@
             }
           ],
           "default": null,
-          "description": "Systems-only metrics (absent if no systems data for this year)."
+          "description": "Systems-only GitHub metrics. Null if no systems repositories exist for this year."
         },
         "security": {
           "anyOf": [
@@ -103,7 +103,7 @@
             }
           ],
           "default": null,
-          "description": "Security-only metrics (absent if no security data for this year)."
+          "description": "Security-only GitHub metrics. Null if no security repositories exist for this year."
         }
       },
       "required": [

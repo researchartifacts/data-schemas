@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/artifact_citations.schema.json",
   "title": "ArtifactCitation Collection",
   "description": "Array of ArtifactCitation records. Each element: Citation counts for a single artifact DOI, aggregated from OpenAlex and Semantic Scholar.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/ArtifactCitation"
@@ -14,29 +14,29 @@
       "description": "Citation counts for a single artifact DOI, aggregated from OpenAlex and Semantic Scholar.",
       "properties": {
         "title": {
-          "description": "Paper title.",
+          "description": "Full paper title as it appears in the proceedings.",
           "title": "Title",
           "type": "string"
         },
         "conference": {
-          "description": "Conference name.",
+          "description": "Conference abbreviation, e.g. 'OSDI', 'USENIXSEC'.",
           "title": "Conference",
           "type": "string"
         },
         "year": {
-          "description": "Publication year.",
+          "description": "Publication year, e.g. 2023.",
           "title": "Year",
           "type": "integer"
         },
         "doi": {
           "default": "",
-          "description": "Artifact DOI (empty if not found).",
+          "description": "Artifact DOI, e.g. '10.5281/zenodo.12345'. Empty string if not found.",
           "title": "Doi",
           "type": "string"
         },
         "doi_source": {
           "default": "",
-          "description": "Source of the DOI (e.g. 'zenodo').",
+          "description": "Source of the DOI, e.g. 'zenodo', 'figshare'. Empty string if not applicable.",
           "title": "Doi Source",
           "type": "string"
         },
@@ -50,7 +50,7 @@
             }
           ],
           "default": null,
-          "description": "Aggregate citation count (best of OpenAlex/Semantic Scholar).",
+          "description": "Best citation count: max(OpenAlex, Semantic Scholar). Null if neither source returned data.",
           "title": "Cited By Count"
         },
         "citations_openalex": {
@@ -63,7 +63,7 @@
             }
           ],
           "default": null,
-          "description": "Citation count from OpenAlex.",
+          "description": "Citation count from OpenAlex. Null if lookup failed or no data.",
           "title": "Citations Openalex"
         },
         "citations_semantic_scholar": {
@@ -76,11 +76,11 @@
             }
           ],
           "default": null,
-          "description": "Citation count from Semantic Scholar.",
+          "description": "Citation count from Semantic Scholar. Null if lookup failed or no data.",
           "title": "Citations Semantic Scholar"
         },
         "citing_dois_openalex": {
-          "description": "DOIs of citing works from OpenAlex.",
+          "description": "DOIs of papers citing this artifact, sourced from OpenAlex. Empty list if none.",
           "items": {
             "type": "string"
           },
@@ -88,7 +88,7 @@
           "type": "array"
         },
         "citing_dois_semantic_scholar": {
-          "description": "DOIs of citing works from Semantic Scholar.",
+          "description": "DOIs of papers citing this artifact, sourced from Semantic Scholar. Empty list if none.",
           "items": {
             "type": "string"
           },

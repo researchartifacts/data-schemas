@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/artifacts_by_year.schema.json",
   "title": "ArtifactsByYear Collection",
   "description": "Array of ArtifactsByYear records. Each element: Total artifact count for a single year, split into systems and security conferences.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/ArtifactsByYear"
@@ -14,24 +14,24 @@
       "description": "Total artifact count for a single year, split into systems and security conferences.",
       "properties": {
         "year": {
-          "description": "Publication year.",
+          "description": "Publication year, e.g. 2023.",
           "title": "Year",
           "type": "integer"
         },
         "count": {
-          "description": "Total artifacts for this year.",
+          "description": "Total evaluated artifacts across all conferences for this year.",
           "minimum": 0,
           "title": "Count",
           "type": "integer"
         },
         "systems": {
-          "description": "Artifacts from systems conferences.",
+          "description": "Number of artifacts from systems conferences (ATC, EUROSYS, FAST, OSDI, SC, SOSP).",
           "minimum": 0,
           "title": "Systems",
           "type": "integer"
         },
         "security": {
-          "description": "Artifacts from security conferences.",
+          "description": "Number of artifacts from security conferences (ACSAC, CHES, NDSS, PETS, SYSTEX, USENIXSEC, WOOT).",
           "minimum": 0,
           "title": "Security",
           "type": "integer"

@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/ae_members.schema.json",
   "title": "AEMember Collection",
   "description": "Array of AEMember records. Each element: An Artifact Evaluation committee member with service history and institutional affiliation.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/AEMember"
@@ -14,17 +14,17 @@
       "description": "A single AE committee membership record.",
       "properties": {
         "conference": {
-          "description": "Conference abbreviation (e.g. 'OSDI', 'USENIXSEC').",
+          "description": "Conference abbreviation, e.g. 'OSDI', 'USENIXSEC', 'NDSS'.",
           "title": "Conference",
           "type": "string"
         },
         "year": {
-          "description": "Year of service.",
+          "description": "Calendar year of service, e.g. 2023.",
           "title": "Year",
           "type": "integer"
         },
         "role": {
-          "description": "Role on the committee: 'chair' or 'member'.",
+          "description": "Role on the committee. One of 'chair' or 'member'.",
           "title": "Role",
           "type": "string"
         }
@@ -42,34 +42,34 @@
       "description": "An Artifact Evaluation committee member with service history and institutional affiliation.",
       "properties": {
         "name": {
-          "description": "Full name of the AE member.",
+          "description": "Full name, e.g. 'Mathias Payer'. May include DBLP disambiguation suffix.",
           "title": "Name",
           "type": "string"
         },
         "display_name": {
-          "description": "Display name (may differ from canonical name).",
+          "description": "Human-readable name without disambiguation suffix, e.g. 'Mathias Payer'.",
           "title": "Display Name",
           "type": "string"
         },
         "affiliation": {
-          "description": "Current institutional affiliation.",
+          "description": "Current institutional affiliation, e.g. 'EPFL', 'MIT'.",
           "title": "Affiliation",
           "type": "string"
         },
         "total_memberships": {
-          "description": "Total number of AE committee memberships.",
+          "description": "Total number of AE committee memberships across all conferences and years.",
           "minimum": 0,
           "title": "Total Memberships",
           "type": "integer"
         },
         "chair_count": {
-          "description": "Number of times served as AE chair.",
+          "description": "Number of conference-years served as AE chair (versus regular member).",
           "minimum": 0,
           "title": "Chair Count",
           "type": "integer"
         },
         "conferences": {
-          "description": "AE committee memberships, one per conference-year served.",
+          "description": "List of AE committee memberships, one entry per conference-year served. Each has conference, year, role.",
           "items": {
             "$ref": "#/$defs/AEMembership"
           },
@@ -80,12 +80,12 @@
           "additionalProperties": {
             "type": "integer"
           },
-          "description": "Year (as string, e.g. '2023') → number of memberships that year.",
+          "description": "Year (as string key, e.g. '2023') → number of AE memberships that year. Example: {'2023': 5, '2024': 3}.",
           "title": "Years",
           "type": "object"
         },
         "area": {
-          "description": "Research area: 'systems', 'security', or 'both'.",
+          "description": "Research area based on conferences served: 'systems', 'security', or 'both' if spanning both.",
           "title": "Area",
           "type": "string"
         },
@@ -99,7 +99,7 @@
             }
           ],
           "default": null,
-          "description": "Earliest year of AE service.",
+          "description": "Earliest year of AE service, e.g. 2020. Null if unknown.",
           "title": "First Year"
         },
         "last_year": {
@@ -112,7 +112,7 @@
             }
           ],
           "default": null,
-          "description": "Most recent year of AE service.",
+          "description": "Most recent year of AE service, e.g. 2026. Null if unknown.",
           "title": "Last Year"
         }
       },
