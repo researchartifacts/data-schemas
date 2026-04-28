@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/paper_citations.schema.json",
   "title": "PaperCitation Collection",
   "description": "Citation data for a single paper via Google Scholar.",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "type": "array",
   "items": {
     "$ref": "#/$defs/PaperCitation"

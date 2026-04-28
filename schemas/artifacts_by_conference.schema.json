@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/artifacts_by_conference.schema.json",
   "title": "ConferenceEntry Collection",
   "description": "Artifact counts and badge breakdowns for a single conference.",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "type": "array",
   "items": {
     "$ref": "#/$defs/ConferenceEntry"

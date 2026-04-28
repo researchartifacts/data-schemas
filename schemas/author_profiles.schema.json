@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/author_profiles.schema.json",
   "title": "AuthorProfile Collection",
   "description": "Profile data for a single author combining publications and AE service.",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "type": "array",
   "items": {
     "$ref": "#/$defs/AuthorProfile"

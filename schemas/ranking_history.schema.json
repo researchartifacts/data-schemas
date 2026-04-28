@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/ranking_history.schema.json",
   "title": "RankingHistoryEntry Collection",
   "description": "A dated snapshot of all author rankings.",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "type": "array",
   "items": {
     "$ref": "#/$defs/RankingHistoryEntry"
