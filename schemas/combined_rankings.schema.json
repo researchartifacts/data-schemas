@@ -1,9 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/combined_rankings.schema.json",
+  "$comment": "Validates: assets/data/combined_rankings.json, assets/data/{conf}_combined_rankings.json",
+  "version": "0.1.2",
   "title": "AuthorRanking Collection",
   "description": "Array of AuthorRanking records. Each element: Author ranking entry combining artifact contributions, citation impact, and AE committee service.",
-  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/AuthorRanking"
@@ -155,7 +156,7 @@
           "type": "integer"
         },
         "ae_score": {
-          "description": "Points from AE service: (memberships × 3) + (chairs × 2).",
+          "description": "Points from AE service: (memberships \u00d7 3) + (chairs \u00d7 2).",
           "examples": [
             6
           ],
@@ -180,7 +181,7 @@
           "title": "Ae Ratio"
         },
         "combined_score": {
-          "description": "Total score: artifact_score + citation_score + ae_score. Only authors with ≥3 appear.",
+          "description": "Total score: artifact_score + citation_score + ae_score. Only authors with \u22653 appear.",
           "examples": [
             15
           ],
@@ -234,7 +235,7 @@
           "additionalProperties": {
             "type": "integer"
           },
-          "description": "Year (as string) → activity count for that year, e.g. {'2023': 5, '2024': 7}.",
+          "description": "Year (as string) \u2192 activity count for that year, e.g. {'2023': 5, '2024': 7}.",
           "examples": [
             [
               2021,

@@ -1,6 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/committee_stats.schema.json",
+  "$comment": "Validates: assets/data/committee_stats.json",
   "version": "0.1.2",
   "$defs": {
     "CommitteeSize": {
@@ -268,7 +269,7 @@
         },
         "type": "object"
       },
-      "description": "Year-level geographic/institutional breakdowns keyed by category (e.g. 'country', 'continent'), then year, then name → count.",
+      "description": "Year-level geographic/institutional breakdowns keyed by category (e.g. 'country', 'continent'), then year, then name \u2192 count.",
       "title": "By Year",
       "type": "object"
     },

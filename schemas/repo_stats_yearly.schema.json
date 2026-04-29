@@ -1,9 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/repo_stats_yearly.schema.json",
+  "$comment": "Validates: assets/data/repo_stats_yearly.json",
+  "version": "0.1.2",
   "title": "RepoStatsYearly Collection",
   "description": "Array of RepoStatsYearly records. Each element: Yearly repository statistics split by area (all, systems, security) with aggregate GitHub metrics.",
-  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/RepoStatsYearly"

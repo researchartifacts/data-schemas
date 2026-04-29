@@ -1,9 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/ae_members.schema.json",
+  "$comment": "Validates: assets/data/ae_members.json, assets/data/{area}_ae_members.json",
+  "version": "0.1.2",
   "title": "AEMember Collection",
   "description": "Array of AEMember records. Each element: An Artifact Evaluation committee member with service history and institutional affiliation.",
-  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/AEMember"
@@ -111,7 +112,7 @@
           "additionalProperties": {
             "type": "integer"
           },
-          "description": "Year (as string key, e.g. '2023') → number of AE memberships that year. Example: {'2023': 5, '2024': 3}.",
+          "description": "Year (as string key, e.g. '2023') \u2192 number of AE memberships that year. Example: {'2023': 5, '2024': 3}.",
           "examples": [
             [
               2021,

@@ -1,6 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/artifact_availability.schema.json",
+  "$comment": "Validates: assets/data/artifact_availability.json",
   "version": "0.1.2",
   "$defs": {
     "AvailabilityRecord": {
@@ -156,7 +157,7 @@
             },
             "type": "object"
           },
-          "description": "Nested breakdown: year string → area ('systems'/'security') → PlatformStats.",
+          "description": "Nested breakdown: year string \u2192 area ('systems'/'security') \u2192 PlatformStats.",
           "title": "By Year Area",
           "type": "object"
         },
@@ -167,7 +168,7 @@
             },
             "type": "object"
           },
-          "description": "Nested breakdown: year string → platform name → PlatformStats.",
+          "description": "Nested breakdown: year string \u2192 platform name \u2192 PlatformStats.",
           "title": "By Year Platform",
           "type": "object"
         },

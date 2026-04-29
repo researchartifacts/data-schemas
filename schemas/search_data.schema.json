@@ -1,9 +1,10 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/search_data.schema.json",
+  "$comment": "Validates: assets/data/search_data.json",
+  "version": "0.1.2",
   "title": "SearchEntry Collection",
   "description": "Array of SearchEntry records. Each element: Searchable artifact entry with paper metadata, badges, author names, and institutional affiliations.",
-  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/SearchEntry"

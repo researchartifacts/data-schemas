@@ -1,6 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/repo_stats_summary.schema.json",
+  "$comment": "Validates: _data/repo_stats.yml",
   "version": "0.1.4",
   "$defs": {
     "ConferenceRepoStats": {
@@ -670,8 +671,13 @@
         },
         "p25_stars": {
           "anyOf": [
-            { "minimum": 0, "type": "number" },
-            { "type": "null" }
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
           ],
           "default": null,
           "description": "25th percentile star count per repository. Null if not computed.",
@@ -679,8 +685,13 @@
         },
         "p75_stars": {
           "anyOf": [
-            { "minimum": 0, "type": "number" },
-            { "type": "null" }
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
           ],
           "default": null,
           "description": "75th percentile star count per repository. Null if not computed.",
@@ -688,8 +699,13 @@
         },
         "p25_forks": {
           "anyOf": [
-            { "minimum": 0, "type": "number" },
-            { "type": "null" }
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
           ],
           "default": null,
           "description": "25th percentile fork count per repository. Null if not computed.",
@@ -697,8 +713,13 @@
         },
         "p75_forks": {
           "anyOf": [
-            { "minimum": 0, "type": "number" },
-            { "type": "null" }
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
           ],
           "default": null,
           "description": "75th percentile fork count per repository. Null if not computed.",
@@ -719,7 +740,10 @@
       "properties": {
         "name": {
           "description": "Area name, e.g. 'systems' or 'security'.",
-          "examples": ["systems", "security"],
+          "examples": [
+            "systems",
+            "security"
+          ],
           "title": "Name",
           "type": "string"
         },
