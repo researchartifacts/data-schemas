@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/artifact_citations_summary.schema.json",
+  "$comment": "Validates: assets/data/artifact_citations_summary.json",
+  "version": "0.1.0",
+  "title": "Artifact Citations Summary",
+  "description": "Aggregated summary of artifact-level citation analysis. Reports how many artifacts have DOIs, how many were resolved in citation databases, and yearly breakdown of citation counts. Includes verification results distinguishing genuine citations from false positives.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "total_artifacts": {
+      "description": "Total number of artifacts tracked.",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "unique_dois": {
+      "description": "Number of unique DOIs found across artifacts.",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "artifacts_with_doi": {
+      "description": "Number of artifacts that have a DOI.",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "openalex_resolved": {
+      "description": "Number of DOIs successfully resolved in OpenAlex.",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "semantic_scholar_resolved": {
+      "description": "Number of DOIs successfully resolved in Semantic Scholar.",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "aggregate_resolved": {
+      "description": "Number of DOIs resolved in at least one citation source.",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "artifacts_with_citations": {
+      "description": "Number of artifacts with verified genuine citations.",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "artifacts_with_unverified_citations": {
+      "description": "Number of artifacts with unverified (raw) citation counts > 0.",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "by_year": {
+      "description": "Per-year citation statistics. Keyed by year string.",
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/YearCitationStats"
+      }
+    },
+    "verification_note": {
+      "description": "Human-readable summary of citation verification results.",
+      "type": "string"
+    }
+  },
+  "required": ["total_artifacts", "unique_dois", "artifacts_with_doi", "openalex_resolved", "semantic_scholar_resolved", "aggregate_resolved", "artifacts_with_citations", "by_year"],
+  "$defs": {
+    "YearCitationStats": {
+      "additionalProperties": false,
+      "description": "Citation statistics for artifacts published in a given year.",
+      "properties": {
+        "n": {
+          "description": "Number of artifacts from this year.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "resolved": {
+          "description": "Number of artifacts resolved in citation databases.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "cited": {
+          "description": "Number of artifacts with verified genuine citations.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "sum_cites": {
+          "description": "Sum of verified citation counts for this year's artifacts.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "unverified_cited": {
+          "description": "Number of artifacts with unverified (raw) citation counts > 0.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "unverified_sum_cites": {
+          "description": "Sum of unverified citation counts for this year's artifacts.",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": ["n", "resolved", "cited", "sum_cites", "unverified_cited", "unverified_sum_cites"],
+      "title": "YearCitationStats",
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/paper_citations_summary.schema.json",
+  "$comment": "Validates: assets/data/paper_citations_summary.json",
+  "version": "0.1.0",
+  "title": "Paper Citations Summary",
+  "description": "Summary statistics of paper-level citation lookups. Reports coverage, total citations found, and generation metadata.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "total_papers": {
+      "description": "Total number of papers in the database.",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "papers_found": {
+      "description": "Number of papers successfully found in citation databases.",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "papers_with_errors": {
+      "description": "Number of papers that could not be looked up (errors or not found).",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "new_queries": {
+      "description": "Number of new papers queried in this run.",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "total_citations": {
+      "description": "Sum of citation counts across all found papers.",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "coverage_pct": {
+      "description": "Percentage of papers successfully resolved (0-100).",
+      "minimum": 0,
+      "maximum": 100,
+      "type": "number"
+    },
+    "source": {
+      "description": "Citation data source used.",
+      "examples": ["scholar", "openalex"],
+      "type": "string"
+    },
+    "stopped_early": {
+      "description": "Whether the lookup was terminated before completion (e.g. rate limits).",
+      "type": "boolean"
+    },
+    "generated_at": {
+      "description": "ISO 8601 timestamp when this summary was generated.",
+      "examples": ["2026-03-20T09:48:28Z"],
+      "format": "date-time",
+      "type": "string"
+    }
+  },
+  "required": ["total_papers", "papers_found", "papers_with_errors", "new_queries", "total_citations", "coverage_pct", "source", "stopped_early", "generated_at"]
+}

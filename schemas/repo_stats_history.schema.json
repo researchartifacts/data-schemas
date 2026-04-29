@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/repo_stats_history.schema.json",
+  "$comment": "Validates: assets/data/repo_stats_history.json, _build/repo_stats_history.json",
+  "version": "0.1.0",
+  "title": "Repository Stats History",
+  "description": "Time-series of GitHub stars and forks for every tracked repository. Keyed by repository URL; each entry contains metadata and dated snapshots showing how popularity evolves over time.",
+  "type": "object",
+  "additionalProperties": {
+    "$ref": "#/$defs/RepoHistoryEntry"
+  },
+  "$defs": {
+    "RepoHistoryEntry": {
+      "additionalProperties": false,
+      "description": "Historical star/fork data for a single repository.",
+      "properties": {
+        "meta": {
+          "$ref": "#/$defs/RepoMeta"
+        },
+        "snapshots": {
+          "description": "Chronologically ordered snapshots of repository metrics.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/RepoSnapshot"
+          }
+        }
+      },
+      "required": ["meta", "snapshots"],
+      "title": "RepoHistoryEntry",
+      "type": "object"
+    },
+    "RepoMeta": {
+      "additionalProperties": false,
+      "description": "Metadata identifying which paper/conference the repository belongs to.",
+      "properties": {
+        "conference": {
+          "description": "Conference abbreviation, e.g. 'OSDI', 'ACSAC'.",
+          "examples": ["OSDI", "ACSAC"],
+          "type": "string"
+        },
+        "year": {
+          "description": "Publication year of the artifact.",
+          "examples": [2023],
+          "type": "integer"
+        },
+        "area": {
+          "description": "Research area: 'systems' or 'security'.",
+          "enum": ["systems", "security"],
+          "type": "string"
+        },
+        "title": {
+          "description": "Paper title associated with this repository.",
+          "type": "string"
+        },
+        "source": {
+          "description": "Hosting platform of the repository.",
+          "examples": ["github", "zenodo"],
+          "type": "string"
+        }
+      },
+      "required": ["conference", "year", "area", "title", "source"],
+      "title": "RepoMeta",
+      "type": "object"
+    },
+    "RepoSnapshot": {
+      "description": "A single point-in-time measurement of repository popularity. GitHub repos have stars/forks; Zenodo records have views/downloads.",
+      "properties": {
+        "date": {
+          "description": "ISO 8601 date (YYYY-MM-DD) when the measurement was taken.",
+          "examples": ["2026-04-07"],
+          "format": "date",
+          "type": "string"
+        },
+        "stars": {
+          "description": "GitHub star count at this date.",
+          "examples": [42],
+          "minimum": 0,
+          "type": "integer"
+        },
+        "forks": {
+          "description": "GitHub fork count at this date.",
+          "examples": [12],
+          "minimum": 0,
+          "type": "integer"
+        },
+        "views": {
+          "description": "Zenodo view count at this date.",
+          "examples": [213],
+          "minimum": 0,
+          "type": "integer"
+        },
+        "downloads": {
+          "description": "Zenodo download count at this date.",
+          "examples": [216],
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": ["date"],
+      "oneOf": [
+        { "required": ["stars", "forks"] },
+        { "required": ["views", "downloads"] }
+      ],
+      "title": "RepoSnapshot",
+      "type": "object"
+    }
+  }
+}

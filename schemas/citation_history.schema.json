@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/citation_history.schema.json",
+  "$comment": "Validates: _build/citation_history.json",
+  "version": "0.1.0",
+  "title": "Citation History",
+  "description": "Time-series of citation counts for tracked papers. Keyed by paper identifier (CONF/YEAR/HASH); each entry contains metadata and dated snapshots from citation sources (OpenAlex, Semantic Scholar).",
+  "type": "object",
+  "additionalProperties": {
+    "$ref": "#/$defs/CitationHistoryEntry"
+  },
+  "$defs": {
+    "CitationHistoryEntry": {
+      "additionalProperties": false,
+      "description": "Historical citation data for a single paper.",
+      "properties": {
+        "meta": {
+          "$ref": "#/$defs/CitationMeta"
+        },
+        "snapshots": {
+          "description": "Chronologically ordered citation count snapshots.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CitationSnapshot"
+          }
+        }
+      },
+      "required": ["meta", "snapshots"],
+      "title": "CitationHistoryEntry",
+      "type": "object"
+    },
+    "CitationMeta": {
+      "additionalProperties": false,
+      "description": "Metadata identifying the paper.",
+      "properties": {
+        "title": {
+          "description": "Paper title.",
+          "type": "string"
+        },
+        "conference": {
+          "description": "Conference abbreviation.",
+          "examples": ["OSDI", "ATC"],
+          "type": "string"
+        },
+        "year": {
+          "description": "Publication year.",
+          "examples": [2022],
+          "type": "integer"
+        },
+        "area": {
+          "description": "Research area: 'systems' or 'security'.",
+          "enum": ["systems", "security"],
+          "type": "string"
+        },
+        "paper_doi": {
+          "description": "DOI of the paper (may be empty string if unknown).",
+          "type": "string"
+        }
+      },
+      "required": ["title", "conference", "year", "area", "paper_doi"],
+      "title": "CitationMeta",
+      "type": "object"
+    },
+    "CitationSnapshot": {
+      "additionalProperties": false,
+      "description": "Citation counts from multiple sources at a point in time.",
+      "properties": {
+        "date": {
+          "description": "ISO 8601 date (YYYY-MM-DD) when citation counts were fetched.",
+          "examples": ["2026-04-28"],
+          "format": "date",
+          "type": "string"
+        },
+        "cited_by_count": {
+          "description": "Total citation count (combined/primary).",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "citations_openalex": {
+          "description": "Citation count from OpenAlex.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "citations_semantic_scholar": {
+          "description": "Citation count from Semantic Scholar (null if unavailable).",
+          "minimum": 0,
+          "type": ["integer", "null"]
+        }
+      },
+      "required": ["date", "cited_by_count", "citations_openalex", "citations_semantic_scholar"],
+      "title": "CitationSnapshot",
+      "type": "object"
+    }
+  }
+}

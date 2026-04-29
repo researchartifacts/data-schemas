@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/citation_verification_summary.schema.json",
+  "$comment": "Validates: assets/data/citation_verification_summary.json",
+  "version": "0.1.0",
+  "title": "Citation Verification Summary",
+  "description": "Results of verifying citing DOIs via Crossref to distinguish genuine third-party artifact citations from false positives (paper-level citations) and self-citations.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "total_citing_dois_checked": {
+      "description": "Total number of citing DOIs that were verified via Crossref.",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "verdicts": {
+      "description": "Breakdown of verification verdicts.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "FALSE_POSITIVE": {
+          "description": "Citations that cited the paper, not the artifact (title confusion in OpenAlex).",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "SELF_CITATION": {
+          "description": "Citations by authors of the artifact itself.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "UNKNOWN": {
+          "description": "Citations that could not be classified.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "GENUINE": {
+          "description": "Verified genuine third-party artifact citations.",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": ["FALSE_POSITIVE", "SELF_CITATION", "UNKNOWN", "GENUINE"]
+    },
+    "genuine_third_party_citations": {
+      "description": "Total count of genuine third-party artifact citations.",
+      "minimum": 0,
+      "type": "integer"
+    },
+    "method": {
+      "description": "Description of the verification methodology used.",
+      "type": "string"
+    },
+    "note": {
+      "description": "Additional context explaining the verification results.",
+      "type": "string"
+    }
+  },
+  "required": ["total_citing_dois_checked", "verdicts", "genuine_third_party_citations", "method", "note"]
+}

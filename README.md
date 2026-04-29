@@ -38,25 +38,26 @@ Each schema validates one or more output files produced by the pipeline. Output 
 | [search_data](https://reprodb.github.io/data-schemas/search_data.html) | `assets/data/search_data.json` | `generate_search_data.py` | Merged data for website full-text search |
 | [summary](https://reprodb.github.io/data-schemas/summary.html) | `_data/summary.yml`, `assets/data/summary.json` | `generate_statistics.py` | High-level site summary statistics |
 | [top_repos](https://reprodb.github.io/data-schemas/top_repos.html) | `assets/data/top_repos.json`, `assets/data/{area}_top_repos.json` | `generate_repo_stats.py` | Top repositories by stars |
+| [artifact_citations_summary](schemas/artifact_citations_summary.schema.json) | `assets/data/artifact_citations_summary.json` | `generate_artifact_citations.py` | Citation analysis summary with per-year breakdown and verification |
+| [citation_history](schemas/citation_history.schema.json) | `_build/citation_history.json` | `generate_paper_citations_doi.py` | Time-series of per-paper citation counts from OpenAlex/Semantic Scholar |
+| [citation_verification_summary](schemas/citation_verification_summary.schema.json) | `assets/data/citation_verification_summary.json` | `generate_artifact_citations.py` | Crossref-based verification distinguishing genuine vs false-positive citations |
+| [conf_authors](schemas/conf_authors.schema.json) | `_build/{conf}_conf_authors.json` | `generate_author_stats.py` | Per-conference author rankings with badge breakdowns |
+| [geographic_statistics](schemas/geographic_statistics.schema.json) | `assets/data/geographic_statistics.json` | `generate_institution_rankings.py` | Country and continent statistics for reproducibility and artifacts |
+| [institution_timeline](schemas/institution_timeline.schema.json) | `assets/data/institution_timeline.json`, `_build/institution_timeline.json` | `committee_stats/` | Year-over-year institution AE participation with per-area breakdown |
+| [paper_authors_map](schemas/paper_authors_map.schema.json) | `assets/data/paper_authors_map.json`, `_build/paper_authors_map.json` | `generate_author_stats.py` | Paper → author mapping with venue/badge info |
+| [paper_citations_summary](schemas/paper_citations_summary.schema.json) | `assets/data/paper_citations_summary.json` | `generate_paper_citations_doi.py` | Summary of paper citation lookup coverage and totals |
+| [repo_stats_history](schemas/repo_stats_history.schema.json) | `assets/data/repo_stats_history.json`, `_build/repo_stats_history.json` | `generate_repo_stats.py` | Time-series of stars/forks (GitHub) or views/downloads (Zenodo) per repo |
 
 ### Output files without schemas (not yet documented)
 
 | Output file | Generator | Description | Priority |
 |-------------|-----------|-------------|----------|
-| `assets/data/artifact_citations_summary.json` | `generate_artifact_citations.py` | Summary stats for citation data | Low |
-| `assets/data/citation_verification_summary.json` | `generate_artifact_citations.py` | Citation verification report | Low |
 | `assets/data/cited_artifacts_by_author.json` | `generate_cited_artifacts_list.py` | Authors mapped to their cited artifacts | Medium |
 | `assets/data/cited_artifacts_by_institution.json` | `generate_cited_artifacts_list.py` | Institutions mapped to cited artifacts | Medium |
 | `assets/data/cited_artifacts_list.json` | `generate_cited_artifacts_list.py` | Flat list of all cited artifacts | Medium |
-| `assets/data/geographic_statistics.json` | `generate_institution_rankings.py` | Country/region breakdown | Medium |
-| `assets/data/paper_citations_summary.json` | `generate_paper_citations_doi.py` | Summary stats for paper citations | Low |
-| `_build/institution_timeline.json` | `committee_stats/` | Institution participation over time | Low |
-| `_build/paper_authors_map.json` | `generate_author_stats.py` | Intermediate: paper→author mapping | Low |
-| `_build/repo_stats_history.json` | `generate_repo_stats.py` | Historical star/fork snapshots per repo | Medium |
 | `_data/author_summary.yml` | `generate_author_stats.py` | Author summary for Jekyll | Low |
 | `_data/combined_summary.yml` | `generate_combined_rankings.py` | Combined ranking summary for Jekyll | Low |
 | `_data/coverage.yml` | `generate_statistics.py` | Conference/year coverage table | Low |
 | `_data/navigation.yml` | `generate_statistics.py` | Site navigation structure | Low |
 | `_data/pipeline_metadata.yml` | Pipeline runner | Run timestamp and version info | Low |
 | `_data/all_results_cache.yml` | `generate_statistics.py` | Full results cache for Jekyll | Low |
-| `assets/data/{conf}_conf_authors.json` | `generate_author_stats.py` | Per-conference author details | Medium |

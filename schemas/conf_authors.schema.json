@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/conf_authors.schema.json",
+  "$comment": "Validates: _build/{conf}_conf_authors.json",
+  "version": "0.1.0",
+  "title": "Conference Authors",
+  "description": "Per-conference author rankings. Each file (e.g. osdi_conf_authors.json) contains authors ranked by artifact contribution score for that specific conference.",
+  "type": "array",
+  "items": {
+    "$ref": "#/$defs/ConfAuthorEntry"
+  },
+  "$defs": {
+    "ConfAuthorEntry": {
+      "additionalProperties": false,
+      "description": "A single author's statistics within one conference.",
+      "properties": {
+        "name": {
+          "description": "Author name (disambiguated with numeric suffix if needed).",
+          "examples": ["Fan Yang 0024"],
+          "type": "string"
+        },
+        "display_name": {
+          "description": "Human-readable display name (without disambiguation suffix).",
+          "examples": ["Fan Yang"],
+          "type": "string"
+        },
+        "affiliation": {
+          "description": "Current institutional affiliation.",
+          "examples": ["Microsoft Research", "MIT"],
+          "type": "string"
+        },
+        "artifact_score": {
+          "description": "Combined artifact evaluation score.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "artifact_count": {
+          "description": "Number of artifacts this author contributed.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "total": {
+          "description": "Total artifact-related contributions.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "total_papers": {
+          "description": "Total papers published at this conference.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "artifact_pct": {
+          "description": "Percentage of papers with artifacts (0-100).",
+          "minimum": 0,
+          "type": "number"
+        },
+        "repro_pct": {
+          "description": "Percentage of artifacts that achieved Reproduced badge (0-100).",
+          "minimum": 0,
+          "type": "number"
+        },
+        "functional_pct": {
+          "description": "Percentage of artifacts that achieved Functional badge (0-100).",
+          "minimum": 0,
+          "type": "number"
+        },
+        "last_5_years": {
+          "description": "Artifact count in the last 5 years.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "artifact_citations": {
+          "description": "Total citations to this author's artifacts.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "badges_available": {
+          "description": "Number of Available badges earned.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "badges_functional": {
+          "description": "Number of Functional badges earned.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "badges_reproducible": {
+          "description": "Number of Reproduced badges earned.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "conferences": {
+          "description": "Conferences this author has contributed to (usually just one for conf-specific files).",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "years": {
+          "description": "Artifact count per year. Keyed by year string.",
+          "type": "object",
+          "additionalProperties": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "rank": {
+          "description": "Author's rank within this conference.",
+          "minimum": 1,
+          "type": "integer"
+        },
+        "author_id": {
+          "description": "Internal author identifier.",
+          "type": "integer"
+        }
+      },
+      "required": ["name", "display_name", "affiliation", "artifact_score", "artifact_count", "total", "total_papers", "artifact_pct", "repro_pct", "functional_pct", "last_5_years", "artifact_citations", "badges_available", "badges_functional", "badges_reproducible", "conferences", "years", "rank", "author_id"],
+      "title": "ConfAuthorEntry",
+      "type": "object"
+    }
+  }
+}

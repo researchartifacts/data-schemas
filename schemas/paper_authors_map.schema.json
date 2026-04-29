@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/paper_authors_map.schema.json",
+  "$comment": "Validates: assets/data/paper_authors_map.json, _build/paper_authors_map.json",
+  "version": "0.1.0",
+  "title": "Paper Authors Map",
+  "description": "Mapping of papers to their authors, used as an intermediate lookup for citation attribution and author statistics. Each entry links a paper title to its author list, venue, badges, and DOI.",
+  "type": "array",
+  "items": {
+    "$ref": "#/$defs/PaperAuthorEntry"
+  },
+  "$defs": {
+    "PaperAuthorEntry": {
+      "additionalProperties": false,
+      "description": "A single paper with its author and venue information.",
+      "properties": {
+        "title": {
+          "description": "Full paper title.",
+          "type": "string"
+        },
+        "normalized_title": {
+          "description": "Lowercase title with punctuation removed (for matching).",
+          "type": "string"
+        },
+        "authors": {
+          "description": "List of author names.",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "year": {
+          "description": "Publication year.",
+          "type": "integer"
+        },
+        "artifact_year": {
+          "description": "Year the artifact was evaluated (may differ from publication year).",
+          "type": "integer"
+        },
+        "venue": {
+          "description": "Publication venue (conference name).",
+          "examples": ["SOSP", "OSDI", "USENIX Security"],
+          "type": "string"
+        },
+        "conference": {
+          "description": "Normalized conference abbreviation.",
+          "examples": ["SOSP", "OSDI"],
+          "type": "string"
+        },
+        "category": {
+          "description": "Research area category.",
+          "enum": ["systems", "security"],
+          "type": "string"
+        },
+        "badges": {
+          "description": "List of artifact evaluation badges earned.",
+          "type": "array",
+          "items": {
+            "type": "string",
+            "examples": ["Available", "Functional", "Reproduced"]
+          }
+        },
+        "doi_url": {
+          "description": "DOI URL for the paper (may be empty string).",
+          "type": "string"
+        }
+      },
+      "required": ["title", "normalized_title", "authors", "year", "artifact_year", "venue", "conference", "category", "badges", "doi_url"],
+      "title": "PaperAuthorEntry",
+      "type": "object"
+    }
+  }
+}

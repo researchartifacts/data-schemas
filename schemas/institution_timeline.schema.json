@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/institution_timeline.schema.json",
+  "$comment": "Validates: assets/data/institution_timeline.json, _build/institution_timeline.json",
+  "version": "0.1.0",
+  "title": "Institution Timeline",
+  "description": "Year-over-year institution participation in artifact evaluation, broken down by area. Shows which institutions contributed AE committee members each year and tracks unique institution counts over time.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "all": {
+      "description": "Per-year institution participation counts across all areas. Keyed by year string; values are objects mapping institution name to member count.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "systems": {
+      "description": "Per-year institution participation counts for systems conferences.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "security": {
+      "description": "Per-year institution participation counts for security conferences.",
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "top_by_year": {
+      "description": "Top institutions per year, ranked by participation count.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/TopByYearEntry"
+      }
+    },
+    "unique_by_year": {
+      "description": "Count of unique institutions participating each year, split by area.",
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/UniqueByYearEntry"
+      }
+    }
+  },
+  "required": ["all", "systems", "security", "top_by_year", "unique_by_year"],
+  "$defs": {
+    "TopByYearEntry": {
+      "additionalProperties": false,
+      "description": "Top institutions for a single year.",
+      "properties": {
+        "year": {
+          "description": "Calendar year.",
+          "examples": [2023],
+          "type": "integer"
+        },
+        "institutions": {
+          "description": "Institutions ranked by AE member count for this year.",
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/InstitutionCount"
+          }
+        }
+      },
+      "required": ["year", "institutions"],
+      "title": "TopByYearEntry",
+      "type": "object"
+    },
+    "InstitutionCount": {
+      "additionalProperties": false,
+      "description": "An institution and its member count.",
+      "properties": {
+        "name": {
+          "description": "Institution name.",
+          "examples": ["MIT", "ETH Zurich"],
+          "type": "string"
+        },
+        "count": {
+          "description": "Number of AE committee members from this institution.",
+          "minimum": 1,
+          "type": "integer"
+        }
+      },
+      "required": ["name", "count"],
+      "title": "InstitutionCount",
+      "type": "object"
+    },
+    "UniqueByYearEntry": {
+      "additionalProperties": false,
+      "description": "Unique institution count for a single year.",
+      "properties": {
+        "year": {
+          "description": "Calendar year.",
+          "examples": [2023],
+          "type": "integer"
+        },
+        "total": {
+          "description": "Total unique institutions across all areas.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "systems": {
+          "description": "Unique institutions in systems conferences.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "security": {
+          "description": "Unique institutions in security conferences.",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": ["year", "total", "systems", "security"],
+      "title": "UniqueByYearEntry",
+      "type": "object"
+    }
+  }
+}

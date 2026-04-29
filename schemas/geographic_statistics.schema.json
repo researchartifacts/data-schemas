@@ -1,0 +1,174 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/geographic_statistics.schema.json",
+  "$comment": "Validates: assets/data/geographic_statistics.json",
+  "version": "0.1.0",
+  "title": "Geographic Statistics",
+  "description": "Aggregated reproducibility and artifact statistics broken down by country and continent. Shows how research artifact quality and participation vary geographically.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "generated": {
+      "description": "Whether geographic data was successfully generated.",
+      "type": "boolean"
+    },
+    "by_country": {
+      "description": "Statistics keyed by ISO 3166-1 alpha-2 country code.",
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/CountryStats"
+      }
+    },
+    "by_continent": {
+      "description": "Statistics keyed by continent name.",
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/ContinentStats"
+      }
+    }
+  },
+  "required": ["generated", "by_country", "by_continent"],
+  "$defs": {
+    "ReproducibilityMetrics": {
+      "additionalProperties": false,
+      "description": "Reproducibility score statistics for a geographic region.",
+      "properties": {
+        "median": {
+          "description": "Median reproducibility score.",
+          "type": "number"
+        },
+        "mean": {
+          "description": "Mean reproducibility score.",
+          "type": "number"
+        },
+        "min": {
+          "description": "Minimum reproducibility score.",
+          "type": "number"
+        },
+        "max": {
+          "description": "Maximum reproducibility score.",
+          "type": "number"
+        },
+        "institutions_in_top_50": {
+          "description": "Number of institutions from this region in the top 50 ranking.",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": ["median", "mean", "min", "max", "institutions_in_top_50"],
+      "type": "object"
+    },
+    "RateMetrics": {
+      "additionalProperties": false,
+      "description": "Simple median/mean pair for a percentage metric.",
+      "properties": {
+        "median": {
+          "description": "Median percentage.",
+          "type": "number"
+        },
+        "mean": {
+          "description": "Mean percentage.",
+          "type": "number"
+        }
+      },
+      "required": ["median", "mean"],
+      "type": "object"
+    },
+    "CountryStats": {
+      "additionalProperties": false,
+      "description": "Artifact and reproducibility statistics for a single country.",
+      "properties": {
+        "continent": {
+          "description": "Continent the country belongs to.",
+          "examples": ["North America", "Europe", "Asia"],
+          "type": "string"
+        },
+        "num_institutions": {
+          "description": "Number of research institutions in this country.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "author_count": {
+          "description": "Number of distinct artifact authors from this country.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "num_artifacts": {
+          "description": "Total artifacts produced by authors from this country.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "num_papers": {
+          "description": "Total papers by authors from this country.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "papers_with_artifacts": {
+          "description": "Papers that have associated artifacts.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "reproducibility": {
+          "$ref": "#/$defs/ReproducibilityMetrics"
+        },
+        "functionality": {
+          "$ref": "#/$defs/RateMetrics"
+        },
+        "artifact_availability": {
+          "$ref": "#/$defs/RateMetrics"
+        }
+      },
+      "required": ["continent", "num_institutions", "author_count", "num_artifacts", "num_papers", "papers_with_artifacts", "reproducibility", "functionality", "artifact_availability"],
+      "title": "CountryStats",
+      "type": "object"
+    },
+    "ContinentStats": {
+      "additionalProperties": false,
+      "description": "Artifact and reproducibility statistics for a continent.",
+      "properties": {
+        "num_countries": {
+          "description": "Number of countries with artifact authors on this continent.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "num_institutions": {
+          "description": "Number of research institutions on this continent.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "author_count": {
+          "description": "Number of distinct artifact authors on this continent.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "num_artifacts": {
+          "description": "Total artifacts produced on this continent.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "num_papers": {
+          "description": "Total papers by authors from this continent.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "papers_with_artifacts": {
+          "description": "Papers that have associated artifacts.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "reproducibility": {
+          "$ref": "#/$defs/ReproducibilityMetrics"
+        },
+        "functionality": {
+          "$ref": "#/$defs/RateMetrics"
+        },
+        "artifact_availability": {
+          "$ref": "#/$defs/RateMetrics"
+        }
+      },
+      "required": ["num_countries", "num_institutions", "author_count", "num_artifacts", "num_papers", "papers_with_artifacts", "reproducibility", "functionality", "artifact_availability"],
+      "title": "ContinentStats",
+      "type": "object"
+    }
+  }
+}
