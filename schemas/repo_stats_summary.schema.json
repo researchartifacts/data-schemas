@@ -60,6 +60,24 @@
           "title": "Avg Forks",
           "type": "number"
         },
+        "median_stars": {
+          "description": "Median star count per repository for this conference.",
+          "examples": [
+            12.0
+          ],
+          "minimum": 0,
+          "title": "Median Stars",
+          "type": "number"
+        },
+        "median_forks": {
+          "description": "Median fork count per repository for this conference.",
+          "examples": [
+            3.0
+          ],
+          "minimum": 0,
+          "title": "Median Forks",
+          "type": "number"
+        },
         "max_stars": {
           "description": "Maximum star count among all repos for this conference.",
           "examples": [
@@ -275,6 +293,24 @@
           ],
           "minimum": 0,
           "title": "Avg Forks",
+          "type": "number"
+        },
+        "median_stars": {
+          "description": "Median GitHub star count per repository.",
+          "examples": [
+            12.0
+          ],
+          "minimum": 0,
+          "title": "Median Stars",
+          "type": "number"
+        },
+        "median_forks": {
+          "description": "Median GitHub fork count per repository.",
+          "examples": [
+            3.0
+          ],
+          "minimum": 0,
+          "title": "Median Forks",
           "type": "number"
         },
         "last_updated": {
@@ -507,6 +543,40 @@
             65.3
           ],
           "title": "Avg Forks"
+        },
+        "median_stars": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Median star count per repository. Null if not computed.",
+          "examples": [
+            12.0
+          ],
+          "title": "Median Stars"
+        },
+        "median_forks": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Median fork count per repository. Null if not computed.",
+          "examples": [
+            3.0
+          ],
+          "title": "Median Forks"
         }
       },
       "required": [
