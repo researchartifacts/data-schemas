@@ -106,6 +106,40 @@
           "title": "Affiliation",
           "type": "string"
         },
+        "country": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Country name resolved from affiliation, e.g. 'United States', 'Germany'. Null if unresolved.",
+          "examples": [
+            "United States"
+          ],
+          "title": "Country"
+        },
+        "country_code": {
+          "anyOf": [
+            {
+              "maxLength": 2,
+              "minLength": 2,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "ISO 3166-1 alpha-2 country code, e.g. 'US', 'DE'. Null if unresolved.",
+          "examples": [
+            "US"
+          ],
+          "title": "Country Code"
+        },
         "combined_score": {
           "description": "Total score: artifact_score + citation_score + ae_score. Example: 633.",
           "examples": [
@@ -307,6 +341,22 @@
           "maxItems": 20,
           "title": "Top Authors",
           "type": "array"
+        },
+        "scope": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Scope tag for scoped rankings, e.g. 'systems' or 'OSDI'. Null in overall rankings.",
+          "examples": [
+            "systems"
+          ],
+          "title": "Scope"
         }
       },
       "required": [
