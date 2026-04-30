@@ -197,6 +197,66 @@
           "title": "Max Forks",
           "type": "integer"
         },
+        "median_stars": {
+          "default": 0,
+          "description": "Median star count per repository for this conference.",
+          "examples": [
+            25.0
+          ],
+          "minimum": 0,
+          "title": "Median Stars",
+          "type": "number"
+        },
+        "median_forks": {
+          "default": 0,
+          "description": "Median fork count per repository for this conference.",
+          "examples": [
+            6.0
+          ],
+          "minimum": 0,
+          "title": "Median Forks",
+          "type": "number"
+        },
+        "p25_stars": {
+          "default": 0,
+          "description": "25th percentile of stars for this conference.",
+          "examples": [
+            8.0
+          ],
+          "minimum": 0,
+          "title": "P25 Stars",
+          "type": "number"
+        },
+        "p75_stars": {
+          "default": 0,
+          "description": "75th percentile of stars for this conference.",
+          "examples": [
+            80.0
+          ],
+          "minimum": 0,
+          "title": "P75 Stars",
+          "type": "number"
+        },
+        "p25_forks": {
+          "default": 0,
+          "description": "25th percentile of forks for this conference.",
+          "examples": [
+            2.0
+          ],
+          "minimum": 0,
+          "title": "P25 Forks",
+          "type": "number"
+        },
+        "p75_forks": {
+          "default": 0,
+          "description": "75th percentile of forks for this conference.",
+          "examples": [
+            18.0
+          ],
+          "minimum": 0,
+          "title": "P75 Forks",
+          "type": "number"
+        },
         "years": {
           "description": "Per-year repository metrics, ordered chronologically.",
           "examples": [
@@ -686,6 +746,66 @@
             65.3
           ],
           "title": "Avg Forks"
+        },
+        "median_stars": {
+          "default": 0,
+          "description": "Median star count per repository for this year.",
+          "examples": [
+            25.0
+          ],
+          "minimum": 0,
+          "title": "Median Stars",
+          "type": "number"
+        },
+        "median_forks": {
+          "default": 0,
+          "description": "Median fork count per repository for this year.",
+          "examples": [
+            6.0
+          ],
+          "minimum": 0,
+          "title": "Median Forks",
+          "type": "number"
+        },
+        "p25_stars": {
+          "default": 0,
+          "description": "25th percentile of stars for this year.",
+          "examples": [
+            8.0
+          ],
+          "minimum": 0,
+          "title": "P25 Stars",
+          "type": "number"
+        },
+        "p75_stars": {
+          "default": 0,
+          "description": "75th percentile of stars for this year.",
+          "examples": [
+            80.0
+          ],
+          "minimum": 0,
+          "title": "P75 Stars",
+          "type": "number"
+        },
+        "p25_forks": {
+          "default": 0,
+          "description": "25th percentile of forks for this year.",
+          "examples": [
+            2.0
+          ],
+          "minimum": 0,
+          "title": "P25 Forks",
+          "type": "number"
+        },
+        "p75_forks": {
+          "default": 0,
+          "description": "75th percentile of forks for this year.",
+          "examples": [
+            18.0
+          ],
+          "minimum": 0,
+          "title": "P75 Forks",
+          "type": "number"
         }
       },
       "required": [
