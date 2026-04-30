@@ -1,10 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/institution_ranking_history.schema.json",
-  "$comment": "Validates: assets/data/institution_ranking_history.json",
-  "version": "0.1.2",
   "title": "InstitutionRankingHistoryEntry Collection",
   "description": "Array of InstitutionRankingHistoryEntry records. Each element: Dated snapshot of all institution rankings, enabling rank-over-time analysis.",
+  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/InstitutionRankingHistoryEntry"
@@ -42,7 +41,7 @@
           "type": "integer"
         },
         "aes": {
-          "description": "AE service score: (memberships \u00d7 3) + (chairs \u00d7 2).",
+          "description": "AE service score: (memberships × 3) + (chairs × 2).",
           "examples": [
             6
           ],
@@ -128,7 +127,7 @@
           "additionalProperties": {
             "$ref": "#/$defs/InstitutionRankingSnapshot"
           },
-          "description": "Normalized institution name \u2192 ranking snapshot. Keys are institution names.",
+          "description": "Normalized institution name → ranking snapshot. Keys are institution names.",
           "title": "Entries",
           "type": "object"
         }

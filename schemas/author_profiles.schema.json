@@ -1,10 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/author_profiles.schema.json",
-  "$comment": "Validates: assets/data/author_profiles.json",
-  "version": "0.1.2",
   "title": "AuthorProfile Collection",
   "description": "Array of AuthorProfile records. Each element: Unified author profile combining publication record, artifact metrics, and AE committee service.",
+  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/AuthorProfile"
@@ -346,7 +345,7 @@
           "additionalProperties": {
             "type": "integer"
           },
-          "description": "Year (as string key, e.g. '2023') \u2192 number of AE memberships that year. Example: {'2023': 5, '2024': 3}.",
+          "description": "Year (as string key, e.g. '2023') → number of AE memberships that year. Example: {'2023': 5, '2024': 3}.",
           "title": "Ae Years",
           "type": "object"
         },

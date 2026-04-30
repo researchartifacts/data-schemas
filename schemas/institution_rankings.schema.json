@@ -1,10 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/institution_rankings.schema.json",
-  "$comment": "Validates: assets/data/institution_rankings.json, assets/data/{conf}_institution_rankings.json",
-  "version": "0.1.2",
   "title": "InstitutionRanking Collection",
   "description": "Array of InstitutionRanking records. Each element: Institution ranking aggregating artifact production, citation impact, and AE committee service across affiliated authors.",
+  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/InstitutionRanking"
@@ -194,7 +193,7 @@
           "title": "Citation Score"
         },
         "ae_score": {
-          "description": "Points from AE service: (memberships \u00d7 3) + (chairs \u00d7 2).",
+          "description": "Points from AE service: (memberships × 3) + (chairs × 2).",
           "examples": [
             6
           ],
@@ -323,7 +322,7 @@
           "additionalProperties": {
             "type": "integer"
           },
-          "description": "Year (as string) \u2192 activity count, e.g. {'2023': 31, '2024': 59}.",
+          "description": "Year (as string) → activity count, e.g. {'2023': 31, '2024': 59}.",
           "examples": [
             [
               2021,

@@ -1,8 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/repo_stats_summary.schema.json",
-  "$comment": "Validates: _data/repo_stats.yml",
-  "version": "0.1.4",
+  "version": "0.1.2",
   "$defs": {
     "ConferenceRepoStats": {
       "additionalProperties": false,
@@ -59,48 +58,6 @@
           ],
           "minimum": 0,
           "title": "Avg Forks",
-          "type": "number"
-        },
-        "median_stars": {
-          "description": "Median star count per repository for this conference.",
-          "examples": [
-            12.0
-          ],
-          "minimum": 0,
-          "title": "Median Stars",
-          "type": "number"
-        },
-        "median_forks": {
-          "description": "Median fork count per repository for this conference.",
-          "examples": [
-            3.0
-          ],
-          "minimum": 0,
-          "title": "Median Forks",
-          "type": "number"
-        },
-        "p25_stars": {
-          "description": "25th percentile star count per repository for this conference.",
-          "minimum": 0,
-          "title": "P25 Stars",
-          "type": "number"
-        },
-        "p75_stars": {
-          "description": "75th percentile star count per repository for this conference.",
-          "minimum": 0,
-          "title": "P75 Stars",
-          "type": "number"
-        },
-        "p25_forks": {
-          "description": "25th percentile fork count per repository for this conference.",
-          "minimum": 0,
-          "title": "P25 Forks",
-          "type": "number"
-        },
-        "p75_forks": {
-          "description": "75th percentile fork count per repository for this conference.",
-          "minimum": 0,
-          "title": "P75 Forks",
           "type": "number"
         },
         "max_stars": {
@@ -213,48 +170,6 @@
           "minimum": 0,
           "title": "Avg Forks",
           "type": "number"
-        },
-        "median_stars": {
-          "description": "Median star count per repository for this conference-year.",
-          "examples": [
-            12.0
-          ],
-          "minimum": 0,
-          "title": "Median Stars",
-          "type": "number"
-        },
-        "median_forks": {
-          "description": "Median fork count per repository for this conference-year.",
-          "examples": [
-            3.0
-          ],
-          "minimum": 0,
-          "title": "Median Forks",
-          "type": "number"
-        },
-        "p25_stars": {
-          "description": "25th percentile star count per repository for this conference-year.",
-          "minimum": 0,
-          "title": "P25 Stars",
-          "type": "number"
-        },
-        "p75_stars": {
-          "description": "75th percentile star count per repository for this conference-year.",
-          "minimum": 0,
-          "title": "P75 Stars",
-          "type": "number"
-        },
-        "p25_forks": {
-          "description": "25th percentile fork count per repository for this conference-year.",
-          "minimum": 0,
-          "title": "P25 Forks",
-          "type": "number"
-        },
-        "p75_forks": {
-          "description": "75th percentile fork count per repository for this conference-year.",
-          "minimum": 0,
-          "title": "P75 Forks",
-          "type": "number"
         }
       },
       "required": [
@@ -360,48 +275,6 @@
           ],
           "minimum": 0,
           "title": "Avg Forks",
-          "type": "number"
-        },
-        "median_stars": {
-          "description": "Median GitHub star count per repository.",
-          "examples": [
-            12.0
-          ],
-          "minimum": 0,
-          "title": "Median Stars",
-          "type": "number"
-        },
-        "median_forks": {
-          "description": "Median GitHub fork count per repository.",
-          "examples": [
-            3.0
-          ],
-          "minimum": 0,
-          "title": "Median Forks",
-          "type": "number"
-        },
-        "p25_stars": {
-          "description": "25th percentile GitHub star count per repository.",
-          "minimum": 0,
-          "title": "P25 Stars",
-          "type": "number"
-        },
-        "p75_stars": {
-          "description": "75th percentile GitHub star count per repository.",
-          "minimum": 0,
-          "title": "P75 Stars",
-          "type": "number"
-        },
-        "p25_forks": {
-          "description": "25th percentile GitHub fork count per repository.",
-          "minimum": 0,
-          "title": "P25 Forks",
-          "type": "number"
-        },
-        "p75_forks": {
-          "description": "75th percentile GitHub fork count per repository.",
-          "minimum": 0,
-          "title": "P75 Forks",
           "type": "number"
         },
         "last_updated": {
@@ -634,96 +507,6 @@
             65.3
           ],
           "title": "Avg Forks"
-        },
-        "median_stars": {
-          "anyOf": [
-            {
-              "minimum": 0,
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Median star count per repository. Null if not computed.",
-          "examples": [
-            12.0
-          ],
-          "title": "Median Stars"
-        },
-        "median_forks": {
-          "anyOf": [
-            {
-              "minimum": 0,
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "Median fork count per repository. Null if not computed.",
-          "examples": [
-            3.0
-          ],
-          "title": "Median Forks"
-        },
-        "p25_stars": {
-          "anyOf": [
-            {
-              "minimum": 0,
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "25th percentile star count per repository. Null if not computed.",
-          "title": "P25 Stars"
-        },
-        "p75_stars": {
-          "anyOf": [
-            {
-              "minimum": 0,
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "75th percentile star count per repository. Null if not computed.",
-          "title": "P75 Stars"
-        },
-        "p25_forks": {
-          "anyOf": [
-            {
-              "minimum": 0,
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "25th percentile fork count per repository. Null if not computed.",
-          "title": "P25 Forks"
-        },
-        "p75_forks": {
-          "anyOf": [
-            {
-              "minimum": 0,
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "default": null,
-          "description": "75th percentile fork count per repository. Null if not computed.",
-          "title": "P75 Forks"
         }
       },
       "required": [
@@ -732,92 +515,6 @@
         "total_stars"
       ],
       "title": "YearRepoStats",
-      "type": "object"
-    },
-    "AreaRepoStats": {
-      "additionalProperties": false,
-      "description": "Repository metrics grouped by area (e.g. systems, security).",
-      "properties": {
-        "name": {
-          "description": "Area name, e.g. 'systems' or 'security'.",
-          "examples": [
-            "systems",
-            "security"
-          ],
-          "title": "Name",
-          "type": "string"
-        },
-        "github_repos": {
-          "description": "Total GitHub repositories in this area.",
-          "minimum": 0,
-          "title": "Github Repos",
-          "type": "integer"
-        },
-        "total_stars": {
-          "description": "Sum of GitHub stars across all repos in this area.",
-          "minimum": 0,
-          "title": "Total Stars",
-          "type": "integer"
-        },
-        "total_forks": {
-          "description": "Sum of GitHub forks across all repos in this area.",
-          "minimum": 0,
-          "title": "Total Forks",
-          "type": "integer"
-        },
-        "median_stars": {
-          "description": "Median star count per repository in this area.",
-          "minimum": 0,
-          "title": "Median Stars",
-          "type": "number"
-        },
-        "median_forks": {
-          "description": "Median fork count per repository in this area.",
-          "minimum": 0,
-          "title": "Median Forks",
-          "type": "number"
-        },
-        "p25_stars": {
-          "description": "25th percentile star count per repository in this area.",
-          "minimum": 0,
-          "title": "P25 Stars",
-          "type": "number"
-        },
-        "p75_stars": {
-          "description": "75th percentile star count per repository in this area.",
-          "minimum": 0,
-          "title": "P75 Stars",
-          "type": "number"
-        },
-        "p25_forks": {
-          "description": "25th percentile fork count per repository in this area.",
-          "minimum": 0,
-          "title": "P25 Forks",
-          "type": "number"
-        },
-        "p75_forks": {
-          "description": "75th percentile fork count per repository in this area.",
-          "minimum": 0,
-          "title": "P75 Forks",
-          "type": "number"
-        },
-        "max_stars": {
-          "description": "Maximum star count among repos in this area.",
-          "minimum": 0,
-          "title": "Max Stars",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "name",
-        "github_repos",
-        "total_stars",
-        "total_forks",
-        "median_stars",
-        "median_forks",
-        "max_stars"
-      ],
-      "title": "AreaRepoStats",
       "type": "object"
     }
   },
@@ -842,14 +539,6 @@
         "$ref": "#/$defs/YearRepoStats"
       },
       "title": "By Year",
-      "type": "array"
-    },
-    "by_area": {
-      "description": "Repository metrics grouped by area (systems, security) with pre-computed medians.",
-      "items": {
-        "$ref": "#/$defs/AreaRepoStats"
-      },
-      "title": "By Area",
       "type": "array"
     }
   },

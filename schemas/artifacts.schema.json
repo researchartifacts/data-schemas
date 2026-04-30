@@ -1,10 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/artifacts.schema.json",
-  "$comment": "Validates: assets/data/artifacts.json",
-  "version": "0.1.2",
   "title": "Artifact Collection",
   "description": "Array of Artifact records. Each element: A single research artifact associated with a conference paper.",
+  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/Artifact"
@@ -47,7 +46,7 @@
           "type": "string"
         },
         "year": {
-          "description": "Publication year (2017\u20132030), e.g. 2023.",
+          "description": "Publication year (2017–2030), e.g. 2023.",
           "examples": [
             2023
           ],

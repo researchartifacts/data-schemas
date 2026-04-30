@@ -1,0 +1,488 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/chair_stats.schema.json",
+  "version": "0.1.2",
+  "$defs": {
+    "ChairStatsSummary": {
+      "additionalProperties": false,
+      "description": "Top-level summary of chair statistics.",
+      "properties": {
+        "total_chairs": {
+          "description": "Total unique AE chairs.",
+          "examples": [
+            82
+          ],
+          "minimum": 0,
+          "title": "Total Chairs",
+          "type": "integer"
+        },
+        "total_chairs_systems": {
+          "description": "Unique chairs at systems conferences.",
+          "examples": [
+            54
+          ],
+          "minimum": 0,
+          "title": "Total Chairs Systems",
+          "type": "integer"
+        },
+        "total_chairs_security": {
+          "description": "Unique chairs at security conferences.",
+          "examples": [
+            30
+          ],
+          "minimum": 0,
+          "title": "Total Chairs Security",
+          "type": "integer"
+        },
+        "repeat_chairs": {
+          "description": "Chairs who chaired 2+ times.",
+          "examples": [
+            23
+          ],
+          "minimum": 0,
+          "title": "Repeat Chairs",
+          "type": "integer"
+        },
+        "repeat_chairs_pct": {
+          "description": "Percentage of repeat chairs.",
+          "examples": [
+            28.0
+          ],
+          "minimum": 0,
+          "title": "Repeat Chairs Pct",
+          "type": "number"
+        },
+        "cross_conference_chairs": {
+          "description": "Chairs spanning multiple series.",
+          "examples": [
+            13
+          ],
+          "minimum": 0,
+          "title": "Cross Conference Chairs",
+          "type": "integer"
+        },
+        "pipeline_promoted": {
+          "description": "Chairs promoted from member role.",
+          "examples": [
+            31
+          ],
+          "minimum": 0,
+          "title": "Pipeline Promoted",
+          "type": "integer"
+        },
+        "pipeline_promoted_pct": {
+          "description": "Percentage promoted from member.",
+          "examples": [
+            37.8
+          ],
+          "minimum": 0,
+          "title": "Pipeline Promoted Pct",
+          "type": "number"
+        },
+        "pipeline_avg_years": {
+          "description": "Avg years from member to chair.",
+          "examples": [
+            2.7
+          ],
+          "minimum": 0,
+          "title": "Pipeline Avg Years",
+          "type": "number"
+        },
+        "avg_chairs_per_edition": {
+          "description": "Average co-chairs per conference edition.",
+          "examples": [
+            2.2
+          ],
+          "minimum": 0,
+          "title": "Avg Chairs Per Edition",
+          "type": "number"
+        },
+        "year_trends": {
+          "description": "Year-over-year chair entry and activity.",
+          "items": {
+            "$ref": "#/$defs/YearTrend"
+          },
+          "title": "Year Trends",
+          "type": "array"
+        }
+      },
+      "required": [
+        "total_chairs",
+        "total_chairs_systems",
+        "total_chairs_security",
+        "repeat_chairs",
+        "repeat_chairs_pct",
+        "cross_conference_chairs",
+        "pipeline_promoted",
+        "pipeline_promoted_pct",
+        "pipeline_avg_years",
+        "avg_chairs_per_edition",
+        "year_trends"
+      ],
+      "title": "ChairStatsSummary",
+      "type": "object"
+    },
+    "ChairTeam": {
+      "additionalProperties": false,
+      "description": "Co-chair team for a single conference-year.",
+      "properties": {
+        "conference": {
+          "description": "Conference abbreviation, e.g. 'OSDI'.",
+          "examples": [
+            "OSDI"
+          ],
+          "title": "Conference",
+          "type": "string"
+        },
+        "year": {
+          "description": "Calendar year.",
+          "examples": [
+            2023
+          ],
+          "title": "Year",
+          "type": "integer"
+        },
+        "chair_count": {
+          "description": "Number of co-chairs for this edition.",
+          "examples": [
+            3
+          ],
+          "minimum": 1,
+          "title": "Chair Count",
+          "type": "integer"
+        },
+        "chairs": {
+          "description": "Names of the co-chairs.",
+          "examples": [
+            [
+              "Alice",
+              "Bob",
+              "Carol"
+            ]
+          ],
+          "items": {
+            "type": "string"
+          },
+          "title": "Chairs",
+          "type": "array"
+        }
+      },
+      "required": [
+        "conference",
+        "year",
+        "chair_count",
+        "chairs"
+      ],
+      "title": "ChairTeam",
+      "type": "object"
+    },
+    "CrossConferenceChair": {
+      "additionalProperties": false,
+      "description": "A chair who served at multiple different conference series.",
+      "properties": {
+        "name": {
+          "description": "Chair's display name.",
+          "examples": [
+            "Alice Smith"
+          ],
+          "title": "Name",
+          "type": "string"
+        },
+        "affiliation": {
+          "description": "Current affiliation.",
+          "examples": [
+            "MIT"
+          ],
+          "title": "Affiliation",
+          "type": "string"
+        },
+        "series": {
+          "description": "Conference series chaired.",
+          "examples": [
+            [
+              "OSDI",
+              "ATC"
+            ]
+          ],
+          "items": {
+            "type": "string"
+          },
+          "title": "Series",
+          "type": "array"
+        },
+        "chair_count": {
+          "description": "Total chairing roles.",
+          "examples": [
+            4
+          ],
+          "minimum": 1,
+          "title": "Chair Count",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "name",
+        "affiliation",
+        "series",
+        "chair_count"
+      ],
+      "title": "CrossConferenceChair",
+      "type": "object"
+    },
+    "PipelinePromotion": {
+      "additionalProperties": false,
+      "description": "A single member-to-chair promotion record.",
+      "properties": {
+        "name": {
+          "description": "Chair's display name.",
+          "examples": [
+            "Alice Smith"
+          ],
+          "title": "Name",
+          "type": "string"
+        },
+        "first_member_year": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Year of first AE member role.",
+          "examples": [
+            2020
+          ],
+          "title": "First Member Year"
+        },
+        "first_chair_year": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Year of first AE chair role.",
+          "examples": [
+            2022
+          ],
+          "title": "First Chair Year"
+        },
+        "gap": {
+          "description": "Years between first member and first chair role.",
+          "examples": [
+            2
+          ],
+          "minimum": 0,
+          "title": "Gap",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "name",
+        "gap"
+      ],
+      "title": "PipelinePromotion",
+      "type": "object"
+    },
+    "PipelineStats": {
+      "additionalProperties": false,
+      "description": "Member-to-chair promotion pipeline statistics.",
+      "properties": {
+        "promoted_count": {
+          "description": "Number of chairs who served as members first.",
+          "examples": [
+            31
+          ],
+          "minimum": 0,
+          "title": "Promoted Count",
+          "type": "integer"
+        },
+        "promoted_pct": {
+          "description": "Percentage of chairs promoted from member.",
+          "examples": [
+            37.8
+          ],
+          "minimum": 0,
+          "title": "Promoted Pct",
+          "type": "number"
+        },
+        "avg_years_to_chair": {
+          "description": "Average years from first member to first chair.",
+          "examples": [
+            2.7
+          ],
+          "minimum": 0,
+          "title": "Avg Years To Chair",
+          "type": "number"
+        },
+        "min_years": {
+          "description": "Minimum years to promotion.",
+          "examples": [
+            1
+          ],
+          "minimum": 0,
+          "title": "Min Years",
+          "type": "integer"
+        },
+        "max_years": {
+          "description": "Maximum years to promotion.",
+          "examples": [
+            9
+          ],
+          "minimum": 0,
+          "title": "Max Years",
+          "type": "integer"
+        },
+        "promotions": {
+          "description": "Individual promotion records.",
+          "items": {
+            "$ref": "#/$defs/PipelinePromotion"
+          },
+          "title": "Promotions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "promoted_count",
+        "promoted_pct",
+        "avg_years_to_chair",
+        "min_years",
+        "max_years",
+        "promotions"
+      ],
+      "title": "PipelineStats",
+      "type": "object"
+    },
+    "RetentionStats": {
+      "additionalProperties": false,
+      "description": "Chair retention and repeat-chairing statistics.",
+      "properties": {
+        "repeat_count": {
+          "description": "Chairs who chaired 2+ times.",
+          "examples": [
+            23
+          ],
+          "minimum": 0,
+          "title": "Repeat Count",
+          "type": "integer"
+        },
+        "distribution": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "description": "Chair count → number of people. E.g. {'1': 59, '2': 18, '3': 2}.",
+          "examples": [
+            {
+              "1": 59,
+              "2": 18
+            }
+          ],
+          "title": "Distribution",
+          "type": "object"
+        },
+        "tenure_spans": {
+          "description": "Per-chair tenure span data.",
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "title": "Tenure Spans",
+          "type": "array"
+        }
+      },
+      "required": [
+        "repeat_count",
+        "distribution",
+        "tenure_spans"
+      ],
+      "title": "RetentionStats",
+      "type": "object"
+    },
+    "YearTrend": {
+      "additionalProperties": false,
+      "description": "Chair activity for a single year.",
+      "properties": {
+        "year": {
+          "description": "Calendar year.",
+          "examples": [
+            2023
+          ],
+          "title": "Year",
+          "type": "integer"
+        },
+        "new_chairs": {
+          "description": "Chairs entering for the first time.",
+          "examples": [
+            14
+          ],
+          "minimum": 0,
+          "title": "New Chairs",
+          "type": "integer"
+        },
+        "active_chairs": {
+          "description": "Total chairing slots filled this year.",
+          "examples": [
+            19
+          ],
+          "minimum": 0,
+          "title": "Active Chairs",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "year",
+        "new_chairs",
+        "active_chairs"
+      ],
+      "title": "YearTrend",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Complete chair statistics output file.",
+  "properties": {
+    "summary": {
+      "$ref": "#/$defs/ChairStatsSummary",
+      "description": "Aggregate chair metrics."
+    },
+    "chair_teams": {
+      "description": "Per-conference-year chair teams.",
+      "items": {
+        "$ref": "#/$defs/ChairTeam"
+      },
+      "title": "Chair Teams",
+      "type": "array"
+    },
+    "pipeline": {
+      "$ref": "#/$defs/PipelineStats",
+      "description": "Member-to-chair promotion analytics."
+    },
+    "retention": {
+      "$ref": "#/$defs/RetentionStats",
+      "description": "Retention and repeat-chair data."
+    },
+    "cross_conference": {
+      "description": "Chairs serving multiple series.",
+      "items": {
+        "$ref": "#/$defs/CrossConferenceChair"
+      },
+      "title": "Cross Conference",
+      "type": "array"
+    }
+  },
+  "required": [
+    "summary",
+    "chair_teams",
+    "pipeline",
+    "retention",
+    "cross_conference"
+  ],
+  "title": "ChairStats",
+  "type": "object"
+}

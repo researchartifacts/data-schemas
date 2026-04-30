@@ -1,7 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/summary.schema.json",
-  "$comment": "Validates: _data/summary.yml, assets/data/summary.json",
   "version": "0.1.2",
   "additionalProperties": false,
   "description": "High-level summary: total artifact and conference counts, year range, and last-updated timestamp.",

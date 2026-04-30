@@ -1,0 +1,247 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://reprodb.github.io/data-schemas/schemas/ae_chairs.schema.json",
+  "title": "AEChair Collection",
+  "description": "Array of AEChair records. Each element: An AE Chair with chairing history, pipeline status, and cross-conference service.",
+  "version": "0.1.2",
+  "type": "array",
+  "items": {
+    "$ref": "#/$defs/AEChair"
+  },
+  "$defs": {
+    "AEMembership": {
+      "additionalProperties": false,
+      "description": "A single AE committee membership record.",
+      "properties": {
+        "conference": {
+          "description": "Conference abbreviation, e.g. 'OSDI', 'USENIXSEC', 'NDSS'.",
+          "examples": [
+            "OSDI"
+          ],
+          "title": "Conference",
+          "type": "string"
+        },
+        "year": {
+          "description": "Calendar year of service, e.g. 2023.",
+          "examples": [
+            2023
+          ],
+          "title": "Year",
+          "type": "integer"
+        },
+        "role": {
+          "description": "Role on the committee. One of 'chair' or 'member'.",
+          "examples": [
+            "member"
+          ],
+          "title": "Role",
+          "type": "string"
+        }
+      },
+      "required": [
+        "conference",
+        "year",
+        "role"
+      ],
+      "title": "AEMembership",
+      "type": "object"
+    },
+    "AEChair": {
+      "additionalProperties": false,
+      "description": "An AE Chair with chairing history, pipeline status, and cross-conference service.",
+      "properties": {
+        "name": {
+          "description": "Full name, e.g. 'Mathias Payer'. May include DBLP disambiguation suffix.",
+          "examples": [
+            "Mathias Payer"
+          ],
+          "title": "Name",
+          "type": "string"
+        },
+        "display_name": {
+          "description": "Human-readable name without disambiguation suffix.",
+          "examples": [
+            "Mathias Payer"
+          ],
+          "title": "Display Name",
+          "type": "string"
+        },
+        "affiliation": {
+          "description": "Current institutional affiliation, e.g. 'EPFL', 'MIT'.",
+          "examples": [
+            "ETH Zurich"
+          ],
+          "title": "Affiliation",
+          "type": "string"
+        },
+        "total_memberships": {
+          "description": "Total AE roles (chair + member) across all conferences and years.",
+          "examples": [
+            7
+          ],
+          "minimum": 0,
+          "title": "Total Memberships",
+          "type": "integer"
+        },
+        "chair_count": {
+          "description": "Number of conference-years served as AE chair.",
+          "examples": [
+            3
+          ],
+          "minimum": 1,
+          "title": "Chair Count",
+          "type": "integer"
+        },
+        "member_count": {
+          "description": "Number of conference-years served as regular AE member (total_memberships - chair_count).",
+          "examples": [
+            4
+          ],
+          "minimum": 0,
+          "title": "Member Count",
+          "type": "integer"
+        },
+        "conferences": {
+          "description": "All AE committee memberships (both chair and member roles).",
+          "items": {
+            "$ref": "#/$defs/AEMembership"
+          },
+          "title": "Conferences",
+          "type": "array"
+        },
+        "area": {
+          "description": "Research area: 'systems', 'security', or 'both'.",
+          "examples": [
+            "systems"
+          ],
+          "title": "Area",
+          "type": "string"
+        },
+        "years": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "description": "Year (string key) → number of AE roles that year.",
+          "examples": [
+            {
+              "2023": 2,
+              "2024": 1
+            }
+          ],
+          "title": "Years",
+          "type": "object"
+        },
+        "first_year": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Earliest year of any AE service (chair or member).",
+          "examples": [
+            2019
+          ],
+          "title": "First Year"
+        },
+        "last_year": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Most recent year of any AE service.",
+          "examples": [
+            2025
+          ],
+          "title": "Last Year"
+        },
+        "first_chair_year": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Year of first chairing role.",
+          "examples": [
+            2021
+          ],
+          "title": "First Chair Year"
+        },
+        "chaired_series": {
+          "description": "Conference series chaired, e.g. ['OSDI', 'EUROSYS'].",
+          "examples": [
+            [
+              "OSDI",
+              "ATC"
+            ]
+          ],
+          "items": {
+            "type": "string"
+          },
+          "title": "Chaired Series",
+          "type": "array"
+        },
+        "chaired_conferences": {
+          "description": "Only the chair-role entries from conferences list.",
+          "items": {
+            "$ref": "#/$defs/AEMembership"
+          },
+          "title": "Chaired Conferences",
+          "type": "array"
+        },
+        "promoted_from_member": {
+          "description": "True if this person served as regular AE member before first chairing.",
+          "examples": [
+            true
+          ],
+          "title": "Promoted From Member",
+          "type": "boolean"
+        },
+        "years_to_chair": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Years between first member role and first chair role. Null if not promoted from member.",
+          "examples": [
+            2
+          ],
+          "title": "Years To Chair"
+        }
+      },
+      "required": [
+        "name",
+        "display_name",
+        "affiliation",
+        "total_memberships",
+        "chair_count",
+        "member_count",
+        "conferences",
+        "area",
+        "years",
+        "chaired_series",
+        "chaired_conferences",
+        "promoted_from_member"
+      ],
+      "title": "AEChair",
+      "type": "object"
+    }
+  }
+}

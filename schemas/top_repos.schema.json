@@ -1,10 +1,9 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/top_repos.schema.json",
-  "$comment": "Validates: assets/data/top_repos.json, assets/data/{area}_top_repos.json",
-  "version": "0.1.2",
   "title": "TopRepo Collection",
   "description": "Array of TopRepo records. Each element: Top-ranked artifact repository by GitHub stars, with paper metadata and activity info.",
+  "version": "0.1.2",
   "type": "array",
   "items": {
     "$ref": "#/$defs/TopRepo"
