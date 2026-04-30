@@ -52,6 +52,24 @@
           "title": "Repeat Chairs Pct",
           "type": "number"
         },
+        "repeat_chairs_systems": {
+          "description": "Repeat chairs at systems conferences.",
+          "examples": [
+            16
+          ],
+          "minimum": 0,
+          "title": "Repeat Chairs Systems",
+          "type": "integer"
+        },
+        "repeat_chairs_security": {
+          "description": "Repeat chairs at security conferences.",
+          "examples": [
+            8
+          ],
+          "minimum": 0,
+          "title": "Repeat Chairs Security",
+          "type": "integer"
+        },
         "cross_conference_chairs": {
           "description": "Chairs spanning multiple series.",
           "examples": [
@@ -97,6 +115,24 @@
           "title": "Avg Chairs Per Edition",
           "type": "number"
         },
+        "avg_chairs_per_edition_systems": {
+          "description": "Average co-chairs per edition at systems conferences.",
+          "examples": [
+            2.3
+          ],
+          "minimum": 0,
+          "title": "Avg Chairs Per Edition Systems",
+          "type": "number"
+        },
+        "avg_chairs_per_edition_security": {
+          "description": "Average co-chairs per edition at security conferences.",
+          "examples": [
+            2.0
+          ],
+          "minimum": 0,
+          "title": "Avg Chairs Per Edition Security",
+          "type": "number"
+        },
         "total_countries": {
           "description": "Number of distinct countries represented by chairs.",
           "examples": [
@@ -130,11 +166,15 @@
         "total_chairs_security",
         "repeat_chairs",
         "repeat_chairs_pct",
+        "repeat_chairs_systems",
+        "repeat_chairs_security",
         "cross_conference_chairs",
         "pipeline_promoted",
         "pipeline_promoted_pct",
         "pipeline_avg_years",
         "avg_chairs_per_edition",
+        "avg_chairs_per_edition_systems",
+        "avg_chairs_per_edition_security",
         "total_countries",
         "total_continents",
         "year_trends"
