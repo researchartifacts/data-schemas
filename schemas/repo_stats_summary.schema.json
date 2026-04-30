@@ -396,6 +396,60 @@
           "title": "Avg Forks",
           "type": "number"
         },
+        "median_stars": {
+          "description": "Median star count per repository.",
+          "examples": [
+            25.0
+          ],
+          "minimum": 0,
+          "title": "Median Stars",
+          "type": "number"
+        },
+        "median_forks": {
+          "description": "Median fork count per repository.",
+          "examples": [
+            6.0
+          ],
+          "minimum": 0,
+          "title": "Median Forks",
+          "type": "number"
+        },
+        "p25_stars": {
+          "description": "25th percentile of stars.",
+          "examples": [
+            8.0
+          ],
+          "minimum": 0,
+          "title": "P25 Stars",
+          "type": "number"
+        },
+        "p75_stars": {
+          "description": "75th percentile of stars.",
+          "examples": [
+            80.0
+          ],
+          "minimum": 0,
+          "title": "P75 Stars",
+          "type": "number"
+        },
+        "p25_forks": {
+          "description": "25th percentile of forks.",
+          "examples": [
+            2.0
+          ],
+          "minimum": 0,
+          "title": "P25 Forks",
+          "type": "number"
+        },
+        "p75_forks": {
+          "description": "75th percentile of forks.",
+          "examples": [
+            18.0
+          ],
+          "minimum": 0,
+          "title": "P75 Forks",
+          "type": "number"
+        },
         "last_updated": {
           "description": "ISO 8601 UTC timestamp of when the stats were collected, e.g. '2026-04-27 21:26:09 UTC'.",
           "examples": [
@@ -416,6 +470,12 @@
         "total_downloads",
         "avg_stars",
         "avg_forks",
+        "median_stars",
+        "median_forks",
+        "p25_stars",
+        "p75_stars",
+        "p25_forks",
+        "p75_forks",
         "last_updated"
       ],
       "title": "OverallStats",
