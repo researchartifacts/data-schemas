@@ -74,6 +74,38 @@
           "title": "Affiliation",
           "type": "string"
         },
+        "country": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Country of the institution, e.g. 'Switzerland'. Null if unresolved.",
+          "examples": [
+            "Switzerland"
+          ],
+          "title": "Country"
+        },
+        "continent": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Continent of the institution, e.g. 'Europe'. Null if unresolved.",
+          "examples": [
+            "Europe"
+          ],
+          "title": "Continent"
+        },
         "total_memberships": {
           "description": "Total AE roles (chair + member) across all conferences and years.",
           "examples": [

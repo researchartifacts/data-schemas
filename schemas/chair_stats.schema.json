@@ -97,6 +97,24 @@
           "title": "Avg Chairs Per Edition",
           "type": "number"
         },
+        "total_countries": {
+          "description": "Number of distinct countries represented by chairs.",
+          "examples": [
+            15
+          ],
+          "minimum": 0,
+          "title": "Total Countries",
+          "type": "integer"
+        },
+        "total_continents": {
+          "description": "Number of distinct continents represented by chairs.",
+          "examples": [
+            4
+          ],
+          "minimum": 0,
+          "title": "Total Continents",
+          "type": "integer"
+        },
         "year_trends": {
           "description": "Year-over-year chair entry and activity.",
           "items": {
@@ -117,6 +135,8 @@
         "pipeline_promoted_pct",
         "pipeline_avg_years",
         "avg_chairs_per_edition",
+        "total_countries",
+        "total_continents",
         "year_trends"
       ],
       "title": "ChairStatsSummary",
@@ -227,6 +247,76 @@
         "chair_count"
       ],
       "title": "CrossConferenceChair",
+      "type": "object"
+    },
+    "GeographicStats": {
+      "additionalProperties": false,
+      "description": "Geographic diversity statistics for chairs.",
+      "properties": {
+        "total_countries": {
+          "description": "Number of distinct countries.",
+          "examples": [
+            15
+          ],
+          "minimum": 0,
+          "title": "Total Countries",
+          "type": "integer"
+        },
+        "total_continents": {
+          "description": "Number of distinct continents.",
+          "examples": [
+            4
+          ],
+          "minimum": 0,
+          "title": "Total Continents",
+          "type": "integer"
+        },
+        "by_country": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "description": "Country → number of chairs from that country.",
+          "examples": [
+            {
+              "Germany": 8,
+              "United States": 30
+            }
+          ],
+          "title": "By Country",
+          "type": "object"
+        },
+        "by_continent": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "description": "Continent → number of chairs from that continent.",
+          "examples": [
+            {
+              "Europe": 25,
+              "North America": 35
+            }
+          ],
+          "title": "By Continent",
+          "type": "object"
+        },
+        "unclassified_count": {
+          "description": "Chairs without a resolved country.",
+          "examples": [
+            3
+          ],
+          "minimum": 0,
+          "title": "Unclassified Count",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "total_countries",
+        "total_continents",
+        "by_country",
+        "by_continent",
+        "unclassified_count"
+      ],
+      "title": "GeographicStats",
       "type": "object"
     },
     "PipelinePromotion": {
@@ -474,6 +564,10 @@
       },
       "title": "Cross Conference",
       "type": "array"
+    },
+    "geographic": {
+      "$ref": "#/$defs/GeographicStats",
+      "description": "Geographic diversity of chairs."
     }
   },
   "required": [
@@ -481,7 +575,8 @@
     "chair_teams",
     "pipeline",
     "retention",
-    "cross_conference"
+    "cross_conference",
+    "geographic"
   ],
   "title": "ChairStats",
   "type": "object"
