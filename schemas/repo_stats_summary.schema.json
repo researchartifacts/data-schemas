@@ -3,6 +3,125 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/repo_stats_summary.schema.json",
   "version": "0.1.2",
   "$defs": {
+    "AreaRepoStats": {
+      "additionalProperties": false,
+      "description": "Repository metrics for a single research area (e.g. systems, security).",
+      "properties": {
+        "name": {
+          "description": "Area name, e.g. 'systems' or 'security'.",
+          "examples": [
+            "systems"
+          ],
+          "title": "Name",
+          "type": "string"
+        },
+        "github_repos": {
+          "description": "Total GitHub repositories in this area.",
+          "examples": [
+            700
+          ],
+          "minimum": 0,
+          "title": "Github Repos",
+          "type": "integer"
+        },
+        "total_stars": {
+          "description": "Sum of stars across all repos in this area.",
+          "examples": [
+            60000
+          ],
+          "minimum": 0,
+          "title": "Total Stars",
+          "type": "integer"
+        },
+        "total_forks": {
+          "description": "Sum of forks across all repos in this area.",
+          "examples": [
+            15000
+          ],
+          "minimum": 0,
+          "title": "Total Forks",
+          "type": "integer"
+        },
+        "median_stars": {
+          "description": "Median star count per repository.",
+          "examples": [
+            25.0
+          ],
+          "minimum": 0,
+          "title": "Median Stars",
+          "type": "number"
+        },
+        "median_forks": {
+          "description": "Median fork count per repository.",
+          "examples": [
+            6.0
+          ],
+          "minimum": 0,
+          "title": "Median Forks",
+          "type": "number"
+        },
+        "p25_stars": {
+          "description": "25th percentile of stars.",
+          "examples": [
+            8.0
+          ],
+          "minimum": 0,
+          "title": "P25 Stars",
+          "type": "number"
+        },
+        "p75_stars": {
+          "description": "75th percentile of stars.",
+          "examples": [
+            80.0
+          ],
+          "minimum": 0,
+          "title": "P75 Stars",
+          "type": "number"
+        },
+        "p25_forks": {
+          "description": "25th percentile of forks.",
+          "examples": [
+            2.0
+          ],
+          "minimum": 0,
+          "title": "P25 Forks",
+          "type": "number"
+        },
+        "p75_forks": {
+          "description": "75th percentile of forks.",
+          "examples": [
+            18.0
+          ],
+          "minimum": 0,
+          "title": "P75 Forks",
+          "type": "number"
+        },
+        "max_stars": {
+          "description": "Maximum star count in this area.",
+          "examples": [
+            5200
+          ],
+          "minimum": 0,
+          "title": "Max Stars",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "name",
+        "github_repos",
+        "total_stars",
+        "total_forks",
+        "median_stars",
+        "median_forks",
+        "p25_stars",
+        "p75_stars",
+        "p25_forks",
+        "p75_forks",
+        "max_stars"
+      ],
+      "title": "AreaRepoStats",
+      "type": "object"
+    },
     "ConferenceRepoStats": {
       "additionalProperties": false,
       "description": "Repository metrics grouped by conference.",
@@ -539,6 +658,14 @@
         "$ref": "#/$defs/YearRepoStats"
       },
       "title": "By Year",
+      "type": "array"
+    },
+    "by_area": {
+      "description": "Repository metrics grouped by research area (systems, security).",
+      "items": {
+        "$ref": "#/$defs/AreaRepoStats"
+      },
+      "title": "By Area",
       "type": "array"
     }
   },
