@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/paper_index.schema.json",
   "title": "Paper Collection",
   "description": "Array of Paper records. Each element: A paper published at a tracked conference, with artifact badges and citation data.",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "type": "array",
   "items": {
     "$ref": "#/$defs/Paper"

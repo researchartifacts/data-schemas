@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://reprodb.github.io/data-schemas/schemas/repo_stats_summary.schema.json",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "$defs": {
     "AreaRepoStats": {
       "additionalProperties": false,

@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/author_index.schema.json",
   "title": "AuthorIndexEntry Collection",
   "description": "Array of AuthorIndexEntry records. Each element: Canonical author record: stable ID, name, affiliation, external identifiers, and enrichment history.",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "type": "array",
   "items": {
     "$ref": "#/$defs/AuthorIndexEntry"

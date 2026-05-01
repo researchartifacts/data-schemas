@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/author_stats.schema.json",
   "title": "AuthorStats Collection",
   "description": "Array of AuthorStats records. Each element: Per-author artifact statistics including badge counts, paper breakdowns, and conference history.",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "type": "array",
   "items": {
     "$ref": "#/$defs/AuthorStats"

@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/artifact_citations.schema.json",
   "title": "ArtifactCitation Collection",
   "description": "Array of ArtifactCitation records. Each element: Citation counts for a single artifact DOI, aggregated from OpenAlex and Semantic Scholar.",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "type": "array",
   "items": {
     "$ref": "#/$defs/ArtifactCitation"

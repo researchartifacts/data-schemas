@@ -3,7 +3,7 @@
   "$id": "https://reprodb.github.io/data-schemas/schemas/ae_chairs.schema.json",
   "title": "AEChair Collection",
   "description": "Array of AEChair records. Each element: An AE Chair with chairing history, pipeline status, and cross-conference service.",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "type": "array",
   "items": {
     "$ref": "#/$defs/AEChair"
