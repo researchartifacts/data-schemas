@@ -90,10 +90,11 @@
           "type": "array"
         },
         "category": {
-          "description": "Research domain: 'systems' or 'security', determined by the conference.",
+          "description": "Research domain: 'systems' or 'security', determined by the conference. 'unknown' if metadata is missing.",
           "enum": [
             "systems",
-            "security"
+            "security",
+            "unknown"
           ],
           "title": "Category",
           "type": "string"
@@ -287,11 +288,12 @@
           "type": "integer"
         },
         "category": {
-          "description": "Research domain based on conferences published at: 'systems', 'security', or 'both'.",
+          "description": "Research domain based on conferences published at: 'systems', 'security', 'both', or 'unknown'.",
           "enum": [
             "systems",
             "security",
-            "both"
+            "both",
+            "unknown"
           ],
           "title": "Category",
           "type": "string"

@@ -46,11 +46,12 @@
           "type": "string"
         },
         "source": {
-          "description": "Platform hosting the artifact: 'GitHub', 'GitLab', 'Zenodo', 'Bitbucket', etc.",
+          "description": "Platform hosting the artifact: 'github', 'zenodo', 'figshare', or 'unknown'.",
           "enum": [
             "github",
             "zenodo",
-            "figshare"
+            "figshare",
+            "unknown"
           ],
           "examples": [
             "github"

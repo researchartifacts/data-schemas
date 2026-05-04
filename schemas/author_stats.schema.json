@@ -53,10 +53,11 @@
           "type": "array"
         },
         "category": {
-          "description": "Research domain: 'systems' or 'security', determined by the conference.",
+          "description": "Research domain: 'systems' or 'security', determined by the conference. 'unknown' if metadata is missing.",
           "enum": [
             "systems",
-            "security"
+            "security",
+            "unknown"
           ],
           "title": "Category",
           "type": "string"

@@ -18,6 +18,7 @@
           "enum": [
             "ACSAC",
             "ATC",
+            "CAIS",
             "CHES",
             "EUROSYS",
             "FAST",
@@ -28,6 +29,7 @@
             "SOSP",
             "SYSTEX",
             "USENIXSEC",
+            "VEHICLESEC",
             "WOOT"
           ],
           "examples": [
