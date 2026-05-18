@@ -193,7 +193,7 @@
           "title": "Citation Score"
         },
         "ae_score": {
-          "description": "Points from AE service: (memberships × 3) + (chairs × 2).",
+          "description": "Points from AE service: (memberships \u00d7 3) + (chairs \u00d7 2).",
           "examples": [
             6
           ],
@@ -322,7 +322,7 @@
           "additionalProperties": {
             "type": "integer"
           },
-          "description": "Year (as string) → activity count, e.g. {'2023': 31, '2024': 59}.",
+          "description": "Year (as string) \u2192 activity count, e.g. {'2023': 31, '2024': 59}.",
           "examples": [
             [
               2021,
@@ -334,13 +334,21 @@
           "type": "object"
         },
         "top_authors": {
-          "description": "Up to 20 top-scoring authors from this institution, sorted by combined_score descending.",
-          "items": {
-            "$ref": "#/$defs/TopAuthor"
-          },
-          "maxItems": 20,
-          "title": "Top Authors",
-          "type": "array"
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/TopAuthor"
+              },
+              "maxItems": 20,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Up to 20 top-scoring authors from this institution, sorted by combined_score descending. Null in per-conference rankings.",
+          "title": "Top Authors"
         },
         "scope": {
           "anyOf": [
@@ -374,8 +382,7 @@
         "artifact_pct",
         "author_count",
         "conferences",
-        "years",
-        "top_authors"
+        "years"
       ],
       "title": "InstitutionRanking",
       "type": "object"
